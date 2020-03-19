@@ -118,9 +118,11 @@ span {
     border-radius: 50%;
     margin: auto;
 }
-@media all and (max-width: 994px)
+@media all and (max-width: 994px) and (min-device-width : 320px)
+and (max-device-width : 480px)
 {
     .my-email {
+        border: 2px solid green;
         overflow: hidden;
         transition: overflow 490ms ease-in-out, transform 330ms ease-in-out;
     }
