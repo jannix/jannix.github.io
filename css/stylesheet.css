@@ -119,7 +119,21 @@ span {
     margin: auto;
 }
 
-@media (overflow-inline: scroll) {
+@media all and (max-width: 994px)
+{
+    .my-email {
+        overflow: hidden;
+        transition: overflow 490ms ease-in-out, transform 330ms ease-in-out;
+    }
+    .my-email:hover, .my-email:active {
+        overflow: visible;
+        transform: scale(1.4);
+    }
+}
+
+@media screen and (min-device-width : 320px)
+and (max-device-width : 480px)
+{
     .my-email {
         overflow: hidden;
         transition: overflow 490ms ease-in-out, transform 330ms ease-in-out;
