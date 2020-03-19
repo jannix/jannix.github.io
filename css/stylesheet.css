@@ -16,7 +16,7 @@ aside {
     height: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: space-around;
 }
 
 h2 {
@@ -85,11 +85,12 @@ span {
 .hobbies-icon {
     font-size: xx-large;
     margin: auto;
-    margin-bottom: 15px;
 
 }
 
 .aside-element {
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 .aside-element:nth-child(1)
 {
@@ -116,5 +117,4 @@ span {
     overflow: hidden;
     border-radius: 50%;
     margin: auto;
-    margin-top: 30px;
 }
