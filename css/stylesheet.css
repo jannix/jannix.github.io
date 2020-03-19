@@ -118,3 +118,17 @@ span {
     border-radius: 50%;
     margin: auto;
 }
+@media all and (max-width: 994px)
+{
+    .my-email {
+        border: 2px solid green;
+        overflow: hidden;
+        transition: overflow 330ms ease-in-out, transform 450ms ease-in-out;
+    }
+    .my-email:hover {
+        overflow: visible;
+        transform: scale(1.4);
+    }
+}
+
+
