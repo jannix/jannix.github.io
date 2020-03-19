@@ -93,12 +93,16 @@ span {
     margin-bottom: 10px;
 }
 
+.aside-element *:not(ul):not(li) {
+    padding: 5px;
+}
+
 .aside-section {
     margin-bottom: 10%;
 }
 
 .profile-picture {
-    max-width: 125%;
+    max-width: 130%;
     margin-left: -20px;
     margin-top: -15px;
 }
