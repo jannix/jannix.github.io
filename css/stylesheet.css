@@ -127,7 +127,6 @@ span {
 and (max-device-width : 480px)
 {
     .my-email {
-        border: 2px solid blue;
         overflow: hidden;
         transition: overflow 490ms ease-in-out, transform 330ms ease-in-out;
     }
