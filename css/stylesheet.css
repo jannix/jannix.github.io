@@ -7,11 +7,9 @@ header {
 
 body {
     font-family: Arial, Georgia;
-
 }
 
 aside {
-
     background-color: #e67e22;
     height: 100%;
     display: flex;
@@ -73,10 +71,6 @@ span {
     border: 2px solid red;
 }
 
-.aside-container {
-    padding: 0px;
-}
-
 .hobbies-container {
     display: flex;
     justify-content: center;
@@ -86,6 +80,10 @@ span {
     font-size: xx-large;
     margin: auto;
 
+}
+
+.aside-container {
+    padding: 0px;
 }
 
 .aside-element {
@@ -115,9 +113,14 @@ span {
     margin: auto;
 }
 
+#section_reco ul {
+    margin-left: 50px;
+}
+
 @media all and (max-width: 994px)
 {
     .my-email {
+        font-size: 13px;
         overflow: hidden;
         transition: overflow 490ms ease-in-out, transform 330ms ease-in-out;
     }
@@ -131,6 +134,7 @@ span {
 and (max-device-width : 480px)
 {
     .my-email {
+        font-size: 12px;
         overflow: hidden;
         transition: overflow 490ms ease-in-out, transform 330ms ease-in-out;
     }
