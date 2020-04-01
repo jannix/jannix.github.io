@@ -131,4 +131,8 @@ h1 em {
     margin-left: 50px;
 }
 
-
+@media only screen and (max-width: 767px) {
+    #section_reco ul {
+        margin-left: 25px;
+    }
+}
