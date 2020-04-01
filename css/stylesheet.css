@@ -128,11 +128,5 @@ h1 em {
 }
 
 #section_reco ul {
-    margin-left: 50px;
-}
-
-@media only screen and (max-width: 767px) {
-    #section_reco ul {
-        margin-left: 0px;
-    }
+    padding-left: 50px;
 }
