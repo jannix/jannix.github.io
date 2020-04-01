@@ -29,10 +29,24 @@ span {
     font-size: large;
 }
 
+a {
+    color: #212121;
+}
+
+h1 em {
+    font-style: normal;
+    color: orange;
+}
+
 
 .title {
     font-family: "Arial Black";
     font-size: xx-large;
+}
+
+.title em {
+    font-style: normal;
+    border-bottom: 2px solid #FFB74D;
 }
 
 .dot {
@@ -115,33 +129,6 @@ span {
 
 #section_reco ul {
     margin-left: 50px;
-}
-
-@media all and (max-width: 994px)
-{
-    .my-email {
-        font-size: 13px;
-        overflow: hidden;
-        transition: overflow 490ms ease-in-out, transform 330ms ease-in-out;
-    }
-    .my-email:hover, .my-email:active {
-        overflow: visible;
-        transform: scale(1.4);
-    }
-}
-
-@media screen and (min-device-width : 320px)
-and (max-device-width : 480px)
-{
-    .my-email {
-        font-size: 12px;
-        overflow: hidden;
-        transition: overflow 490ms ease-in-out, transform 330ms ease-in-out;
-    }
-    .my-email:hover, .my-email:active {
-        overflow: visible;
-        transform: scale(1.4);
-    }
 }
 
 
