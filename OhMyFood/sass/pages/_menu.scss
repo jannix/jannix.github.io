@@ -1,0 +1,45 @@
+.menu-main-content {
+  height: 100%;
+  width: 90%;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  text-align: center;
+
+  & h3 {
+    margin: 5px;
+  }
+  .full-menu1:nth-child(2)
+  {
+    flex: 1;
+  }
+  .full-menu2:nth-child(2)
+  {
+    flex: 1;
+  }
+  .full-menu3:nth-child(2)
+  {
+    flex: 1;
+  }
+  .full-menu4:nth-child(2)
+  {
+    flex: 1;
+  }
+}
+
+.full-menu1 {
+  @include display-menu-page(map_get($settings-menu, 1));
+}
+
+.full-menu2 {
+  @include display-menu-page(map_get($settings-menu, 2));
+}
+
+.full-menu3 {
+  @include display-menu-page(map_get($settings-menu, 3));
+}
+
+.full-menu4 {
+  @include display-menu-page(map_get($settings-menu, 4));
+}

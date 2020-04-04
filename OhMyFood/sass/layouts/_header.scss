@@ -1,0 +1,9 @@
+.header-banner {
+  @include app-theme-colors;
+  @include absolute-fit;
+  top: 0;
+  text-align: center;
+  & a {
+
+  }
+}

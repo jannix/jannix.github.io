@@ -1,0 +1,14 @@
+.display-soon {
+  margin-top: 3%;
+  text-align: center;
+  &__btn-soon {
+    display: inline-flex;
+    color: $primary-text-colour;
+    background-color: $primary-colour;
+    font-size: map_get($font-size, buttons);
+    border-radius: .4em;
+    padding: 10px;
+    padding-right: 2rem;
+    padding-left: 2rem;
+  }
+}

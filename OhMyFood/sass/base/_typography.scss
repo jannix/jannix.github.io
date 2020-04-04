@@ -1,0 +1,35 @@
+@font-face {
+  font-family: 'croissant';
+  src: url('./fonts/croissant-one/CroissantOne-Regular.ttf');
+}
+@font-face {
+  font-family: 'devonshire';
+  src: url('./fonts/devonshire/Devonshire-Regular.ttf');
+}
+@font-face {
+  font-family: 'kaushan';
+  src: url('./fonts/kaushan-script/KaushanScript-Regular.otf');
+}
+@font-face {
+  font-family: 'parisienne';
+  src: url('./fonts/parisienne/parisienne-regular.ttf');
+}
+@font-face {
+  font-family: 'caveat';
+  src: url('./fonts/caveat/caveat-regular.ttf');
+}
+
+
+* {
+  font-family: Arial, Georgia;
+  font-style: normal;
+}
+
+h1 {
+  font-size: map_get($font-size, heading);
+}
+
+h4 {
+  font-weight: lighter;
+  font-size: map_get($font-size, footing);
+}

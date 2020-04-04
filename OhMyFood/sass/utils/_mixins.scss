@@ -1,0 +1,101 @@
+@mixin app-theme-colors {
+  color: $primary-text-colour;
+  background-color: $primary-colour;
+}
+
+@mixin absolute-fit {
+  position: absolute;
+  width: 100%;
+}
+
+@mixin set-delay-animation($delay) {
+  -webkit-animation-delay: $delay;
+  animation-delay: $delay;
+}
+
+@mixin bg-coloring($colors) {
+  @each $key, $color in $colors{
+    &:nth-child(#{$key}) &__btn-img {
+      background-color: $color;
+    }
+  }
+}
+
+@mixin font-format($menu-setting) {
+  @each $key, $menu in $menu-setting{
+    &:nth-child(#{$key}) &__btn-img {
+      background-color: map_get($menu, bg-color);
+      & span {
+        font-family: map_get($menu, title-font-family);
+        font-size: map_get($menu, font-size);
+        color: map_get($menu, font-color);
+      }
+
+    }
+  }
+}
+
+@mixin display-menu-page($menu) {
+  background-color: map_get($menu, bg-color);
+  & * {
+    font-family: map_get($menu, title-font-family);
+  }
+  &__header {
+    padding-top: 35px;
+    font-size: x-large;
+  }
+  &__section {
+    & span {
+      width: 90%;
+      margin: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      & img {
+        width: 30%;
+      }
+    }
+    & > span {
+
+      margin-top: 20px;
+      height: 25px;
+    }
+    & ul {
+      font-size: small;
+      line-height: 22px;
+      list-style-type: none;
+      padding: 0px;
+      margin: 0px;
+    }
+    & li {
+      font-size: map_get($menu, font-size-li);
+    }
+
+    & h5 {
+      padding: 0px;
+      font-size: map_get($menu, font-size-h5);
+      text-decoration: none;
+      position: relative;
+      &:before {
+        content: "";
+        position: absolute;
+        width: 0px;
+        height: 2px;
+        bottom: 0px;
+        opacity: 0;
+        margin: 0;
+        left: 0;
+        background-color: black;
+        -webkit-transition: all .5s cubic-bezier(1,.25,0,.75) 0s;
+        transition: all .5s cubic-bezier(1,.25,0,.75) 0s;
+      }
+      &:hover:before {
+        width: 100%;
+        opacity: 1;
+      }
+    }
+  }
+  &__footer {
+    margin-top: 25px;
+  }
+}
