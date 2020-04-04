@@ -5,3 +5,12 @@
   display: flex;
   flex-wrap: wrap;
 }
+
+@media only screen and (min-width: $break-large) {
+  .menu-list {
+    @include debug-border(red);
+    height: 100%;
+    width: 100%;
+    flex-wrap: initial;
+  }
+}

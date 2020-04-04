@@ -29,4 +29,20 @@
     }
   }
   @include font-format($settings-menu);
+  @media only screen and (min-width: $break-large) {
+    @include font-format($settings-menu-big-screen);
+  }
+}
+
+@media only screen and (min-width: $break-large) {
+  .prev-menu {
+    height: 100%;
+    font-size: 3rem;
+    & span {
+      font-size: 3rem;
+    }
+    & p {
+      line-height: 50px;
+    }
+  }
 }

@@ -7,14 +7,24 @@ html {
 }
 body {
   width: 100%;
-  height: 100%;
+  height: 90%;
   margin: 0px;
-  padding-top: 20%;
-  padding-bottom: 20%;
+  margin-top: 70px;
+  padding-bottom: 100px;
+  display: flex;
+  flex-direction: column;
 }
 
 a {
   text-decoration: none;
   outline:none;
   color: inherit;
+}
+
+@media only screen and (min-width: $break-large) {
+  body {
+    margin-top: 10px;
+    padding-bottom: 0px;
+    padding-top: 5%;
+  }
 }

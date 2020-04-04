@@ -1,3 +1,7 @@
+@mixin debug-border($color) {
+  border: 2px solid $color;
+}
+
 @mixin app-theme-colors {
   color: $primary-text-colour;
   background-color: $primary-colour;
@@ -30,7 +34,6 @@
         font-size: map_get($menu, font-size);
         color: map_get($menu, font-color);
       }
-
     }
   }
 }

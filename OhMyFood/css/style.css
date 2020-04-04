@@ -9,10 +9,12 @@ html {
 
 body {
   width: 100%;
-  height: 100%;
+  height: 90%;
   margin: 0px;
-  padding-top: 20%;
-  padding-bottom: 20%;
+  margin-top: 70px;
+  padding-bottom: 100px;
+  display: flex;
+  flex-direction: column;
 }
 
 a {
@@ -21,6 +23,13 @@ a {
   color: inherit;
 }
 
+@media only screen and (min-width: 1200px) {
+  body {
+    margin-top: 10px;
+    padding-bottom: 0px;
+    padding-top: 5%;
+  }
+}
 @font-face {
   font-family: "croissant";
   src: url("./fonts/croissant-one/CroissantOne-Regular.ttf");
@@ -113,6 +122,11 @@ h4 {
   padding-left: 2rem;
 }
 
+@media only screen and (min-width: 1200px) {
+  .display-soon {
+    margin-top: 0.5%;
+  }
+}
 .header-banner {
   color: #FBC02D;
   background-color: #00897B;
@@ -129,6 +143,7 @@ h4 {
   bottom: 0;
   display: flex;
   justify-content: space-between;
+  overflow: hidden;
 }
 .footer-banner__button {
   font-size: 1rem;
@@ -181,6 +196,14 @@ h4 {
   flex-wrap: wrap;
 }
 
+@media only screen and (min-width: 1200px) {
+  .menu-list {
+    border: 2px solid red;
+    height: 100%;
+    width: 100%;
+    flex-wrap: initial;
+  }
+}
 .prev-menu {
   width: 50%;
   height: 50%;
@@ -242,7 +265,53 @@ h4 {
   font-size: 0.9rem;
   color: #4CAF50;
 }
+@media only screen and (min-width: 1200px) {
+  .prev-menu:nth-child(1) .prev-menu__btn-img {
+    background-color: #fcdfdb;
+  }
+  .prev-menu:nth-child(1) .prev-menu__btn-img span {
+    font-family: "devonshire";
+    font-size: 3rem;
+    color: #212121;
+  }
+  .prev-menu:nth-child(2) .prev-menu__btn-img {
+    background-color: #fff5fe;
+  }
+  .prev-menu:nth-child(2) .prev-menu__btn-img span {
+    font-family: "croissant";
+    font-size: 2.6rem;
+    color: #FF7043;
+  }
+  .prev-menu:nth-child(3) .prev-menu__btn-img {
+    background-color: #f9f9f9;
+  }
+  .prev-menu:nth-child(3) .prev-menu__btn-img span {
+    font-family: "parisienne";
+    font-size: 2.2rem;
+    color: #2196F3;
+  }
+  .prev-menu:nth-child(4) .prev-menu__btn-img {
+    background-color: #fdfffd;
+  }
+  .prev-menu:nth-child(4) .prev-menu__btn-img span {
+    font-family: "kaushan";
+    font-size: 2.5rem;
+    color: #4CAF50;
+  }
+}
 
+@media only screen and (min-width: 1200px) {
+  .prev-menu {
+    height: 100%;
+    font-size: 3rem;
+  }
+  .prev-menu span {
+    font-size: 3rem;
+  }
+  .prev-menu p {
+    line-height: 50px;
+  }
+}
 .menu-main-content {
   height: 100%;
   width: 90%;
