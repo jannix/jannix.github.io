@@ -10,22 +10,22 @@ $delay-spinner-anim: 2.4s;
 
 $menu-shadow: 0px 0px 8px 1px rgba(0,0,0,0.20);
 $setting-menu1: (bg-color: #fcdfdb, font-size: 5vw, title-font-family: 'devonshire', font-color: #212121,
-        font-size-h5: normal, font-size-li: normal);
+        font-size-h5: 3vw, font-size-h4: 2.5vw, font-size-li: normal);
 $setting-menu2: (bg-color: #fff5fe, font-size: 2.5vw, title-font-family: 'croissant', font-color: #FF7043,
-        font-size-h5: 0.5rem, font-size-li: 0.5rem);
+        font-size-h5: 1.8vw, font-size-h4: 3vw, font-size-li: 2vw);
 $setting-menu3: (bg-color: #f9f9f9, font-size: 3.7vw, title-font-family: 'parisienne', font-color: #2196F3,
-        font-size-h5: normal, font-size-li: 0.72rem);
+        font-size-h5: normal, font-size-h4: 3vw, font-size-li: 0.72rem);
 $setting-menu4: (bg-color: #fdfffd, font-size: 3.7vw, title-font-family: 'kaushan', font-color: #4CAF50,
-        font-size-h5: normal, font-size-li: 0.63rem);
+        font-size-h5: normal, font-size-h4: 3vw, font-size-li: 0.63rem);
 $settings-menu: (1: $setting-menu1, 2: $setting-menu2, 3: $setting-menu3, 4: $setting-menu4);
 
 $bs-setting-menu1: (bg-color: #fcdfdb, font-size: 3vw, title-font-family: 'devonshire', font-color: #212121,
-        font-size-h5: normal, font-size-li: normal);
+        font-size-h5: 2vw, font-size-h4: 1.5vw, font-size-li: normal);
 $bs-setting-menu2: (bg-color: #fff5fe, font-size: 2.9vw, title-font-family: 'croissant', font-color: #FF7043,
-        font-size-h5: 0.5rem, font-size-li: 2.5rem);
+        font-size-h5: 1.5vw, font-size-h4: 3vw, font-size-li: 1.1vw);
 $bs-setting-menu3: (bg-color: #f9f9f9, font-size: 2.9vw, title-font-family: 'parisienne', font-color: #2196F3,
-        font-size-h5: normal, font-size-li: 0.72rem);
+        font-size-h5: 1.5vw, font-size-h4: 3vw, font-size-li: 1.1vw);
 $bs-setting-menu4: (bg-color: #fdfffd, font-size: 3.3vw, title-font-family: 'kaushan', font-color: #4CAF50,
-        font-size-h5: normal, font-size-li: 0.63rem);
+        font-size-h5: 1.5vw, font-size-h4: 3vw, font-size-li: 1.1vw);
 $settings-menu-big-screen: (1: $bs-setting-menu1, 2: $bs-setting-menu2, 3: $bs-setting-menu3, 4: $bs-setting-menu4);
 

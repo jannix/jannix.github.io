@@ -59,7 +59,6 @@
       }
     }
     & > span {
-
       margin-top: 20px;
       height: 25px;
     }
@@ -100,5 +99,8 @@
   }
   &__footer {
     margin-top: 25px;
+    & h4 {
+      font-size: map_get($menu, font-size-h4);
+    }
   }
 }

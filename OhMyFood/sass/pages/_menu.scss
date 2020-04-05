@@ -43,3 +43,22 @@
 .full-menu4 {
   @include display-menu-page(map_get($settings-menu, 4));
 }
+
+@media only screen and (min-width: $break-large) {
+  .full-menu1 {
+    height: 1000px;
+    @include display-menu-page(map_get($settings-menu-big-screen, 1));
+  }
+
+  .full-menu2 {
+    @include display-menu-page(map_get($settings-menu-big-screen, 2));
+  }
+
+  .full-menu3 {
+    @include display-menu-page(map_get($settings-menu-big-screen, 3));
+  }
+
+  .full-menu4 {
+    @include display-menu-page(map_get($settings-menu-big-screen, 4));
+  }
+}
