@@ -23,7 +23,7 @@ a {
   color: inherit;
 }
 
-@media only screen and (min-width: 1200px) {
+@media only screen and (min-width: 1084px) {
   body {
     margin-top: 10px;
     padding-bottom: 0px;
@@ -122,7 +122,7 @@ h4 {
   padding-left: 2rem;
 }
 
-@media only screen and (min-width: 1200px) {
+@media only screen and (min-width: 1084px) {
   .display-soon {
     margin-top: 0.5%;
   }
@@ -196,7 +196,7 @@ h4 {
   flex-wrap: wrap;
 }
 
-@media only screen and (min-width: 1200px) {
+@media only screen and (min-width: 1084px) {
   .menu-list {
     border: 2px solid red;
     height: 100%;
@@ -216,15 +216,16 @@ h4 {
   height: 95%;
   margin: auto;
   text-align: center;
-  padding-top: 50%;
   -webkit-box-shadow: 0px 0px 8px 1px rgba(0, 0, 0, 0.2);
   box-shadow: 0px 0px 8px 1px rgba(0, 0, 0, 0.2);
   line-height: 25px;
+  display: flex;
 }
 .prev-menu__btn-img span {
   font-size: xx-large;
 }
 .prev-menu__btn-img p {
+  margin: auto;
   transform: scale(1);
   opacity: 1;
   transition: all 300ms ease-in-out;
@@ -238,7 +239,7 @@ h4 {
 }
 .prev-menu:nth-child(1) .prev-menu__btn-img span {
   font-family: "devonshire";
-  font-size: 0.9rem;
+  font-size: 5vw;
   color: #212121;
 }
 .prev-menu:nth-child(2) .prev-menu__btn-img {
@@ -246,7 +247,7 @@ h4 {
 }
 .prev-menu:nth-child(2) .prev-menu__btn-img span {
   font-family: "croissant";
-  font-size: 0.6rem;
+  font-size: 2.5vw;
   color: #FF7043;
 }
 .prev-menu:nth-child(3) .prev-menu__btn-img {
@@ -254,7 +255,7 @@ h4 {
 }
 .prev-menu:nth-child(3) .prev-menu__btn-img span {
   font-family: "parisienne";
-  font-size: 0.9rem;
+  font-size: 3.7vw;
   color: #2196F3;
 }
 .prev-menu:nth-child(4) .prev-menu__btn-img {
@@ -262,16 +263,16 @@ h4 {
 }
 .prev-menu:nth-child(4) .prev-menu__btn-img span {
   font-family: "kaushan";
-  font-size: 0.9rem;
+  font-size: 3.7vw;
   color: #4CAF50;
 }
-@media only screen and (min-width: 1200px) {
+@media only screen and (min-width: 1084px) {
   .prev-menu:nth-child(1) .prev-menu__btn-img {
     background-color: #fcdfdb;
   }
   .prev-menu:nth-child(1) .prev-menu__btn-img span {
     font-family: "devonshire";
-    font-size: 3rem;
+    font-size: 3vw;
     color: #212121;
   }
   .prev-menu:nth-child(2) .prev-menu__btn-img {
@@ -279,7 +280,7 @@ h4 {
   }
   .prev-menu:nth-child(2) .prev-menu__btn-img span {
     font-family: "croissant";
-    font-size: 2.6rem;
+    font-size: 2.9vw;
     color: #FF7043;
   }
   .prev-menu:nth-child(3) .prev-menu__btn-img {
@@ -287,7 +288,7 @@ h4 {
   }
   .prev-menu:nth-child(3) .prev-menu__btn-img span {
     font-family: "parisienne";
-    font-size: 2.2rem;
+    font-size: 2.9vw;
     color: #2196F3;
   }
   .prev-menu:nth-child(4) .prev-menu__btn-img {
@@ -295,18 +296,14 @@ h4 {
   }
   .prev-menu:nth-child(4) .prev-menu__btn-img span {
     font-family: "kaushan";
-    font-size: 2.5rem;
+    font-size: 3.3vw;
     color: #4CAF50;
   }
 }
 
-@media only screen and (min-width: 1200px) {
+@media only screen and (min-width: 1084px) {
   .prev-menu {
     height: 100%;
-    font-size: 3rem;
-  }
-  .prev-menu span {
-    font-size: 3rem;
   }
   .prev-menu p {
     line-height: 50px;

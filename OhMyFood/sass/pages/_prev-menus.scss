@@ -10,15 +10,15 @@
     height: 95%;
     margin: auto;
     text-align: center;
-    padding-top: 50%;
     -webkit-box-shadow: $menu-shadow;
     box-shadow: $menu-shadow;
     line-height: 25px;
-
+    display: flex;
     & span {
       font-size: xx-large;
     }
     & p {
+      margin: auto;
       transform: scale(1);
       opacity: 1;
       transition: all 300ms ease-in-out;
@@ -37,10 +37,6 @@
 @media only screen and (min-width: $break-large) {
   .prev-menu {
     height: 100%;
-    font-size: 3rem;
-    & span {
-      font-size: 3rem;
-    }
     & p {
       line-height: 50px;
     }
