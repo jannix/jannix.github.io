@@ -1,10 +1,12 @@
 .menu-main-content {
   height: 100%;
   width: 90%;
+  padding: 0px;
   margin: auto;
+  margin-bottom: 0px;
+  margin-top: 60px;
   display: flex;
   flex-direction: column;
-  overflow: hidden;
   text-align: center;
 
   & h3 {
@@ -45,8 +47,10 @@
 }
 
 @media only screen and (min-width: $break-large) {
+  .menu-main-content {
+    width: 65%;
+  }
   .full-menu1 {
-    height: 1000px;
     @include display-menu-page(map_get($settings-menu-big-screen, 1));
   }
 

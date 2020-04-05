@@ -8,13 +8,11 @@ html {
 }
 
 body {
+  background-color: #a2a5a4;
   width: 100%;
-  height: 90%;
+  height: 100%;
   margin: 0px;
-  margin-top: 70px;
-  padding-bottom: 100px;
-  display: flex;
-  flex-direction: column;
+  padding: 0px;
 }
 
 a {
@@ -23,13 +21,15 @@ a {
   color: inherit;
 }
 
-@media only screen and (min-width: 1084px) {
-  body {
-    margin-top: 10px;
-    padding-bottom: 0px;
-    padding-top: 5%;
-  }
+main {
+  border: 2px solid yellow;
+  width: 100%;
+  height: 93%;
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
 }
+
 @font-face {
   font-family: "croissant";
   src: url("./fonts/croissant-one/CroissantOne-Regular.ttf");
@@ -109,6 +109,7 @@ h4 {
 }
 .display-soon {
   margin-top: 3%;
+  margin-bottom: 10px;
   text-align: center;
 }
 .display-soon__btn-soon {
@@ -130,7 +131,7 @@ h4 {
 .header-banner {
   color: #FBC02D;
   background-color: #00897B;
-  position: absolute;
+  position: fixed;
   width: 100%;
   top: 0;
   text-align: center;
@@ -138,7 +139,7 @@ h4 {
 .footer-banner {
   color: #FBC02D;
   background-color: #00897B;
-  position: absolute;
+  position: fixed;
   width: 100%;
   bottom: 0;
   display: flex;
@@ -192,6 +193,7 @@ h4 {
   width: 90%;
   height: 93%;
   margin: auto;
+  margin-top: 80px;
   display: flex;
   flex-wrap: wrap;
 }
@@ -311,10 +313,12 @@ h4 {
 .menu-main-content {
   height: 100%;
   width: 90%;
+  padding: 0px;
   margin: auto;
+  margin-bottom: 0px;
+  margin-top: 60px;
   display: flex;
   flex-direction: column;
-  overflow: hidden;
   text-align: center;
 }
 .menu-main-content h3 {
@@ -334,7 +338,10 @@ h4 {
 }
 
 .full-menu1 {
+  box-shadow: 0px 0px 8px 1px #a2a5a4;
   background-color: #fcdfdb;
+  border-radius: 5px;
+  margin: 1em;
 }
 .full-menu1 * {
   font-family: "devonshire";
@@ -359,13 +366,13 @@ h4 {
 }
 .full-menu1__section ul {
   font-size: small;
-  line-height: 22px;
+  line-height: 28px;
   list-style-type: none;
   padding: 0px;
   margin: 0px;
 }
 .full-menu1__section li {
-  font-size: normal;
+  font-size: 2.9vw;
 }
 .full-menu1__section h5 {
   padding: 0px;
@@ -398,7 +405,10 @@ h4 {
 }
 
 .full-menu2 {
+  box-shadow: 0px 0px 8px 1px #a2a5a4;
   background-color: #fff5fe;
+  border-radius: 5px;
+  margin: 1em;
 }
 .full-menu2 * {
   font-family: "croissant";
@@ -423,13 +433,13 @@ h4 {
 }
 .full-menu2__section ul {
   font-size: small;
-  line-height: 22px;
+  line-height: 25px;
   list-style-type: none;
   padding: 0px;
   margin: 0px;
 }
 .full-menu2__section li {
-  font-size: 2vw;
+  font-size: 1.9vw;
 }
 .full-menu2__section h5 {
   padding: 0px;
@@ -462,7 +472,10 @@ h4 {
 }
 
 .full-menu3 {
+  box-shadow: 0px 0px 8px 1px #a2a5a4;
   background-color: #f9f9f9;
+  border-radius: 5px;
+  margin: 1em;
 }
 .full-menu3 * {
   font-family: "parisienne";
@@ -487,13 +500,13 @@ h4 {
 }
 .full-menu3__section ul {
   font-size: small;
-  line-height: 22px;
+  line-height: 28px;
   list-style-type: none;
   padding: 0px;
   margin: 0px;
 }
 .full-menu3__section li {
-  font-size: 0.72rem;
+  font-size: 2.8vw;
 }
 .full-menu3__section h5 {
   padding: 0px;
@@ -526,7 +539,10 @@ h4 {
 }
 
 .full-menu4 {
+  box-shadow: 0px 0px 8px 1px #a2a5a4;
   background-color: #fdfffd;
+  border-radius: 5px;
+  margin: 1em;
 }
 .full-menu4 * {
   font-family: "kaushan";
@@ -551,13 +567,13 @@ h4 {
 }
 .full-menu4__section ul {
   font-size: small;
-  line-height: 22px;
+  line-height: 28px;
   list-style-type: none;
   padding: 0px;
   margin: 0px;
 }
 .full-menu4__section li {
-  font-size: 0.63rem;
+  font-size: 2.4vw;
 }
 .full-menu4__section h5 {
   padding: 0px;
@@ -590,9 +606,15 @@ h4 {
 }
 
 @media only screen and (min-width: 1084px) {
+  .menu-main-content {
+    width: 65%;
+  }
+
   .full-menu1 {
-    height: 1000px;
+    box-shadow: 0px 0px 8px 1px #a2a5a4;
     background-color: #fcdfdb;
+    border-radius: 5px;
+    margin: 1em;
   }
   .full-menu1 * {
     font-family: "devonshire";
@@ -617,13 +639,13 @@ h4 {
   }
   .full-menu1__section ul {
     font-size: small;
-    line-height: 22px;
+    line-height: 33px;
     list-style-type: none;
     padding: 0px;
     margin: 0px;
   }
   .full-menu1__section li {
-    font-size: normal;
+    font-size: 1.3vw;
   }
   .full-menu1__section h5 {
     padding: 0px;
@@ -656,7 +678,10 @@ h4 {
   }
 
   .full-menu2 {
+    box-shadow: 0px 0px 8px 1px #a2a5a4;
     background-color: #fff5fe;
+    border-radius: 5px;
+    margin: 1em;
   }
   .full-menu2 * {
     font-family: "croissant";
@@ -720,7 +745,10 @@ h4 {
   }
 
   .full-menu3 {
+    box-shadow: 0px 0px 8px 1px #a2a5a4;
     background-color: #f9f9f9;
+    border-radius: 5px;
+    margin: 1em;
   }
   .full-menu3 * {
     font-family: "parisienne";
@@ -784,7 +812,10 @@ h4 {
   }
 
   .full-menu4 {
+    box-shadow: 0px 0px 8px 1px #a2a5a4;
     background-color: #fdfffd;
+    border-radius: 5px;
+    margin: 1em;
   }
   .full-menu4 * {
     font-family: "kaushan";

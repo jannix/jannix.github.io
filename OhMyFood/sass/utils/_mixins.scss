@@ -8,7 +8,7 @@
 }
 
 @mixin absolute-fit {
-  position: absolute;
+  position: fixed;
   width: 100%;
 }
 
@@ -39,7 +39,10 @@
 }
 
 @mixin display-menu-page($menu) {
+  box-shadow: 0px 0px 8px 1px #a2a5a4;
   background-color: map_get($menu, bg-color);
+  border-radius: 5px;
+  margin: 1em;
   & * {
     font-family: map_get($menu, title-font-family);
   }
@@ -64,7 +67,7 @@
     }
     & ul {
       font-size: small;
-      line-height: 22px;
+      line-height: map_get($menu, line-height-li);
       list-style-type: none;
       padding: 0px;
       margin: 0px;
