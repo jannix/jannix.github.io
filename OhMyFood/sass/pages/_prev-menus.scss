@@ -14,15 +14,22 @@
     box-shadow: $menu-shadow;
     line-height: 25px;
     display: flex;
-    & span {
-      font-size: xx-large;
-    }
     & p {
       margin: auto;
       transform: scale(1);
       opacity: 1;
       transition: all 300ms ease-in-out;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
+    & img {
+      margin: 0px;
+    }
+    & span {
+      font-size: xx-large;
+    }
+
     &:hover p {
       transform: scale(1.2);
       opacity: 0.7;
@@ -39,6 +46,15 @@
     height: 100%;
     & p {
       line-height: 50px;
+    }
+  }
+}
+
+@media only screen and (max-width: $break-large) {
+  .prev-menu {
+    & img {
+      transform: scale(0.5);
+      margin-bottom: -18px;
     }
   }
 }

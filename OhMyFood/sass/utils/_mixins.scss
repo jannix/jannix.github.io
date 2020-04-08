@@ -30,9 +30,11 @@
     &:nth-child(#{$key}) &__btn-img {
       background-color: map_get($menu, bg-color);
       & span {
+        background: map_get($menu, font-bg-color);
         font-family: map_get($menu, title-font-family);
         font-size: map_get($menu, font-size);
         color: map_get($menu, font-color);
+        -webkit-background-clip: text;
       }
     }
   }

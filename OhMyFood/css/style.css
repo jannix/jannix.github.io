@@ -41,8 +41,8 @@ main {
   src: url("./fonts/kaushan-script/KaushanScript-Regular.otf");
 }
 @font-face {
-  font-family: "parisienne";
-  src: url("./fonts/parisienne/parisienne-regular.ttf");
+  font-family: "dancing-script";
+  src: url("./fonts/dancing-script-ot/DancingScript-Regular.otf");
 }
 @font-face {
   font-family: "caveat";
@@ -222,14 +222,20 @@ h4 {
   line-height: 25px;
   display: flex;
 }
-.prev-menu__btn-img span {
-  font-size: xx-large;
-}
 .prev-menu__btn-img p {
   margin: auto;
   transform: scale(1);
   opacity: 1;
   transition: all 300ms ease-in-out;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.prev-menu__btn-img img {
+  margin: 0px;
+}
+.prev-menu__btn-img span {
+  font-size: xx-large;
 }
 .prev-menu__btn-img:hover p {
   transform: scale(1.2);
@@ -239,66 +245,82 @@ h4 {
   background-color: #fcdfdb;
 }
 .prev-menu:nth-child(1) .prev-menu__btn-img span {
+  background: transparent;
   font-family: "devonshire";
   font-size: 5vw;
   color: #212121;
+  -webkit-background-clip: text;
 }
 .prev-menu:nth-child(2) .prev-menu__btn-img {
   background-color: #fff5fe;
 }
 .prev-menu:nth-child(2) .prev-menu__btn-img span {
+  background: linear-gradient(to bottom right, #c67412, #6e4ccc);
   font-family: "croissant";
   font-size: 2.5vw;
-  color: #FF7043;
+  color: transparent;
+  -webkit-background-clip: text;
 }
 .prev-menu:nth-child(3) .prev-menu__btn-img {
   background-color: #f9f9f9;
 }
 .prev-menu:nth-child(3) .prev-menu__btn-img span {
-  font-family: "parisienne";
+  background: linear-gradient(to bottom right, #0431df, #0887fb);
+  font-family: "dancing-script";
   font-size: 3.7vw;
-  color: #2196F3;
+  color: transparent;
+  -webkit-background-clip: text;
 }
 .prev-menu:nth-child(4) .prev-menu__btn-img {
   background-color: #fdfffd;
 }
 .prev-menu:nth-child(4) .prev-menu__btn-img span {
+  background: linear-gradient(to bottom right, #42973c, #bfff7e);
   font-family: "kaushan";
   font-size: 3.7vw;
-  color: #4CAF50;
+  color: transparent;
+  -webkit-background-clip: text;
 }
 @media only screen and (min-width: 1084px) {
   .prev-menu:nth-child(1) .prev-menu__btn-img {
     background-color: #fcdfdb;
   }
   .prev-menu:nth-child(1) .prev-menu__btn-img span {
+    background: transparent;
     font-family: "devonshire";
     font-size: 3vw;
     color: #212121;
+    -webkit-background-clip: text;
   }
   .prev-menu:nth-child(2) .prev-menu__btn-img {
     background-color: #fff5fe;
   }
   .prev-menu:nth-child(2) .prev-menu__btn-img span {
+    background: linear-gradient(to bottom right, #c67412, #6e4ccc);
     font-family: "croissant";
     font-size: 2.9vw;
-    color: #FF7043;
+    color: transparent;
+    -webkit-background-clip: text;
   }
   .prev-menu:nth-child(3) .prev-menu__btn-img {
     background-color: #f9f9f9;
   }
   .prev-menu:nth-child(3) .prev-menu__btn-img span {
-    font-family: "parisienne";
-    font-size: 2.9vw;
-    color: #2196F3;
+    background: linear-gradient(to bottom right, #0431df, #0887fb);
+    font-family: "dancing-script";
+    font-size: 2.3vw;
+    color: transparent;
+    -webkit-background-clip: text;
   }
   .prev-menu:nth-child(4) .prev-menu__btn-img {
     background-color: #fdfffd;
   }
   .prev-menu:nth-child(4) .prev-menu__btn-img span {
+    background: linear-gradient(to bottom right, #42973c, #bfff7e);
     font-family: "kaushan";
     font-size: 3.3vw;
-    color: #4CAF50;
+    color: transparent;
+    -webkit-background-clip: text;
   }
 }
 
@@ -308,6 +330,12 @@ h4 {
   }
   .prev-menu p {
     line-height: 50px;
+  }
+}
+@media only screen and (max-width: 1084px) {
+  .prev-menu img {
+    transform: scale(0.5);
+    margin-bottom: -18px;
   }
 }
 .menu-main-content {
@@ -493,7 +521,7 @@ h4 {
   padding-bottom: 25px;
 }
 .full-menu3 * {
-  font-family: "parisienne";
+  font-family: "dancing-script";
 }
 .full-menu3__header {
   padding-top: 35px;
@@ -794,7 +822,7 @@ h4 {
     padding-bottom: 25px;
   }
   .full-menu3 * {
-    font-family: "parisienne";
+    font-family: "dancing-script";
   }
   .full-menu3__header {
     padding-top: 35px;
