@@ -69,7 +69,7 @@ h4 {
   text-align: center;
   display: inline-block;
 }
-.spinner > div {
+.spinner > span {
   width: 6px;
   height: 6px;
   background-color: #FBC02D;
@@ -314,7 +314,7 @@ h4 {
   padding: 0px;
   margin: auto;
   margin-bottom: 0px;
-  margin-top: 60px;
+  margin-top: 70px;
   display: flex;
   flex-direction: column;
   text-align: center;
@@ -348,17 +348,17 @@ h4 {
   padding-top: 35px;
   font-size: x-large;
 }
-.full-menu1__section span {
+.full-menu1__section div {
   width: 90%;
   margin: auto;
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
-.full-menu1__section span img {
+.full-menu1__section div img {
   width: 30%;
 }
-.full-menu1__section > span {
+.full-menu1__section > div {
   margin-top: 20px;
   height: 25px;
 }
@@ -370,7 +370,11 @@ h4 {
   margin: 0px;
 }
 .full-menu1__section li {
+  border: 2px solid red;
+  width: 100%;
   font-size: 2.9vw;
+  display: flex;
+  justify-content: space-between;
 }
 .full-menu1__section h5 {
   padding: 0px;
@@ -415,17 +419,17 @@ h4 {
   padding-top: 35px;
   font-size: x-large;
 }
-.full-menu2__section span {
+.full-menu2__section div {
   width: 90%;
   margin: auto;
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
-.full-menu2__section span img {
+.full-menu2__section div img {
   width: 30%;
 }
-.full-menu2__section > span {
+.full-menu2__section > div {
   margin-top: 20px;
   height: 25px;
 }
@@ -437,7 +441,11 @@ h4 {
   margin: 0px;
 }
 .full-menu2__section li {
+  border: 2px solid red;
+  width: 100%;
   font-size: 1.9vw;
+  display: flex;
+  justify-content: space-between;
 }
 .full-menu2__section h5 {
   padding: 0px;
@@ -482,17 +490,17 @@ h4 {
   padding-top: 35px;
   font-size: x-large;
 }
-.full-menu3__section span {
+.full-menu3__section div {
   width: 90%;
   margin: auto;
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
-.full-menu3__section span img {
+.full-menu3__section div img {
   width: 30%;
 }
-.full-menu3__section > span {
+.full-menu3__section > div {
   margin-top: 20px;
   height: 25px;
 }
@@ -504,11 +512,15 @@ h4 {
   margin: 0px;
 }
 .full-menu3__section li {
+  border: 2px solid red;
+  width: 100%;
   font-size: 2.8vw;
+  display: flex;
+  justify-content: space-between;
 }
 .full-menu3__section h5 {
   padding: 0px;
-  font-size: normal;
+  font-size: 1vw;
   text-decoration: none;
   position: relative;
 }
@@ -549,17 +561,17 @@ h4 {
   padding-top: 35px;
   font-size: x-large;
 }
-.full-menu4__section span {
+.full-menu4__section div {
   width: 90%;
   margin: auto;
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
-.full-menu4__section span img {
+.full-menu4__section div img {
   width: 30%;
 }
-.full-menu4__section > span {
+.full-menu4__section > div {
   margin-top: 20px;
   height: 25px;
 }
@@ -571,11 +583,15 @@ h4 {
   margin: 0px;
 }
 .full-menu4__section li {
+  border: 2px solid red;
+  width: 100%;
   font-size: 2.4vw;
+  display: flex;
+  justify-content: space-between;
 }
 .full-menu4__section h5 {
   padding: 0px;
-  font-size: normal;
+  font-size: 1vw;
   text-decoration: none;
   position: relative;
 }
@@ -621,17 +637,17 @@ h4 {
     padding-top: 35px;
     font-size: x-large;
   }
-  .full-menu1__section span {
+  .full-menu1__section div {
     width: 90%;
     margin: auto;
     display: flex;
     align-items: center;
     justify-content: space-between;
   }
-  .full-menu1__section span img {
+  .full-menu1__section div img {
     width: 30%;
   }
-  .full-menu1__section > span {
+  .full-menu1__section > div {
     margin-top: 20px;
     height: 25px;
   }
@@ -643,7 +659,11 @@ h4 {
     margin: 0px;
   }
   .full-menu1__section li {
+    border: 2px solid red;
+    width: 100%;
     font-size: 1.3vw;
+    display: flex;
+    justify-content: space-between;
   }
   .full-menu1__section h5 {
     padding: 0px;
@@ -688,17 +708,17 @@ h4 {
     padding-top: 35px;
     font-size: x-large;
   }
-  .full-menu2__section span {
+  .full-menu2__section div {
     width: 90%;
     margin: auto;
     display: flex;
     align-items: center;
     justify-content: space-between;
   }
-  .full-menu2__section span img {
+  .full-menu2__section div img {
     width: 30%;
   }
-  .full-menu2__section > span {
+  .full-menu2__section > div {
     margin-top: 20px;
     height: 25px;
   }
@@ -710,7 +730,11 @@ h4 {
     margin: 0px;
   }
   .full-menu2__section li {
+    border: 2px solid red;
+    width: 100%;
     font-size: 1.1vw;
+    display: flex;
+    justify-content: space-between;
   }
   .full-menu2__section h5 {
     padding: 0px;
@@ -755,17 +779,17 @@ h4 {
     padding-top: 35px;
     font-size: x-large;
   }
-  .full-menu3__section span {
+  .full-menu3__section div {
     width: 90%;
     margin: auto;
     display: flex;
     align-items: center;
     justify-content: space-between;
   }
-  .full-menu3__section span img {
+  .full-menu3__section div img {
     width: 30%;
   }
-  .full-menu3__section > span {
+  .full-menu3__section > div {
     margin-top: 20px;
     height: 25px;
   }
@@ -777,7 +801,11 @@ h4 {
     margin: 0px;
   }
   .full-menu3__section li {
+    border: 2px solid red;
+    width: 100%;
     font-size: 1.1vw;
+    display: flex;
+    justify-content: space-between;
   }
   .full-menu3__section h5 {
     padding: 0px;
@@ -822,17 +850,17 @@ h4 {
     padding-top: 35px;
     font-size: x-large;
   }
-  .full-menu4__section span {
+  .full-menu4__section div {
     width: 90%;
     margin: auto;
     display: flex;
     align-items: center;
     justify-content: space-between;
   }
-  .full-menu4__section span img {
+  .full-menu4__section div img {
     width: 30%;
   }
-  .full-menu4__section > span {
+  .full-menu4__section > div {
     margin-top: 20px;
     height: 25px;
   }
@@ -844,7 +872,11 @@ h4 {
     margin: 0px;
   }
   .full-menu4__section li {
+    border: 2px solid red;
+    width: 100%;
     font-size: 1.1vw;
+    display: flex;
+    justify-content: space-between;
   }
   .full-menu4__section h5 {
     padding: 0px;

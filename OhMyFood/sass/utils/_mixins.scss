@@ -51,7 +51,7 @@
     font-size: x-large;
   }
   &__section {
-    & span {
+    & div {
       width: 90%;
       margin: auto;
       display: flex;
@@ -61,7 +61,7 @@
         width: 30%;
       }
     }
-    & > span {
+    & > div {
       margin-top: 20px;
       height: 25px;
     }
@@ -73,7 +73,11 @@
       margin: 0px;
     }
     & li {
+      @include debug-border(red);
+      width: 100%;
       font-size: map_get($menu, font-size-li);
+      display: flex;
+      justify-content: space-between;
     }
 
     & h5 {
