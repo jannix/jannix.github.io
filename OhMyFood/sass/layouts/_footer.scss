@@ -5,6 +5,7 @@
   display: flex;
   justify-content: space-between;
   overflow: hidden;
+  z-index: 100;
   &__button {
     font-size: map_get($font-size, buttons);
     padding-left: 30px;

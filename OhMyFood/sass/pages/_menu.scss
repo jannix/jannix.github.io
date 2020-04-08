@@ -48,7 +48,7 @@
 
 @media only screen and (min-width: $break-large) {
   .menu-main-content {
-    width: 65%;
+    width: 55%;
   }
   .full-menu1 {
     @include display-menu-page(map_get($settings-menu-big-screen, 1));

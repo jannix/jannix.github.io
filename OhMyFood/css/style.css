@@ -133,6 +133,7 @@ h4 {
   width: 100%;
   top: 0;
   text-align: center;
+  z-index: 100;
 }
 .footer-banner {
   color: #FBC02D;
@@ -143,6 +144,7 @@ h4 {
   display: flex;
   justify-content: space-between;
   overflow: hidden;
+  z-index: 100;
 }
 .footer-banner__button {
   font-size: 1rem;
@@ -340,6 +342,7 @@ h4 {
   background-color: #fcdfdb;
   border-radius: 5px;
   margin: 1em;
+  padding-bottom: 25px;
 }
 .full-menu1 * {
   font-family: "devonshire";
@@ -359,7 +362,8 @@ h4 {
   width: 30%;
 }
 .full-menu1__section > div {
-  margin-top: 20px;
+  margin-top: 30px;
+  margin-bottom: 20px;
   height: 25px;
 }
 .full-menu1__section ul {
@@ -370,11 +374,12 @@ h4 {
   margin: 0px;
 }
 .full-menu1__section li {
-  border: 2px solid red;
   width: 100%;
   font-size: 2.9vw;
   display: flex;
   justify-content: space-between;
+  padding-left: 20px;
+  padding-right: 20px;
 }
 .full-menu1__section h5 {
   padding: 0px;
@@ -411,6 +416,7 @@ h4 {
   background-color: #fff5fe;
   border-radius: 5px;
   margin: 1em;
+  padding-bottom: 25px;
 }
 .full-menu2 * {
   font-family: "croissant";
@@ -430,7 +436,8 @@ h4 {
   width: 30%;
 }
 .full-menu2__section > div {
-  margin-top: 20px;
+  margin-top: 30px;
+  margin-bottom: 20px;
   height: 25px;
 }
 .full-menu2__section ul {
@@ -441,11 +448,12 @@ h4 {
   margin: 0px;
 }
 .full-menu2__section li {
-  border: 2px solid red;
   width: 100%;
   font-size: 1.9vw;
   display: flex;
   justify-content: space-between;
+  padding-left: 20px;
+  padding-right: 20px;
 }
 .full-menu2__section h5 {
   padding: 0px;
@@ -482,6 +490,7 @@ h4 {
   background-color: #f9f9f9;
   border-radius: 5px;
   margin: 1em;
+  padding-bottom: 25px;
 }
 .full-menu3 * {
   font-family: "parisienne";
@@ -501,7 +510,8 @@ h4 {
   width: 30%;
 }
 .full-menu3__section > div {
-  margin-top: 20px;
+  margin-top: 30px;
+  margin-bottom: 20px;
   height: 25px;
 }
 .full-menu3__section ul {
@@ -512,15 +522,16 @@ h4 {
   margin: 0px;
 }
 .full-menu3__section li {
-  border: 2px solid red;
   width: 100%;
   font-size: 2.8vw;
   display: flex;
   justify-content: space-between;
+  padding-left: 20px;
+  padding-right: 20px;
 }
 .full-menu3__section h5 {
   padding: 0px;
-  font-size: 1vw;
+  font-size: 2.8vw;
   text-decoration: none;
   position: relative;
 }
@@ -553,6 +564,7 @@ h4 {
   background-color: #fdfffd;
   border-radius: 5px;
   margin: 1em;
+  padding-bottom: 25px;
 }
 .full-menu4 * {
   font-family: "kaushan";
@@ -572,7 +584,8 @@ h4 {
   width: 30%;
 }
 .full-menu4__section > div {
-  margin-top: 20px;
+  margin-top: 30px;
+  margin-bottom: 20px;
   height: 25px;
 }
 .full-menu4__section ul {
@@ -583,11 +596,12 @@ h4 {
   margin: 0px;
 }
 .full-menu4__section li {
-  border: 2px solid red;
   width: 100%;
   font-size: 2.4vw;
   display: flex;
   justify-content: space-between;
+  padding-left: 20px;
+  padding-right: 20px;
 }
 .full-menu4__section h5 {
   padding: 0px;
@@ -621,7 +635,7 @@ h4 {
 
 @media only screen and (min-width: 1084px) {
   .menu-main-content {
-    width: 65%;
+    width: 55%;
   }
 
   .full-menu1 {
@@ -629,6 +643,7 @@ h4 {
     background-color: #fcdfdb;
     border-radius: 5px;
     margin: 1em;
+    padding-bottom: 25px;
   }
   .full-menu1 * {
     font-family: "devonshire";
@@ -648,7 +663,8 @@ h4 {
     width: 30%;
   }
   .full-menu1__section > div {
-    margin-top: 20px;
+    margin-top: 30px;
+    margin-bottom: 20px;
     height: 25px;
   }
   .full-menu1__section ul {
@@ -659,11 +675,12 @@ h4 {
     margin: 0px;
   }
   .full-menu1__section li {
-    border: 2px solid red;
     width: 100%;
     font-size: 1.3vw;
     display: flex;
     justify-content: space-between;
+    padding-left: 100px;
+    padding-right: 100px;
   }
   .full-menu1__section h5 {
     padding: 0px;
@@ -700,6 +717,7 @@ h4 {
     background-color: #fff5fe;
     border-radius: 5px;
     margin: 1em;
+    padding-bottom: 25px;
   }
   .full-menu2 * {
     font-family: "croissant";
@@ -719,26 +737,28 @@ h4 {
     width: 30%;
   }
   .full-menu2__section > div {
-    margin-top: 20px;
+    margin-top: 30px;
+    margin-bottom: 20px;
     height: 25px;
   }
   .full-menu2__section ul {
     font-size: small;
-    line-height: 22px;
+    line-height: 30px;
     list-style-type: none;
     padding: 0px;
     margin: 0px;
   }
   .full-menu2__section li {
-    border: 2px solid red;
     width: 100%;
     font-size: 1.1vw;
     display: flex;
     justify-content: space-between;
+    padding-left: 90px;
+    padding-right: 90px;
   }
   .full-menu2__section h5 {
     padding: 0px;
-    font-size: 1.5vw;
+    font-size: 1.2vw;
     text-decoration: none;
     position: relative;
   }
@@ -771,6 +791,7 @@ h4 {
     background-color: #f9f9f9;
     border-radius: 5px;
     margin: 1em;
+    padding-bottom: 25px;
   }
   .full-menu3 * {
     font-family: "parisienne";
@@ -790,22 +811,24 @@ h4 {
     width: 30%;
   }
   .full-menu3__section > div {
-    margin-top: 20px;
+    margin-top: 30px;
+    margin-bottom: 20px;
     height: 25px;
   }
   .full-menu3__section ul {
     font-size: small;
-    line-height: 22px;
+    line-height: 30px;
     list-style-type: none;
     padding: 0px;
     margin: 0px;
   }
   .full-menu3__section li {
-    border: 2px solid red;
     width: 100%;
     font-size: 1.1vw;
     display: flex;
     justify-content: space-between;
+    padding-left: 90px;
+    padding-right: 90px;
   }
   .full-menu3__section h5 {
     padding: 0px;
@@ -842,6 +865,7 @@ h4 {
     background-color: #fdfffd;
     border-radius: 5px;
     margin: 1em;
+    padding-bottom: 25px;
   }
   .full-menu4 * {
     font-family: "kaushan";
@@ -861,22 +885,24 @@ h4 {
     width: 30%;
   }
   .full-menu4__section > div {
-    margin-top: 20px;
+    margin-top: 30px;
+    margin-bottom: 20px;
     height: 25px;
   }
   .full-menu4__section ul {
     font-size: small;
-    line-height: 22px;
+    line-height: 30px;
     list-style-type: none;
     padding: 0px;
     margin: 0px;
   }
   .full-menu4__section li {
-    border: 2px solid red;
     width: 100%;
     font-size: 1.1vw;
     display: flex;
     justify-content: space-between;
+    padding-left: 90px;
+    padding-right: 90px;
   }
   .full-menu4__section h5 {
     padding: 0px;
