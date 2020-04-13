@@ -1,9 +1,9 @@
 .prev-menu {
   width: 50%;
-  height: 50%;
   display: flex;
   padding: 6px;
   overflow: hidden;
+  flex-grow: 1;
 
   &__btn-img {
     width: 90%;
@@ -43,7 +43,6 @@
 
 @media only screen and (min-width: $break-large) {
   .prev-menu {
-    height: 100%;
     & p {
       line-height: 50px;
     }
@@ -52,6 +51,7 @@
 
 @media only screen and (max-width: $break-large) {
   .prev-menu {
+    min-height: 240px;
     & img {
       transform: scale(0.5);
       margin-bottom: -18px;
