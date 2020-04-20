@@ -41,7 +41,7 @@
 }
 
 @mixin display-menu-page($menu) {
-  box-shadow: 0px 0px 8px 1px #a2a5a4;
+  box-shadow: 0px 0px 8px 1px $shadow-colour;
   background-color: map_get($menu, bg-color);
   border-radius: 5px;
   margin: 1em;
