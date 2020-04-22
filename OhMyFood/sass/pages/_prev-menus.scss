@@ -6,6 +6,8 @@
   flex-grow: 1;
 
   &__btn-img {
+    max-width: 200px;
+    max-height: 400px;
     width: 90%;
     height: 95%;
     margin: auto;
@@ -43,6 +45,10 @@
 
 @media only screen and (min-width: $break-large) {
   .prev-menu {
+    &__btn-img {
+      max-width: 350px;
+      max-height: 450px;
+    }
     & p {
       line-height: 50px;
     }

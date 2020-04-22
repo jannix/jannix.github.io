@@ -217,6 +217,8 @@ h4 {
   flex-grow: 1;
 }
 .prev-menu__btn-img {
+  max-width: 200px;
+  max-height: 400px;
   width: 90%;
   height: 95%;
   margin: auto;
@@ -329,6 +331,10 @@ h4 {
 }
 
 @media only screen and (min-width: 1084px) {
+  .prev-menu__btn-img {
+    max-width: 350px;
+    max-height: 450px;
+  }
   .prev-menu p {
     line-height: 50px;
   }
