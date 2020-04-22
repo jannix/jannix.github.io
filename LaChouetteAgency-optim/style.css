@@ -769,7 +769,7 @@ h4 {
 }
 
 .black-background {
-    background-color: rgba(165, 147, 99, 0.7);
+    background-color: rgba(130, 100, 40, 0.7);
     padding: 40px 40px 40px 40px;
 }
 
@@ -792,12 +792,12 @@ h4 {
 }
 
 .tc-white {
-    color: #F3976C!important;
+    color: #ffb491!important;
 }
 
 .btn-atomic-tangerine {
     background: #F3976C;
-    color: #FFFFFF!important;
+    color: #000000!important;
 }
 
 .btn-atomic-tangerine:hover {
@@ -839,7 +839,16 @@ h4 {
 }
 
 .bg-presentation {
-    background-image: url("img/image-de-presentation.bmp");
+    background-image: url("img/image-de-presentation.jpg");
+}
+
+#bloc-5-cta h2 {
+    opacity: 100%;
+    font-weight: 700;
+    background-color: rgba(130, 100, 40, 0.7);
+    padding: 40px 40px 40px 40px;
+    max-width: 500px;
+    margin: auto;
 }
 
 @media (max-width: 1024px) {
