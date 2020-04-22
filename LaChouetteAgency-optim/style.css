@@ -364,6 +364,7 @@ a:hover {
 
 @media (min-width: 768px) {
     .site-navigation {
+        font-size: large;
         position: absolute;
         top: 50%;
         right: 20px;
@@ -734,9 +735,24 @@ h4 {
     margin-bottom: 14px;
     margin-top: 24px;
 }
+.service-description {
+    font-size: 14px;
+}
+
+.blockquote {
+    font-weight: 600;
+}
 
 .white {
     color: #FFFFFF!important;
+}
+
+.paragraphe {
+    font-size: 15px;
+}
+
+.proj-description {
+    font-size: 15px;
 }
 
 .portfolio-thumb {
@@ -758,6 +774,7 @@ h4 {
 }
 
 .bold-link {
+    font-size: 17px;
     font-weight: 900;
     text-decoration: underline!important;
 }
