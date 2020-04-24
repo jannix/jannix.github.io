@@ -652,7 +652,7 @@ label,
 a {
     font-family: "helvetica";
     font-weight: 400;
-    color: #575757!important;
+    color: black!important;
 }
 
 .container {
@@ -751,8 +751,16 @@ h4 {
     color: #000000 !important;
 }
 
+.hard-white {
+    color: white;
+}
+
 .paragraphe {
     font-size: 15px;
+}
+
+.big-paragraphe {
+    font-size: 17px;
 }
 
 .proj-description {
@@ -775,6 +783,14 @@ h4 {
 .black-background {
     background-color: rgba(130, 100, 40, 0.7);
     padding: 40px 40px 40px 40px;
+}
+
+.block-flex {
+    display: flex;
+}
+
+.text-aligned {
+    text-align: center;
 }
 
 .bold-link {
