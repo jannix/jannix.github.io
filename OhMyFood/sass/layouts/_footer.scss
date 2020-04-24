@@ -51,3 +51,10 @@
     transform: scale(1.1);
   }
 }
+
+@media only screen and (min-width: $break-large) {
+  .footer-banner {
+    padding-right: 32%;
+    padding-left: 32%;
+  }
+}
