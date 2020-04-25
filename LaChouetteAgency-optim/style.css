@@ -928,6 +928,12 @@ h4 {
 }
 
 @media (max-width: 767px) {
+    #bloc-5-cta h2 {
+        margin: 50px;
+    }
+    .img-responsive {
+        margin: auto;
+    }
     .page-container {
         overflow-x: hidden;
         position: relative;
