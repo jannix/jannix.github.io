@@ -8,7 +8,6 @@ $(function()
 			if(!$form.attr('action')) // Check form doesnt have action attribute
 			{
 				event.preventDefault(); // prevent default submit behaviour
-			
 				var processorFile = getProcessorPath($form);
 				var formData = {};
 
