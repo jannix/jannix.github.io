@@ -66,3 +66,22 @@
     @include display-menu-page(map_get($settings-menu-big-screen, 4));
   }
 }
+
+@media only screen and (min-height: 800px) {
+  .full-menu1 {
+    min-height: 800px;
+  }
+
+  .full-menu2 {
+    min-height: 800px;
+  }
+
+  .full-menu3 {
+    min-height: 800px;
+  }
+
+  .full-menu4 {
+    min-height: 800px;
+  }
+}
+

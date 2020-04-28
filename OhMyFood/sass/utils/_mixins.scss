@@ -41,12 +41,14 @@
 }
 
 @mixin display-menu-page($menu) {
-  min-height: 800px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   box-shadow: 0px 0px 8px 1px $shadow-colour;
   background-color: map_get($menu, bg-color);
   border-radius: 5px;
   margin: 1em;
-  padding-bottom: 25px;
+  padding-bottom: 75px;
   & * {
     font-family: map_get($menu, title-font-family);
   }

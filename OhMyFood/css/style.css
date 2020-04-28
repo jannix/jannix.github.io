@@ -305,7 +305,7 @@ h4 {
   .prev-menu:nth-child(1) .prev-menu__btn-img span {
     background: transparent;
     font-family: "devonshire";
-    font-size: 1.7vw;
+    font-size: 1.55vw;
     color: #212121;
     -webkit-background-clip: text;
   }
@@ -315,7 +315,7 @@ h4 {
   .prev-menu:nth-child(2) .prev-menu__btn-img span {
     background: linear-gradient(to bottom right, #c67412, #6e4ccc);
     font-family: "croissant";
-    font-size: 0.8vw;
+    font-size: 0.75vw;
     color: transparent;
     -webkit-background-clip: text;
   }
@@ -325,7 +325,7 @@ h4 {
   .prev-menu:nth-child(3) .prev-menu__btn-img span {
     background: linear-gradient(to bottom right, #0431df, #0887fb);
     font-family: "dancing-script";
-    font-size: 1.3vw;
+    font-size: 1.15vw;
     color: transparent;
     -webkit-background-clip: text;
   }
@@ -344,11 +344,10 @@ h4 {
 @media only screen and (min-width: 1495px) {
   .prev-menu__btn-img {
     min-width: 200px;
-    min-height: 300px;
-    max-width: 350px;
-    max-height: 450px;
-    width: 300px;
-    height: 350px;
+    min-height: 280px;
+    max-width: 250px;
+    max-height: 400px;
+    height: 300px;
   }
   .prev-menu p {
     line-height: 50px;
@@ -358,9 +357,8 @@ h4 {
   .prev-menu__btn-img {
     min-width: 150px;
     max-width: 280px;
-    max-height: 380px;
-    width: 250px;
-    height: 270px;
+    max-height: 360px;
+    height: 250px;
   }
   .prev-menu p {
     line-height: 50px;
@@ -406,12 +404,14 @@ h4 {
 }
 
 .full-menu1 {
-  min-height: 800px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   box-shadow: 0px 0px 8px 1px #a2a5a4;
   background-color: #fcdfdb;
   border-radius: 5px;
   margin: 1em;
-  padding-bottom: 25px;
+  padding-bottom: 75px;
 }
 .full-menu1 * {
   font-family: "devonshire";
@@ -481,12 +481,14 @@ h4 {
 }
 
 .full-menu2 {
-  min-height: 800px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   box-shadow: 0px 0px 8px 1px #a2a5a4;
   background-color: #fff5fe;
   border-radius: 5px;
   margin: 1em;
-  padding-bottom: 25px;
+  padding-bottom: 75px;
 }
 .full-menu2 * {
   font-family: "croissant";
@@ -556,12 +558,14 @@ h4 {
 }
 
 .full-menu3 {
-  min-height: 800px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   box-shadow: 0px 0px 8px 1px #a2a5a4;
   background-color: #f9f9f9;
   border-radius: 5px;
   margin: 1em;
-  padding-bottom: 25px;
+  padding-bottom: 75px;
 }
 .full-menu3 * {
   font-family: "dancing-script";
@@ -631,12 +635,14 @@ h4 {
 }
 
 .full-menu4 {
-  min-height: 800px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   box-shadow: 0px 0px 8px 1px #a2a5a4;
   background-color: #fdfffd;
   border-radius: 5px;
   margin: 1em;
-  padding-bottom: 25px;
+  padding-bottom: 75px;
 }
 .full-menu4 * {
   font-family: "kaushan";
@@ -711,12 +717,14 @@ h4 {
   }
 
   .full-menu1 {
-    min-height: 800px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     box-shadow: 0px 0px 8px 1px #a2a5a4;
     background-color: #fcdfdb;
     border-radius: 5px;
     margin: 1em;
-    padding-bottom: 25px;
+    padding-bottom: 75px;
   }
   .full-menu1 * {
     font-family: "devonshire";
@@ -786,12 +794,14 @@ h4 {
   }
 
   .full-menu2 {
-    min-height: 800px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     box-shadow: 0px 0px 8px 1px #a2a5a4;
     background-color: #fff5fe;
     border-radius: 5px;
     margin: 1em;
-    padding-bottom: 25px;
+    padding-bottom: 75px;
   }
   .full-menu2 * {
     font-family: "croissant";
@@ -861,12 +871,14 @@ h4 {
   }
 
   .full-menu3 {
-    min-height: 800px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     box-shadow: 0px 0px 8px 1px #a2a5a4;
     background-color: #f9f9f9;
     border-radius: 5px;
     margin: 1em;
-    padding-bottom: 25px;
+    padding-bottom: 75px;
   }
   .full-menu3 * {
     font-family: "dancing-script";
@@ -936,12 +948,14 @@ h4 {
   }
 
   .full-menu4 {
-    min-height: 800px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     box-shadow: 0px 0px 8px 1px #a2a5a4;
     background-color: #fdfffd;
     border-radius: 5px;
     margin: 1em;
-    padding-bottom: 25px;
+    padding-bottom: 75px;
   }
   .full-menu4 * {
     font-family: "kaushan";
@@ -1008,6 +1022,23 @@ h4 {
   }
   .full-menu4__footer h4 {
     font-size: 3vw;
+  }
+}
+@media only screen and (min-height: 800px) {
+  .full-menu1 {
+    min-height: 800px;
+  }
+
+  .full-menu2 {
+    min-height: 800px;
+  }
+
+  .full-menu3 {
+    min-height: 800px;
+  }
+
+  .full-menu4 {
+    min-height: 800px;
   }
 }
 
