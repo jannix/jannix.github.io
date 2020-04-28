@@ -8,7 +8,7 @@
   &__btn-img {
     max-width: 200px;
     max-height: 400px;
-    width: 180px;
+    width: 200px;
     height: 250px;
     margin: auto;
     text-align: center;
@@ -43,11 +43,30 @@
   }
 }
 
-@media only screen and (min-width: $break-large) {
+@media only screen and (min-width: $break-xlarge) {
   .prev-menu {
     &__btn-img {
+      min-width: 200px;
+      min-height: 300px;
       max-width: 350px;
       max-height: 450px;
+      width: 300px;
+      height: 350px;
+    }
+    & p {
+      line-height: 50px;
+    }
+  }
+}
+
+@media only screen and (min-width: $break-large) and (max-width: $break-xlarge) {
+  .prev-menu {
+    &__btn-img {
+      min-width: 150px;
+      max-width: 280px;
+      max-height: 380px;
+      width: 250px;
+      height: 270px;
     }
     & p {
       line-height: 50px;
@@ -58,9 +77,12 @@
 @media only screen and (max-width: $break-large) {
   .prev-menu {
     min-height: 240px;
-    & img {
-      transform: scale(0.5);
-      margin-bottom: -18px;
+    &__btn-img {
+      min-width: 150px;
+      max-width: 280px;
+      max-height: 350px;
+      width: 200px;
+      height: 250px;
     }
   }
 }

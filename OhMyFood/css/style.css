@@ -123,7 +123,7 @@ h4 {
   padding-left: 2rem;
 }
 
-@media only screen and (min-width: 1084px) {
+@media only screen and (min-width: 1130px) {
   .display-soon {
     margin-top: 0.5%;
   }
@@ -192,13 +192,14 @@ h4 {
     transform: scale(1.1);
   }
 }
-@media only screen and (min-width: 1084px) {
+@media only screen and (min-width: 1130px) {
   .footer-banner {
     padding-right: 32%;
     padding-left: 32%;
   }
 }
 .menu-list {
+  max-width: 500px;
   width: 90%;
   margin: auto;
   margin-top: 80px;
@@ -207,10 +208,16 @@ h4 {
   flex-grow: 1;
 }
 
-@media only screen and (min-width: 1084px) {
+@media only screen and (min-width: 1130px) {
   .menu-list {
     height: 100%;
     width: 28%;
+  }
+}
+@media only screen and (min-width: 775px) and (max-width: 1130px) {
+  .menu-list {
+    height: 100%;
+    width: 45%;
   }
 }
 .prev-menu {
@@ -223,7 +230,7 @@ h4 {
 .prev-menu__btn-img {
   max-width: 200px;
   max-height: 400px;
-  width: 180px;
+  width: 200px;
   height: 250px;
   margin: auto;
   text-align: center;
@@ -257,7 +264,7 @@ h4 {
 .prev-menu:nth-child(1) .prev-menu__btn-img span {
   background: transparent;
   font-family: "devonshire";
-  font-size: 5vw;
+  font-size: 25px;
   color: #212121;
   -webkit-background-clip: text;
 }
@@ -267,7 +274,7 @@ h4 {
 .prev-menu:nth-child(2) .prev-menu__btn-img span {
   background: linear-gradient(to bottom right, #c67412, #6e4ccc);
   font-family: "croissant";
-  font-size: 2.5vw;
+  font-size: 13px;
   color: transparent;
   -webkit-background-clip: text;
 }
@@ -277,7 +284,7 @@ h4 {
 .prev-menu:nth-child(3) .prev-menu__btn-img span {
   background: linear-gradient(to bottom right, #0431df, #0887fb);
   font-family: "dancing-script";
-  font-size: 3.7vw;
+  font-size: 18px;
   color: transparent;
   -webkit-background-clip: text;
 }
@@ -287,18 +294,18 @@ h4 {
 .prev-menu:nth-child(4) .prev-menu__btn-img span {
   background: linear-gradient(to bottom right, #42973c, #bfff7e);
   font-family: "kaushan";
-  font-size: 3.7vw;
+  font-size: 19px;
   color: transparent;
   -webkit-background-clip: text;
 }
-@media only screen and (min-width: 1084px) {
+@media only screen and (min-width: 1130px) {
   .prev-menu:nth-child(1) .prev-menu__btn-img {
     background-color: #fcdfdb;
   }
   .prev-menu:nth-child(1) .prev-menu__btn-img span {
     background: transparent;
     font-family: "devonshire";
-    font-size: 1.5vw;
+    font-size: 1.7vw;
     color: #212121;
     -webkit-background-clip: text;
   }
@@ -318,7 +325,7 @@ h4 {
   .prev-menu:nth-child(3) .prev-menu__btn-img span {
     background: linear-gradient(to bottom right, #0431df, #0887fb);
     font-family: "dancing-script";
-    font-size: 1.1vw;
+    font-size: 1.3vw;
     color: transparent;
     -webkit-background-clip: text;
   }
@@ -328,28 +335,47 @@ h4 {
   .prev-menu:nth-child(4) .prev-menu__btn-img span {
     background: linear-gradient(to bottom right, #42973c, #bfff7e);
     font-family: "kaushan";
-    font-size: 1.1vw;
+    font-size: 1.2vw;
     color: transparent;
     -webkit-background-clip: text;
   }
 }
 
-@media only screen and (min-width: 1084px) {
+@media only screen and (min-width: 1495px) {
   .prev-menu__btn-img {
+    min-width: 200px;
+    min-height: 300px;
     max-width: 350px;
     max-height: 450px;
+    width: 300px;
+    height: 350px;
   }
   .prev-menu p {
     line-height: 50px;
   }
 }
-@media only screen and (max-width: 1084px) {
+@media only screen and (min-width: 1130px) and (max-width: 1495px) {
+  .prev-menu__btn-img {
+    min-width: 150px;
+    max-width: 280px;
+    max-height: 380px;
+    width: 250px;
+    height: 270px;
+  }
+  .prev-menu p {
+    line-height: 50px;
+  }
+}
+@media only screen and (max-width: 1130px) {
   .prev-menu {
     min-height: 240px;
   }
-  .prev-menu img {
-    transform: scale(0.5);
-    margin-bottom: -18px;
+  .prev-menu__btn-img {
+    min-width: 150px;
+    max-width: 280px;
+    max-height: 350px;
+    width: 200px;
+    height: 250px;
   }
 }
 .menu-main-content {
@@ -380,6 +406,7 @@ h4 {
 }
 
 .full-menu1 {
+  min-height: 800px;
   box-shadow: 0px 0px 8px 1px #a2a5a4;
   background-color: #fcdfdb;
   border-radius: 5px;
@@ -454,6 +481,7 @@ h4 {
 }
 
 .full-menu2 {
+  min-height: 800px;
   box-shadow: 0px 0px 8px 1px #a2a5a4;
   background-color: #fff5fe;
   border-radius: 5px;
@@ -528,6 +556,7 @@ h4 {
 }
 
 .full-menu3 {
+  min-height: 800px;
   box-shadow: 0px 0px 8px 1px #a2a5a4;
   background-color: #f9f9f9;
   border-radius: 5px;
@@ -602,6 +631,7 @@ h4 {
 }
 
 .full-menu4 {
+  min-height: 800px;
   box-shadow: 0px 0px 8px 1px #a2a5a4;
   background-color: #fdfffd;
   border-radius: 5px;
@@ -675,12 +705,13 @@ h4 {
   font-size: 3vw;
 }
 
-@media only screen and (min-width: 1084px) {
+@media only screen and (min-width: 1130px) {
   .menu-main-content {
     width: 55%;
   }
 
   .full-menu1 {
+    min-height: 800px;
     box-shadow: 0px 0px 8px 1px #a2a5a4;
     background-color: #fcdfdb;
     border-radius: 5px;
@@ -755,6 +786,7 @@ h4 {
   }
 
   .full-menu2 {
+    min-height: 800px;
     box-shadow: 0px 0px 8px 1px #a2a5a4;
     background-color: #fff5fe;
     border-radius: 5px;
@@ -829,6 +861,7 @@ h4 {
   }
 
   .full-menu3 {
+    min-height: 800px;
     box-shadow: 0px 0px 8px 1px #a2a5a4;
     background-color: #f9f9f9;
     border-radius: 5px;
@@ -903,6 +936,7 @@ h4 {
   }
 
   .full-menu4 {
+    min-height: 800px;
     box-shadow: 0px 0px 8px 1px #a2a5a4;
     background-color: #fdfffd;
     border-radius: 5px;
