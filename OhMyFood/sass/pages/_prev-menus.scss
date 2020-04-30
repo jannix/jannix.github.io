@@ -1,15 +1,12 @@
 .prev-menu {
-  width: 50%;
   display: flex;
   padding: 6px;
   overflow: hidden;
   flex-grow: 1;
 
   &__btn-img {
-    max-width: 200px;
-    max-height: 400px;
-    width: 200px;
-    height: 250px;
+    width: 170px;
+    height: 230px;
     margin: auto;
     text-align: center;
     -webkit-box-shadow: $menu-shadow;
@@ -45,14 +42,6 @@
 
 @media only screen and (min-width: $break-xlarge) {
   .prev-menu {
-    &__btn-img {
-      min-width: 200px;
-      min-height: 280px;
-      max-width: 250px;
-      max-height: 400px;
-      //width: 250px;
-      height: 300px;
-    }
     & p {
       line-height: 50px;
     }
@@ -61,27 +50,8 @@
 
 @media only screen and (min-width: $break-large) and (max-width: $break-xlarge) {
   .prev-menu {
-    &__btn-img {
-      min-width: 150px;
-      max-width: 280px;
-      max-height: 360px;
-      height: 250px;
-    }
     & p {
       line-height: 50px;
-    }
-  }
-}
-
-@media only screen and (max-width: $break-large) {
-  .prev-menu {
-    min-height: 240px;
-    &__btn-img {
-      min-width: 150px;
-      max-width: 280px;
-      max-height: 350px;
-      width: 200px;
-      height: 250px;
     }
   }
 }
