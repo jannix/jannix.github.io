@@ -215,7 +215,6 @@ h4 {
 
 @media only screen and (max-width: 376px) {
   .menu-list {
-    border: 2px solid red;
     width: 100%;
     padding-left: 15px;
     padding-right: 15px;
