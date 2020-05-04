@@ -47,6 +47,10 @@ main {
   src: url("./fonts/dancing-script-ot/DancingScript-Regular.otf");
 }
 @font-face {
+  font-family: "satisfy";
+  src: url("./fonts/satisfy/Satisfy-Regular.ttf");
+}
+@font-face {
   font-family: "caveat";
   src: url("./fonts/caveat/caveat-regular.ttf");
 }
@@ -255,8 +259,8 @@ h4 {
 }
 .prev-menu:nth-child(1) .prev-menu__btn-img span {
   background: transparent;
-  font-family: "devonshire";
-  font-size: 25px;
+  font-family: "satisfy";
+  font-size: 20px;
   color: #212121;
   -webkit-background-clip: text;
 }
@@ -296,8 +300,8 @@ h4 {
   }
   .prev-menu:nth-child(1) .prev-menu__btn-img span {
     background: transparent;
-    font-family: "devonshire";
-    font-size: 1.55vw;
+    font-family: "satisfy";
+    font-size: 20px;
     color: #212121;
     -webkit-background-clip: text;
   }
@@ -307,7 +311,7 @@ h4 {
   .prev-menu:nth-child(2) .prev-menu__btn-img span {
     background: linear-gradient(to bottom right, #c67412, #6e4ccc);
     font-family: "croissant";
-    font-size: 0.75vw;
+    font-size: 12px;
     color: transparent;
     -webkit-background-clip: text;
   }
@@ -317,7 +321,7 @@ h4 {
   .prev-menu:nth-child(3) .prev-menu__btn-img span {
     background: linear-gradient(to bottom right, #0431df, #0887fb);
     font-family: "dancing-script";
-    font-size: 1.15vw;
+    font-size: 18px;
     color: transparent;
     -webkit-background-clip: text;
   }
@@ -327,7 +331,7 @@ h4 {
   .prev-menu:nth-child(4) .prev-menu__btn-img span {
     background: linear-gradient(to bottom right, #42973c, #bfff7e);
     font-family: "kaushan";
-    font-size: 1.2vw;
+    font-size: 19px;
     color: transparent;
     -webkit-background-clip: text;
   }
@@ -381,7 +385,7 @@ h4 {
   padding-bottom: 75px;
 }
 .full-menu1 * {
-  font-family: "devonshire";
+  font-family: "satisfy";
 }
 .full-menu1__header {
   padding-top: 35px;
@@ -419,7 +423,7 @@ h4 {
 }
 .full-menu1__section h5 {
   padding: 0px;
-  font-size: 3vw;
+  font-size: 4vw;
   text-decoration: none;
   position: relative;
 }
@@ -444,7 +448,21 @@ h4 {
   margin-top: 25px;
 }
 .full-menu1__footer h4 {
-  font-size: 2.5vw;
+  font-size: 5vw;
+}
+@media only screen and (max-width: 775px) {
+  .full-menu1__header {
+    font-size: x-large;
+  }
+  .full-menu1 li {
+    justify-content: center;
+    font-size: 18px;
+    margin-bottom: 15px;
+  }
+  .full-menu1 li strong {
+    justify-self: left;
+    margin-left: 10px;
+  }
 }
 
 .full-menu2 {
@@ -496,7 +514,7 @@ h4 {
 }
 .full-menu2__section h5 {
   padding: 0px;
-  font-size: 1.8vw;
+  font-size: 2.5vw;
   text-decoration: none;
   position: relative;
 }
@@ -522,6 +540,20 @@ h4 {
 }
 .full-menu2__footer h4 {
   font-size: 3vw;
+}
+@media only screen and (max-width: 775px) {
+  .full-menu2__header {
+    font-size: x-large;
+  }
+  .full-menu2 li {
+    justify-content: center;
+    font-size: 18px;
+    margin-bottom: 15px;
+  }
+  .full-menu2 li strong {
+    justify-self: left;
+    margin-left: 10px;
+  }
 }
 
 .full-menu3 {
@@ -573,7 +605,7 @@ h4 {
 }
 .full-menu3__section h5 {
   padding: 0px;
-  font-size: 2.8vw;
+  font-size: 3.5vw;
   text-decoration: none;
   position: relative;
 }
@@ -599,6 +631,20 @@ h4 {
 }
 .full-menu3__footer h4 {
   font-size: 3vw;
+}
+@media only screen and (max-width: 775px) {
+  .full-menu3__header {
+    font-size: x-large;
+  }
+  .full-menu3 li {
+    justify-content: center;
+    font-size: 18px;
+    margin-bottom: 15px;
+  }
+  .full-menu3 li strong {
+    justify-self: left;
+    margin-left: 10px;
+  }
 }
 
 .full-menu4 {
@@ -650,7 +696,7 @@ h4 {
 }
 .full-menu4__section h5 {
   padding: 0px;
-  font-size: 2.8vw;
+  font-size: 3.2vw;
   text-decoration: none;
   position: relative;
 }
@@ -677,6 +723,20 @@ h4 {
 .full-menu4__footer h4 {
   font-size: 3vw;
 }
+@media only screen and (max-width: 775px) {
+  .full-menu4__header {
+    font-size: x-large;
+  }
+  .full-menu4 li {
+    justify-content: center;
+    font-size: 18px;
+    margin-bottom: 15px;
+  }
+  .full-menu4 li strong {
+    justify-self: left;
+    margin-left: 10px;
+  }
+}
 
 @media only screen and (min-width: 1130px) {
   .menu-main-content {
@@ -694,7 +754,7 @@ h4 {
     padding-bottom: 75px;
   }
   .full-menu1 * {
-    font-family: "devonshire";
+    font-family: "satisfy";
   }
   .full-menu1__header {
     padding-top: 35px;
@@ -759,7 +819,22 @@ h4 {
   .full-menu1__footer h4 {
     font-size: 1.5vw;
   }
-
+}
+@media only screen and (min-width: 1130px) and (max-width: 775px) {
+  .full-menu1__header {
+    font-size: x-large;
+  }
+  .full-menu1 li {
+    justify-content: center;
+    font-size: 18px;
+    margin-bottom: 15px;
+  }
+  .full-menu1 li strong {
+    justify-self: left;
+    margin-left: 10px;
+  }
+}
+@media only screen and (min-width: 1130px) {
   .full-menu2 {
     display: flex;
     flex-direction: column;
@@ -836,7 +911,22 @@ h4 {
   .full-menu2__footer h4 {
     font-size: 3vw;
   }
-
+}
+@media only screen and (min-width: 1130px) and (max-width: 775px) {
+  .full-menu2__header {
+    font-size: x-large;
+  }
+  .full-menu2 li {
+    justify-content: center;
+    font-size: 18px;
+    margin-bottom: 15px;
+  }
+  .full-menu2 li strong {
+    justify-self: left;
+    margin-left: 10px;
+  }
+}
+@media only screen and (min-width: 1130px) {
   .full-menu3 {
     display: flex;
     flex-direction: column;
@@ -913,7 +1003,22 @@ h4 {
   .full-menu3__footer h4 {
     font-size: 3vw;
   }
-
+}
+@media only screen and (min-width: 1130px) and (max-width: 775px) {
+  .full-menu3__header {
+    font-size: x-large;
+  }
+  .full-menu3 li {
+    justify-content: center;
+    font-size: 18px;
+    margin-bottom: 15px;
+  }
+  .full-menu3 li strong {
+    justify-self: left;
+    margin-left: 10px;
+  }
+}
+@media only screen and (min-width: 1130px) {
   .full-menu4 {
     display: flex;
     flex-direction: column;
@@ -989,6 +1094,20 @@ h4 {
   }
   .full-menu4__footer h4 {
     font-size: 3vw;
+  }
+}
+@media only screen and (min-width: 1130px) and (max-width: 775px) {
+  .full-menu4__header {
+    font-size: x-large;
+  }
+  .full-menu4 li {
+    justify-content: center;
+    font-size: 18px;
+    margin-bottom: 15px;
+  }
+  .full-menu4 li strong {
+    justify-self: left;
+    margin-left: 10px;
   }
 }
 @media only screen and (min-height: 800px) {

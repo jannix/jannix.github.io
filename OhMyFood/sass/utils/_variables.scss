@@ -12,30 +12,30 @@ $shadow-colour: #a2a5a4;
 $delay-spinner-anim: 2.4s;
 
 $menu-shadow: 0px 0px 8px 1px rgba(0,0,0,0.20);
-$setting-menu1: (bg-color: #fcdfdb, font-size: 25px, title-font-family: 'devonshire', font-color: #212121,
-        font-bg-color: transparent, font-size-h5: 3vw, font-size-h4: 2.5vw, font-size-li: 2.9vw, line-height-li: 28px,
+$setting-menu1: (bg-color: #fcdfdb, font-size: 20px, title-font-family: 'satisfy', font-color: #212121,
+        font-bg-color: transparent, font-size-h5: 4vw, font-size-h4: 5vw, font-size-li: 2.9vw, line-height-li: 28px,
         padding-menu-items: 20px);
 $setting-menu2: (bg-color: #fff5fe, font-size: 12px, title-font-family: 'croissant', font-color: transparent,
-        font-bg-color: linear-gradient(to bottom right, #c67412, #6e4ccc), font-size-h5: 1.8vw, font-size-h4: 3vw,
+        font-bg-color: linear-gradient(to bottom right, #c67412, #6e4ccc), font-size-h5: 2.5vw, font-size-h4: 3vw,
         font-size-li: 1.9vw, line-height-li: 25px, padding-menu-items: 20px);
 $setting-menu3: (bg-color: #f9f9f9, font-size: 18px, title-font-family: 'dancing-script', font-color: transparent,
-        font-bg-color: linear-gradient(to bottom right, #0431df, #0887fb), font-size-h5: 2.8vw, font-size-h4: 3vw,
+        font-bg-color: linear-gradient(to bottom right, #0431df, #0887fb), font-size-h5: 3.5vw, font-size-h4: 3vw,
         font-size-li: 2.8vw, line-height-li: 28px, padding-menu-items: 20px);
 $setting-menu4: (bg-color: #fdfffd, font-size: 19px, title-font-family: 'kaushan', font-color: transparent,
-        font-bg-color: linear-gradient(to bottom right, #42973c, #bfff7e), font-size-h5: 2.8vw, font-size-h4: 3vw,
+        font-bg-color: linear-gradient(to bottom right, #42973c, #bfff7e), font-size-h5: 3.2vw, font-size-h4: 3vw,
         font-size-li: 2.4vw, line-height-li: 28px, padding-menu-items: 20px);
 $settings-menu: (1: $setting-menu1, 2: $setting-menu2, 3: $setting-menu3, 4: $setting-menu4);
 
-$bs-setting-menu1: (bg-color: #fcdfdb, font-size: 1.55vw, title-font-family: 'devonshire', font-color: #212121,
+$bs-setting-menu1: (bg-color: #fcdfdb, font-size: 20px, title-font-family: 'satisfy', font-color: #212121,
         font-bg-color: transparent, font-size-h5: 2vw, font-size-h4: 1.5vw, font-size-li: 1.3vw, line-height-li: 33px,
         padding-menu-items: 100px);
-$bs-setting-menu2: (bg-color: #fff5fe, font-size: 0.75vw, title-font-family: 'croissant', font-color: transparent,
+$bs-setting-menu2: (bg-color: #fff5fe, font-size: 12px, title-font-family: 'croissant', font-color: transparent,
         font-bg-color: linear-gradient(to bottom right, #c67412, #6e4ccc), font-size-h5: 1.2vw, font-size-h4: 3vw,
         font-size-li: 1.1vw, line-height-li: 30px, padding-menu-items: 90px);
-$bs-setting-menu3: (bg-color: #f9f9f9, font-size: 1.15vw, title-font-family: 'dancing-script', font-color: transparent,
+$bs-setting-menu3: (bg-color: #f9f9f9, font-size: 18px, title-font-family: 'dancing-script', font-color: transparent,
         font-bg-color: linear-gradient(to bottom right, #0431df, #0887fb), font-size-h5: 1.5vw, font-size-h4: 3vw,
         font-size-li: 1.1vw, line-height-li: 30px, padding-menu-items: 90px);
-$bs-setting-menu4: (bg-color: #fdfffd, font-size: 1.2vw, title-font-family: 'kaushan', font-color: transparent,
+$bs-setting-menu4: (bg-color: #fdfffd, font-size: 19px, title-font-family: 'kaushan', font-color: transparent,
         font-bg-color: linear-gradient(to bottom right, #42973c, #bfff7e), font-size-h5: 1.5vw, font-size-h4: 3vw,
         font-size-li: 1.1vw, line-height-li: 30px, padding-menu-items: 90px);
 $settings-menu-big-screen: (1: $bs-setting-menu1, 2: $bs-setting-menu2, 3: $bs-setting-menu3, 4: $bs-setting-menu4);
