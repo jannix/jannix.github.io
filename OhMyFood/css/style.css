@@ -215,6 +215,7 @@ h4 {
 
 @media only screen and (max-width: 1495px) {
   .menu-list {
+    width: 100%;
     padding-left: 15px;
     padding-right: 15px;
   }
@@ -345,6 +346,16 @@ h4 {
 @media only screen and (min-width: 1130px) and (max-width: 1495px) {
   .prev-menu p {
     line-height: 50px;
+  }
+}
+@media only screen and (max-width: 1495px) {
+  .prev-menu__btn-img {
+    width: 150px;
+    height: 220px;
+  }
+  .prev-menu:hover p {
+    transform: scale(1.08);
+    opacity: 0.7;
   }
 }
 .menu-main-content {

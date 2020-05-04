@@ -55,3 +55,16 @@
     }
   }
 }
+
+@media only screen and (max-width: $break-xlarge) {
+  .prev-menu {
+    &__btn-img {
+      width: 150px;
+      height: 220px;
+    }
+    &:hover p {
+      transform: scale(1.08);
+      opacity: 0.7;
+    }
+  }
+}
