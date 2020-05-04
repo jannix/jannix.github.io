@@ -10,8 +10,9 @@
 }
 
 
-@media only screen and (max-width: $break-xlarge) {
+@media only screen and (max-width: $break-xsmall) {
   .menu-list {
+    @include debug-border(red);
     width: 100%;
     padding-left: 15px;
     padding-right: 15px;
