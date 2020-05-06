@@ -364,6 +364,7 @@ h4 {
   }
 }
 .menu-main-content {
+  max-width: 800px;
   height: 100%;
   width: 90%;
   padding: 0px;
@@ -800,7 +801,7 @@ h4 {
   }
   .full-menu1__section li {
     width: 100%;
-    font-size: 1.3vw;
+    font-size: 20px;
     display: flex;
     justify-content: space-between;
     padding-left: 100px;
@@ -808,7 +809,7 @@ h4 {
   }
   .full-menu1__section h5 {
     padding: 0px;
-    font-size: 2vw;
+    font-size: 21px;
     text-decoration: none;
     position: relative;
   }
@@ -892,7 +893,7 @@ h4 {
   }
   .full-menu2__section li {
     width: 100%;
-    font-size: 1.1vw;
+    font-size: 16px;
     display: flex;
     justify-content: space-between;
     padding-left: 90px;
@@ -900,7 +901,7 @@ h4 {
   }
   .full-menu2__section h5 {
     padding: 0px;
-    font-size: 1.2vw;
+    font-size: 24px;
     text-decoration: none;
     position: relative;
   }
@@ -984,7 +985,7 @@ h4 {
   }
   .full-menu3__section li {
     width: 100%;
-    font-size: 1.1vw;
+    font-size: 22px;
     display: flex;
     justify-content: space-between;
     padding-left: 90px;
@@ -992,7 +993,7 @@ h4 {
   }
   .full-menu3__section h5 {
     padding: 0px;
-    font-size: 1.5vw;
+    font-size: 23px;
     text-decoration: none;
     position: relative;
   }
@@ -1076,7 +1077,7 @@ h4 {
   }
   .full-menu4__section li {
     width: 100%;
-    font-size: 1.1vw;
+    font-size: 18px;
     display: flex;
     justify-content: space-between;
     padding-left: 90px;
@@ -1084,7 +1085,7 @@ h4 {
   }
   .full-menu4__section h5 {
     padding: 0px;
-    font-size: 1.5vw;
+    font-size: 24px;
     text-decoration: none;
     position: relative;
   }
@@ -1141,6 +1142,11 @@ h4 {
 
   .full-menu4 {
     min-height: 800px;
+  }
+}
+@media only screen and (min-height: 1130px) {
+  .menu-main-content {
+    margin: auto;
   }
 }
 
