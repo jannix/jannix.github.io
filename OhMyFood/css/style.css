@@ -220,6 +220,11 @@ h4 {
     padding-right: 15px;
   }
 }
+@media only screen and (min-height: 775px) {
+  .menu-list {
+    margin: auto;
+  }
+}
 .prev-menu {
   display: flex;
   padding: 6px;

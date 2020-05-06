@@ -9,11 +9,16 @@
   flex-grow: 1;
 }
 
-
 @media only screen and (max-width: $break-xsmall) {
   .menu-list {
     width: 100%;
     padding-left: 15px;
     padding-right: 15px;
+  }
+}
+
+@media only screen and (min-height: $break-small) {
+  .menu-list {
+    margin: auto;
   }
 }
