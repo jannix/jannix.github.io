@@ -1,4 +1,4 @@
-console.log('test');
+
 
 function getTeddyList() {
     var request = new XMLHttpRequest();
@@ -17,20 +17,23 @@ function initTeddyList(teddies) {
     var innerSection = '';
     for (let teddy of teddies)
     {
-        var divCard = "<div class=\"col-12 col-md-6 col-lg-3 my-1\">\n" +
-            "            <div class=\"card\">\n" +
-            "                <img class=\"card-img-top\" src=\""+teddy['imageUrl']+"\" alt=\"Card image cap\">\n" +
-            "                <div class=\"card-body\">\n" +
+        var colDiv = document.createElement('div');
+        colDiv.setAttribute('class', 'col-12 col-md-6 col-lg-3 my-3');
+        var cardDiv = document.createElement('div');
+        cardDiv.setAttribute('class', 'card h-100');
+        cardDiv.addEventListener('click', function() {
+            console.log('click and go to product', teddy['_id']);
+        });
+        var contentCard = "<img class=\"card-img-top\" src=\""+teddy['imageUrl']+"\" alt=\"Card image cap\">\n" +
+            "                <div class=\"card-body\" href=\"html/product\">\n" +
             "                    <h5 class=\"card-title\">"+teddy['name']+"</h5>\n" +
+            "                    <h6 class=\"card-subtitle\">"+teddy['price'] / 100 +"</h6>\n" +
             "                    <p class=\"card-text\">"+teddy['description']+"</p>\n" +
-            "                    <a href=\"#\" class=\"btn btn-primary\">Go somewhere</a>\n" +
-            "                </div>\n" +
-            "            </div>\n" +
-            "        </div>";
-        innerSection += divCard;
+            "                </div>";
+        cardDiv.innerHTML = contentCard;
+        colDiv.appendChild(cardDiv);
+        sectionList.appendChild(colDiv);
     }
-
-    sectionList.innerHTML = innerSection;
 }
 
 function buildTeddyCard(teddy) {
