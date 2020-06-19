@@ -1,15 +1,9 @@
-
-
 function getTeddyList() {
-    var request = new XMLHttpRequest();
-    request.onreadystatechange = function() {
-        if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
-            var response = JSON.parse(this.responseText);
-            initTeddyList(response);
-        }
-    };
-    request.open("GET", "http://localhost:3000/api/teddies/");
-    request.send();
+    fetch("http://localhost:3000/api/teddies").then(res => {
+        return res.json();
+    }).then(teddies => {
+        initTeddyList(teddies);
+    });
 }
 
 function initTeddyList(teddies) {
@@ -27,15 +21,13 @@ function buildTeddyCard(teddy) {
     var cardDiv = document.createElement('div');
     cardDiv.setAttribute('class', 'card h-100');
     cardDiv.addEventListener('click', function() {
-        console.log('click and go to product', teddy['_id']);
-        var url = './html/product.html?id=' + teddy['_id']
-
+        var url = './html/product.html?id=' + teddy['_id'];
         document.location.href = url;
     });
     var contentCard = "<img class=\"card-img-top\" src=\""+teddy['imageUrl']+"\" alt=\"Card image cap\">\n" +
         "                <div class=\"card-body\" href=\"html/product\">\n" +
         "                    <h5 class=\"card-title\">"+teddy['name']+"</h5>\n" +
-        "                    <h6 class=\"card-subtitle\">"+teddy['price'] / 100 +"</h6>\n" +
+        "                    <h6 class=\"card-subtitle\">"+teddy['price'] / 100 +"€</h6>\n" +
         "                    <p class=\"card-text\">"+teddy['description']+"</p>\n" +
         "                </div>";
     cardDiv.innerHTML = contentCard;
@@ -43,5 +35,8 @@ function buildTeddyCard(teddy) {
     return colDiv;
 }
 
+window.onload = function() {
+    BasketManager.getInstance();
+    getTeddyList();
+}
 
-getTeddyList();

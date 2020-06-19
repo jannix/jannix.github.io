@@ -8,8 +8,22 @@
   box-shadow: 3px 4px 13px -4px rgba(0, 0, 0, 0.8);
 }
 
+.bubble-num {
+  margin: auto;
+  height: 20px;
+  width: 20px;
+  background-color: #E64A19;
+  border-radius: 50%;
+  color: #fff;
+  text-align: center;
+}
+
 header .navbar-brand {
   font-size: x-large;
+}
+
+#teddyFig > img {
+  width: 100%;
 }
 
 /*# sourceMappingURL=style.css.map */
