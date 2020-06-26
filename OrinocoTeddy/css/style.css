@@ -1,3 +1,7 @@
+.debug-border {
+  border: 2px solid red;
+}
+
 .card {
   overflow: hidden;
   box-shadow: 2px 3px 12px -6px rgba(0, 0, 0, 0.75);

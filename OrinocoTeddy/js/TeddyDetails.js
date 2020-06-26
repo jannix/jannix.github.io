@@ -1,6 +1,7 @@
 var currentTeddy = null;
 window.onload = function () {
     BasketManager.getInstance();
+    BasketManager.emptyBasket();
     var url = document.location.href,
         params = url.split('?')[1].split('&'),
         data = {}, tmp;
@@ -18,7 +19,7 @@ window.onload = function () {
     // do the requ, callback and stuff
 
     //document.getElementById('here').innerHTML = data.name;
-}
+};
 
 function initTeddyDetails(teddy) {
     let teddyArticle = document.getElementById('teddyArt');
@@ -36,10 +37,16 @@ function initTeddyDetails(teddy) {
 
     document.getElementById('buttonAdd').addEventListener("click", function () {
         BasketManager.getInstance();
-        BasketManager.addItem(currentTeddy);
+        const teddyToAdd = {
+            _id: currentTeddy._id,
+            name: currentTeddy.name,
+            price: currentTeddy.price,
+            imageUrl: currentTeddy.imageUrl,
+            description: currentTeddy.description,
+            color: document.getElementById("selectColor").value,
+        };
+        BasketManager.addItem(teddyToAdd);
     });
-    //build color select
-    //console.log(teddy);
 }
 
 

@@ -23,6 +23,7 @@ let BasketManager = (function () {
 
     function addItem(item) {
         items.push(item);
+        console.log(items);
         localStorage.setItem('BASKET', JSON.stringify(items));
         bubbleElem.innerHTML = items.length;
         if (bubbleElem.classList.contains('d-none')) {
@@ -51,6 +52,28 @@ let BasketManager = (function () {
     function getItems() {
         return items;
     }
+    
+    function getSortedItems() {
+        let sortedArray = [];
+        for (let i = 0; i < items.length; i++) {
+            const _id = items[i]._id;
+            const color = items[i].color;
+            let newItem = true;
+            for (let y = 0; y < sortedArray.length; y++) {
+                if (sortedArray[y].teddy._id === _id && sortedArray[y].teddy.color === color) {
+                    sortedArray[y].qty++;
+                    newItem = false;
+                }
+            }
+            if (newItem === true) {
+                sortedArray.push({
+                    teddy: items[i],
+                    qty: 1,
+                });
+            }
+        }
+        return sortedArray;
+    }
 
     return {
         getInstance: function () {
@@ -65,5 +88,6 @@ let BasketManager = (function () {
         removeItem: removeItem,
         emptyBasket: emptyBasket,
         getItems: getItems,
+        getSortedItems: getSortedItems,
     };
 })();
