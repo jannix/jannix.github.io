@@ -38,72 +38,42 @@
 <main class="container-fluid">
     <div class="row">
         <div id="basket-list" class="col-9">
-            <h1>Votre panier :</h1>
-            <div class="row product-detail">
-                <figure id="teddyFig" class="col-6 col-md-2 col-lg-3 px-4">
-                    <img src="../img/teddy_2.jpg" alt="Teddy image">
-                </figure>
-                <div class="col-7">
-                    <h2>Arnold</h2>
-                    <p>Couleur : Chocolate</p>
-                    <label for="qty">Quantité :</label>
-                    <select name="qty" id="qty" onchange="selectQty(this)">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                    </select>
-                    <button class="btn-warning">Delete</button>
 
+        </div>
+        <div id="form-order" class="col-3">
+            <form id="form_1" action="#" onsubmit="sendOrder(); return false" method="post">
+                <div class="form-group">
+                    <label for="name">Nom</label>
+                    <input id="name" type="text" class="form-control" required />
                 </div>
-                <div class="col-2">
-                    <p>1 x 39€ : <strong>39€</strong></p>
+                <div class="form-group">
+                    <label for="surname">Prénom</label>
+                    <input id="surname" type="text" class="form-control" required />
                 </div>
-            </div>
-            <div class="row product-detail">
-                <figure id="teddyFig" class="col-6 col-md-2 col-lg-3 px-4">
-                    <img src="../img/teddy_2.jpg" alt="Teddy image">
-                </figure>
-                <div class="col-8">
-                    <h2>Arnold</h2>
-                    <p><em>En stock</em></p>
-
-                    <label for="qty">Quantité :</label>
-                    <select name="qty" id="qty">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                    </select>
-
+                <div class="form-group">
+                    <label for="inputAddress">Adresse</label>
+                    <input type="text" class="form-control" id="inputAddress" placeholder="69 rue de la Paix" required>
                 </div>
-                <div class="col-1">
-                    <p><strong>39€</strong></p>
-
+                <div class="form-group">
+                    <label for="inputAddress2">Adresse 2</label>
+                    <input type="text" class="form-control" id="inputAddress2" placeholder="Appartment, studio, ou etage">
                 </div>
-            </div>
-            <div class="row product-detail">
-                <figure id="teddyFig" class="col-6 col-md-2 col-lg-3 px-4">
-                    <img src="../img/teddy_2.jpg" alt="Teddy image">
-                </figure>
-                <div class="col-8">
-                    <h2>Arnold</h2>
-                    <p><em>En stock</em></p>
-
-                    <label for="qty">Quantité :</label>
-                    <select name="qty" id="qty">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                    </select>
-
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="inputZip">Code postal</label>
+                        <input type="text" pattern="[0-9]{5}" title="Code postal à 5 chiffres" class="form-control" id="inputZip" required>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="inputCity">Ville</label>
+                        <input type="text" class="form-control" id="inputCity" required>
+                    </div>
                 </div>
-                <div class="col-1">
-                    <p><strong>39€</strong></p>
-
+                <div class="form-group">
+                    <label for="email">Adresse email :</label>
+                    <input id="email" class="form-control" type="email" required />
                 </div>
-            </div>
+                <button id="orderBtn" type="submit" class="btn btn-primary">Commander</button>
+            </form>
         </div>
     </div>
 </main>
@@ -116,5 +86,6 @@
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 <script type="application/javascript" src="../js/BasketManager.js"></script>
 <script type="application/javascript" src="../js/BasketList.js"></script>
+<script type="application/javascript" src="../js/OrderForm.js"></script>
 
 </body>

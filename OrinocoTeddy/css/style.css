@@ -26,7 +26,7 @@ header .navbar-brand {
   font-size: x-large;
 }
 
-#teddyFig > img {
+[id^=teddyFig] > img {
   width: 100%;
 }
 
