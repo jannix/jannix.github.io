@@ -4,7 +4,6 @@ let BasketManager = (function () {
     let bubbleElem = null;
 
     function createInstance() {
-        console.log('create Instance');
         var object = new Object();
         items = JSON.parse(localStorage.getItem('BASKET'));
         if (bubbleElem === null) {
