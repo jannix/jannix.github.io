@@ -38,6 +38,15 @@ function initBasketLit() {
             '            </div>';
         listContent += itemTeddy;
     }
+    let totalElem = '<div class="row product-total">\n' +
+        '                <div class="col-9">\n' +
+        '                    <h2>Total</h2>\n' +
+        '                </div>\n' +
+        '                <div class="col-3">\n' +
+        '                    <p><strong>' + (BasketManager.getTotalPrice() / 100) + '€</strong></p>\n' +
+        '                </div>\n' +
+        '            </div>';
+    listContent += totalElem;
     basketList.innerHTML = listContent;
 
 }

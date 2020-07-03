@@ -23,11 +23,13 @@ function sendOrder() {
     }).then(response => response.json())
         .then(data => {
             console.log('Success:', data);
-            //todo go to confirm page
+            sessionStorage.setItem('ORDER_DATA', JSON.stringify(data));
+            document.location.href = './confirmation.html';
         })
         .catch((error) => {
             console.error('Error:', error);
-            //show popup error
+            sessionStorage.setItem('ORDER_DATA', null);
+            document.location.href = './confirmation.html';
         });
 }
 
