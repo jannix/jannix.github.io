@@ -16,22 +16,19 @@ window.onload = function () {
         currentTeddy = teddy;
         initTeddyDetails(teddy);
     });
-    // do the requ, callback and stuff
-
-    //document.getElementById('here').innerHTML = data.name;
 };
 
 function initTeddyDetails(teddy) {
     let teddyArticle = document.getElementById('teddyArt');
     let teddyFigure = document.getElementById('teddyFig');
-    var contentFig = "<img src=\""+teddy['imageUrl']+"\" alt=\"Teddy Image\">";
+    var contentFig = "<img src=\""+teddy['imageUrl']+"\" alt=\"Teddy Image\" itemprop=\"image\">";
     teddyFigure.innerHTML = contentFig;
     buildTeddyDetails(teddy);
     buildColorSelect(teddy['colors']);
 
     let teddyOrder = document.getElementById('teddyOrder');
     var contentAddToBasket = "<p>Pensez à choisir votre couleur préférée avant d'ajouter votre teddy au panier</p>\n" +
-        "            <span><strong>"+teddy['price'] / 100+"€</br></strong></span>\n" +
+        "            <span itemprop=\"price\"><strong>"+teddy['price'] / 100+"€</br></strong></span>\n" +
         "            <button id=\"buttonAdd\" type=\"button\" class=\"btn btn-success\">Ajouter au panier</button>";
     teddyOrder.innerHTML = contentAddToBasket;
 
@@ -54,8 +51,8 @@ function initTeddyDetails(teddy) {
 function buildTeddyDetails(teddy) {
     let teddyDetails = document.getElementById('teddyDetails');
     teddyDetails.innerHTML = "<h2>"+teddy['name']+"</h2>\n" +
-        "            <span>"+teddy['price'] / 100+"€</span>\n" +
-        "            <p>"+teddy['description']+"</p>";
+        "            <span itemprop=\"price\">"+teddy['price'] / 100+"€</span>\n" +
+        "            <p itemprop=\"description\">"+teddy['description']+"</p>";
 }
 
 function buildColorSelect(colors) {

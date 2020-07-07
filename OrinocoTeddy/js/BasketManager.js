@@ -35,10 +35,22 @@ let BasketManager = (function () {
         if (index > -1) {
             items.splice(index, 1);
         }
-        localStorage.setItem('BASKET', JSON.stringify(this.items));
+        localStorage.setItem('BASKET', JSON.stringify(items));
         bubbleElem.innerHTML = items.length;
         if (items.length <= 0) {
             bubbleElem.classList.add('d-none');
+        }
+    }
+
+    function removeGroupItems(itemId, itemColor) {
+        const itemsToRemove = [];
+        for (let item of items) {
+            if (item._id === itemId && item.color === itemColor) {
+                itemsToRemove.push(item);
+            }
+        }
+        for (let i = itemsToRemove.length -1; i >= 0; i--) {
+            removeItem(itemsToRemove[i]);
         }
     }
 
@@ -93,6 +105,7 @@ let BasketManager = (function () {
         },
         addItem: addItem,
         removeItem: removeItem,
+        removeGroupItems: removeGroupItems,
         emptyBasket: emptyBasket,
         getItems: getItems,
         getSortedItems: getSortedItems,
