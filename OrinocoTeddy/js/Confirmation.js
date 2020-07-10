@@ -4,11 +4,11 @@ window.onload = function () {
     const responseOrder = JSON.parse(sessionStorage.getItem('ORDER_DATA'));
     if (responseOrder) {
         initSuccessOrder(responseOrder);
-       // BasketManager.emptyBasket();
+        BasketManager.emptyBasket();
     } else {
         initErrorOrder();
     }
-   // sessionStorage.removeItem('ORDER_DATA');
+    sessionStorage.removeItem('ORDER_DATA');
 
 };
 
