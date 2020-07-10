@@ -1,4 +1,5 @@
 function sendOrder() {
+    document.getElementById('spinner').classList.remove('d-none');
     //todo check all field
     const contact = {
         firstName: getInputValue('surname'),

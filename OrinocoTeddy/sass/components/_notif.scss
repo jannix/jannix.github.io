@@ -7,3 +7,53 @@
   color: #fff;
   text-align: center;
 }
+
+.bubble-add {
+  animation: sk-bounce-add 0.7s ease-in-out both;
+}
+
+.bubble-remove {
+  animation: sk-bounce-remove 0.7s ease-in-out both;
+}
+
+@keyframes sk-bounce-add{
+  0%, 40%, 70%, 85%, 93%, 100% {
+    transform: scale(1.0);
+  }
+  20% {
+      transform: scale(1.5);
+  }
+  60% {
+    transform: scale(1.35);
+  }
+  80% {
+    transform: scale(1.25);
+  }
+  90% {
+    transform: scale(1.10);
+  }
+  97% {
+    transform: scale(1.05);
+  }
+}
+
+@keyframes sk-bounce-remove {
+  0%, 40%, 70%, 85%, 93%, 100% {
+    transform: scale(1.0);
+  }
+  20% {
+    transform: scale(0.20);
+  }
+  60% {
+    transform: scale(0.30);
+  }
+  80% {
+    transform: scale(0.45);
+  }
+  90% {
+    transform: scale(0.60);
+  }
+  97% {
+    transform: scale(0.80);
+  }
+}

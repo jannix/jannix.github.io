@@ -1,5 +1,9 @@
+@import "./utils/mixins";
 @import "./base/debug";
 @import "./components/card";
 @import "./components/notif";
+@import "./components/basket";
+@import "./components/spinner";
 @import "./layouts/header";
 @import "./pages/product";
+@import "./pages/confirm";

@@ -25,7 +25,7 @@
 <header>
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
         <a class="navbar-brand" href="../index.html"><img src="../img/orinocobrand.svg" alt="Orinoco brand"></a>
-        <a class="navbar-nav nav-link ml-auto" href="html/basket.html">
+        <a class="navbar-nav nav-link ml-auto" href="#">
             <svg class="bi bi-bag" width="2em" height="2em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                 <path fill-rule="evenodd" d="M14 5H2v9a1 1 0 001 1h10a1 1 0 001-1V5zM1 4v10a2 2 0 002 2h10a2 2 0 002-2V4H1z" clip-rule="evenodd"/>
                 <path d="M8 1.5A2.5 2.5 0 005.5 4h-1a3.5 3.5 0 117 0h-1A2.5 2.5 0 008 1.5z"/>
@@ -72,7 +72,14 @@
                     <label for="email">Adresse email :</label>
                     <input id="email" class="form-control" type="email" required />
                 </div>
-                <button id="orderBtn" type="submit" class="btn btn-primary">Commander</button>
+                <button id="orderBtn" type="submit" class="btn btn-primary">
+                    <span>Commander</span>
+                    <span id="spinner" class="d-none">
+                        <span class="spinner__bounce1"></span><!--
+                    --><span class="spinner__bounce2"></span><!--
+                    --><span class="spinner__bounce3"></span>
+                    </span>
+                </button>
             </form>
         </section>
     </div>

@@ -28,6 +28,15 @@ let BasketManager = (function () {
         if (bubbleElem.classList.contains('d-none')) {
             bubbleElem.classList.remove('d-none');
         }
+        if (bubbleElem.classList.contains('bubble-add')) {
+            bubbleElem.classList.remove('bubble-add');
+        }
+        bubbleElem.classList.add('bubble-add');
+        bubbleElem.addEventListener('animationend', () => {
+            if (bubbleElem.classList.contains('bubble-add')) {
+                bubbleElem.classList.remove('bubble-add');
+            }
+        });
     }
 
     function removeItem(item) {
@@ -39,6 +48,16 @@ let BasketManager = (function () {
         bubbleElem.innerHTML = items.length;
         if (items.length <= 0) {
             bubbleElem.classList.add('d-none');
+        } else {
+            if (bubbleElem.classList.contains('bubble-remove')) {
+                bubbleElem.classList.remove('bubble-remove');
+            }
+            bubbleElem.classList.add('bubble-remove');
+            bubbleElem.addEventListener('animationend', () => {
+                if (bubbleElem.classList.contains('bubble-remove')) {
+                    bubbleElem.classList.remove('bubble-remove');
+                }
+            });
         }
     }
 

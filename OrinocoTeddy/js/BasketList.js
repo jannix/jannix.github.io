@@ -3,14 +3,38 @@ window.onload = function () {
 
     initBasketLit();
 
+    disableOrder();
+    updateTotalPrice();
+
 };
+
+function disableOrder() {
+    if (BasketManager.getItems().length <= 0) {
+        document.getElementById('orderBtn').setAttribute('disabled', '');
+    }
+}
+
+function updateTotalPrice() {
+    const elemTotal = document.getElementById('total-price');
+    if (elemTotal && BasketManager.getItems().length === 0) {
+        document.getElementById('total-price').setAttribute('class', 'd-none');
+    } else if (elemTotal) {
+        document.getElementById('total-price').innerHTML = '<div class="col-10">\n' +
+            '                    <h2>Total</h2>\n' +
+            '                </div>\n' +
+            '                <div class="col-2">\n' +
+            '                    <p><strong>' + (BasketManager.getTotalPrice() / 100) + '€</strong></p>\n' +
+            '                </div>';
+    }
+
+}
 
 function initBasketLit() {
     const basketItems = BasketManager.getSortedItems();
     const basketList = document.getElementById('basket-list');
     basketList.setAttribute('itemscope', '');
     basketList.setAttribute('itemtype', 'http://schema.org/ItemList');
-    basketList.innerHTML = '<h1>Votre panier :</h1>';
+    basketList.innerHTML = '<h1 id="basket-title">Votre Panier :</h1>';
     if (basketItems.length === 0) {
         return;
     }
@@ -26,11 +50,12 @@ function initBasketLit() {
         addItem(basketList, basketItems[i]);
     }
     let divTotalPrice = document.createElement('div');
+    divTotalPrice.setAttribute('id', 'total-price');
     divTotalPrice.setAttribute('class', 'row product-total');
-    divTotalPrice.innerHTML = '<div class="col-9">\n' +
+    divTotalPrice.innerHTML = '<div class="col-10">\n' +
         '                    <h2>Total</h2>\n' +
         '                </div>\n' +
-        '                <div class="col-3">\n' +
+        '                <div class="col-2">\n' +
         '                    <p><strong>' + (BasketManager.getTotalPrice() / 100) + '€</strong></p>\n' +
         '                </div>';
     basketList.appendChild(divTotalPrice);
@@ -38,7 +63,7 @@ function initBasketLit() {
 
 function addItem(basketList, item) {
     let divItem = document.createElement('div');
-    divItem.setAttribute('class', 'row product-detail');
+    divItem.setAttribute('class', 'row product-detail basket-item');
     divItem.setAttribute('itemprop', 'itemListElement');
     divItem.setAttribute('itemscope', '');
     divItem.setAttribute('itemtype', 'http://schema.org/Product');
@@ -55,7 +80,7 @@ function addItem(basketList, item) {
 
 function createItemDetails(item) {
     let divDetails = document.createElement('div');
-    divDetails.setAttribute('class', 'col-7');
+    divDetails.setAttribute('class', 'col-6 basket-item-details');
     divDetails.innerHTML = '<h2 itemprop="name">' + item.teddy.name + '</h2>\n' +
         '                   <p>Couleur : '+ item.teddy.color +'</p>\n' +
         '                   <label for="qty">Quantité : ' + item.qty + '</label>';
@@ -70,7 +95,7 @@ function createItemDetails(item) {
 
 function createItemPrices(item) {
     let divPrices = document.createElement('div');
-    divPrices.setAttribute('class','col-2');
+    divPrices.setAttribute('class','col-2 basket-item-price');
     divPrices.innerHTML = '<p>' + item.qty + ' x '+(item.teddy.price / 100)+'€ : ' +
         '                  <strong itemprop="price">' + item.qty * (item.teddy.price / 100) + '€</strong></p>';
 
@@ -94,6 +119,8 @@ function createDeleteBtn(item, removeEvent) {
 
     btn.addEventListener("click", function () {
         BasketManager.removeGroupItems(item.teddy._id, item.teddy.color);
+        disableOrder();
+        updateTotalPrice();
         btn.dispatchEvent(removeEvent);
     });
     return btn;

@@ -22,12 +22,133 @@
   text-align: center;
 }
 
+.bubble-add {
+  animation: sk-bounce-add 0.7s ease-in-out both;
+}
+
+.bubble-remove {
+  animation: sk-bounce-remove 0.7s ease-in-out both;
+}
+
+@keyframes sk-bounce-add {
+  0%, 40%, 70%, 85%, 93%, 100% {
+    transform: scale(1);
+  }
+  20% {
+    transform: scale(1.5);
+  }
+  60% {
+    transform: scale(1.35);
+  }
+  80% {
+    transform: scale(1.25);
+  }
+  90% {
+    transform: scale(1.1);
+  }
+  97% {
+    transform: scale(1.05);
+  }
+}
+@keyframes sk-bounce-remove {
+  0%, 40%, 70%, 85%, 93%, 100% {
+    transform: scale(1);
+  }
+  20% {
+    transform: scale(0.2);
+  }
+  60% {
+    transform: scale(0.3);
+  }
+  80% {
+    transform: scale(0.45);
+  }
+  90% {
+    transform: scale(0.6);
+  }
+  97% {
+    transform: scale(0.8);
+  }
+}
+.basket-item {
+  margin-right: 20px;
+  margin-left: 20px;
+  margin-bottom: 10px;
+  border-bottom: #a2a5a4 solid 1px;
+}
+.basket-item button {
+  margin-left: 20px;
+}
+
+.product-total {
+  margin: 15px;
+}
+.product-total h2 {
+  text-decoration: underline;
+}
+.product-total strong {
+  font-size: large;
+}
+
+#basket-title {
+  font-weight: bold;
+  margin: 15px;
+}
+
+#spinner {
+  margin: auto;
+  padding-left: 6px;
+  width: 25px;
+  text-align: center;
+  display: inline-block;
+}
+#spinner > span {
+  width: 6px;
+  height: 6px;
+  background-color: white;
+  border-radius: 100%;
+  display: inline-block;
+  -webkit-animation: sk-bouncedelay 2.7s infinite ease-in-out both;
+  animation: sk-bouncedelay 2.7s infinite ease-in-out both;
+}
+#spinner #spinner__bounce1 {
+  -webkit-animation-delay: -0.32s;
+  animation-delay: -0.32s;
+}
+#spinner #spinner__bounce2 {
+  -webkit-animation-delay: -0.16s;
+  animation-delay: -0.16s;
+}
+
+@-webkit-keyframes sk-bouncedelay {
+  0%, 80%, 100% {
+    -webkit-transform: scale(0);
+  }
+  40% {
+    -webkit-transform: scale(1);
+  }
+}
+@keyframes sk-bouncedelay {
+  0%, 80%, 100% {
+    -webkit-transform: scale(0);
+    transform: scale(0);
+  }
+  40% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+}
 header .navbar-brand {
   font-size: x-large;
 }
 
 [id^=teddyFig] > img {
   width: 100%;
+}
+
+#order-message {
+  margin: 20px;
+  text-align: center;
 }
 
 /*# sourceMappingURL=style.css.map */
