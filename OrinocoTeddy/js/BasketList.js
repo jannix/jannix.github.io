@@ -73,9 +73,9 @@ function addItem(basketList, item) {
     divItem.setAttribute('itemprop', 'itemListElement');
     divItem.setAttribute('itemscope', '');
     divItem.setAttribute('itemtype', 'http://schema.org/Product');
-    divItem.appendChild(createFigure(item));
-    divItem.appendChild(createItemDetails(item));
-    divItem.appendChild(createItemPrices(item));
+    divItem.appendChild(createFigure(item.teddy));
+    divItem.appendChild(createItemDetails(item.teddy, item.qty, true));
+    divItem.appendChild(createItemPrices(item.teddy, item.qty));
 
     basketList.addEventListener('remove-'+ item.teddy._id + item.teddy.color, function () {
         basketList.removeChild(divItem);
@@ -87,47 +87,53 @@ function addItem(basketList, item) {
     basketList.appendChild(divItem);
 }
 
-function createItemDetails(item) {
+function createItemDetails(teddy, qty, canRemove) {
     let divDetails = document.createElement('div');
     divDetails.setAttribute('class', 'col-12 col-md-6 basket-item-details');
-    divDetails.innerHTML = '<h2 itemprop="name">' + item.teddy.name + '</h2>\n' +
-        '                   <p>Couleur : '+ item.teddy.color +'</p>\n' +
-        '                   <label for="qty">Quantité : ' + item.qty + '</label>';
-    const removeEvent = new CustomEvent('remove-'+ item.teddy._id + item.teddy.color, {
-        bubbles: true,
-    });
+    if (canRemove) {
+        divDetails.innerHTML = '<h2 itemprop="name">' + teddy.name + '</h2>\n' +
+            '                   <p>Couleur : '+ teddy.color +'</p>\n' +
+            '                   <label for="qty">Quantité : ' + qty + '</label>';
+        const removeEvent = new CustomEvent('remove-'+ teddy._id + teddy.color, {
+            bubbles: true,
+        });
+        divDetails.appendChild(createDeleteBtn(teddy, removeEvent));
+    } else {
+        divDetails.innerHTML = '<h2 itemprop="name">' + teddy.name + '</h2>\n' +
+            '                   <label for="qty">Quantité : ' + qty + '</label>';
+    }
 
-    divDetails.appendChild(createDeleteBtn(item, removeEvent));
 
     return divDetails;
 }
 
-function createItemPrices(item) {
+function createItemPrices(teddy, qty) {
     let divPrices = document.createElement('div');
     divPrices.setAttribute('class','col-12 col-md-2 basket-item-price');
-    divPrices.innerHTML = '<p>' + item.qty + ' x '+(item.teddy.price / 100)+'€ : ' +
-        '                  <strong itemprop="price">' + item.qty * (item.teddy.price / 100) + '€</strong></p>';
+    divPrices.innerHTML = '<p>' + qty + ' x '+(teddy.price / 100)+'€ : ' +
+        '                  <strong itemprop="price">' + qty * (teddy.price / 100) + '€</strong></p>';
 
     return divPrices;
 }
 
-function createFigure(item) {
+function createFigure(teddy) {
+    console.log('createFigure');
     let figureItem = document.createElement('figure');
-    figureItem.setAttribute('id', 'teddyFig-' + item.teddy._id + item.teddy.color);
+    figureItem.setAttribute('id', 'teddyFig-' + teddy._id + teddy.color);
     figureItem.setAttribute('class', 'col-12 col-md-2 col-lg-3 px-4');
-    figureItem.innerHTML = '<img src="' + item.teddy.imageUrl + '" alt="Teddy image" itemprop=\"image\">';
+    figureItem.innerHTML = '<img src="' + teddy.imageUrl + '" alt="Teddy image" itemprop=\"image\">';
 
     return figureItem;
 
 }
 
-function createDeleteBtn(item, removeEvent) {
+function createDeleteBtn(teddy, removeEvent) {
     let btn = document.createElement('button');
     btn.innerHTML = 'Delete';// '<button class="btn-warning">Delete</button>';
     btn.setAttribute('class', 'btn-warning');
 
     btn.addEventListener("click", function () {
-        BasketManager.removeGroupItems(item.teddy._id, item.teddy.color);
+        BasketManager.removeGroupItems(teddy._id, teddy.color);
         disableOrder();
         updateTotalPrice();
         btn.dispatchEvent(removeEvent);
