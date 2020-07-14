@@ -6,6 +6,7 @@
   border-radius: 50%;
   color: #fff;
   text-align: center;
+  line-height: 1.15;
 }
 
 .bubble-add {
@@ -19,41 +20,53 @@
 @keyframes sk-bounce-add{
   0%, 40%, 70%, 85%, 93%, 100% {
     transform: scale(1.0);
+    -webkit-transform: scale(1.0);
   }
   20% {
       transform: scale(1.5);
+    -webkit-transform: scale(1.5);
   }
   60% {
     transform: scale(1.35);
+    -webkit-transform: scale(1.35);
   }
   80% {
     transform: scale(1.25);
+    -webkit-transform: scale(1.25);
   }
   90% {
     transform: scale(1.10);
+    -webkit-transform: scale(1.10);
   }
   97% {
     transform: scale(1.05);
+    -webkit-transform: scale(1.05);
   }
 }
 
 @keyframes sk-bounce-remove {
   0%, 40%, 70%, 85%, 93%, 100% {
     transform: scale(1.0);
+    -webkit-transform: scale(1.0);
   }
   20% {
     transform: scale(0.20);
+    -webkit-transform: scale(0.20);
   }
   60% {
     transform: scale(0.30);
+    -webkit-transform: scale(0.30);
   }
   80% {
     transform: scale(0.45);
+    -webkit-transform: scale(0.45);
   }
   90% {
     transform: scale(0.60);
+    -webkit-transform: scale(0.60);
   }
   97% {
     transform: scale(0.80);
+    -webkit-transform: scale(0.80);
   }
 }

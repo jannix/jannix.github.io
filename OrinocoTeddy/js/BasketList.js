@@ -36,6 +36,12 @@ function initBasketLit() {
     basketList.setAttribute('itemtype', 'http://schema.org/ItemList');
     basketList.innerHTML = '<h1 id="basket-title">Votre Panier :</h1>';
     if (basketItems.length === 0) {
+        basketList.innerHTML += '<div class="row justify-content-center">\n' +
+            '                <p class="col-12 col-md-8">\n' +
+            '                    <strong>Est vide</strong> mais vous pouvez encore trouver le teddy de vos rêves. <br>\n' +
+            '                    Rendez-vous sur <a href="../index.html">la liste de nos produits</a> et faites votre choix.\n' +
+            '                </p>\n' +
+            '            </div>';
         return;
     }
     for (let i = 0; i < basketItems.length; i++) {
@@ -73,6 +79,9 @@ function addItem(basketList, item) {
 
     basketList.addEventListener('remove-'+ item.teddy._id + item.teddy.color, function () {
         basketList.removeChild(divItem);
+        if (BasketManager.getItems().length === 0) {
+            initBasketLit();
+        }
     });
 
     basketList.appendChild(divItem);
@@ -80,7 +89,7 @@ function addItem(basketList, item) {
 
 function createItemDetails(item) {
     let divDetails = document.createElement('div');
-    divDetails.setAttribute('class', 'col-6 basket-item-details');
+    divDetails.setAttribute('class', 'col-12 col-md-6 basket-item-details');
     divDetails.innerHTML = '<h2 itemprop="name">' + item.teddy.name + '</h2>\n' +
         '                   <p>Couleur : '+ item.teddy.color +'</p>\n' +
         '                   <label for="qty">Quantité : ' + item.qty + '</label>';
@@ -95,7 +104,7 @@ function createItemDetails(item) {
 
 function createItemPrices(item) {
     let divPrices = document.createElement('div');
-    divPrices.setAttribute('class','col-2 basket-item-price');
+    divPrices.setAttribute('class','col-12 col-md-2 basket-item-price');
     divPrices.innerHTML = '<p>' + item.qty + ' x '+(item.teddy.price / 100)+'€ : ' +
         '                  <strong itemprop="price">' + item.qty * (item.teddy.price / 100) + '€</strong></p>';
 
@@ -105,7 +114,7 @@ function createItemPrices(item) {
 function createFigure(item) {
     let figureItem = document.createElement('figure');
     figureItem.setAttribute('id', 'teddyFig-' + item.teddy._id + item.teddy.color);
-    figureItem.setAttribute('class', 'col-6 col-md-2 col-lg-3 px-4');
+    figureItem.setAttribute('class', 'col-12 col-md-2 col-lg-3 px-4');
     figureItem.innerHTML = '<img src="' + item.teddy.imageUrl + '" alt="Teddy image" itemprop=\"image\">';
 
     return figureItem;

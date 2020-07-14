@@ -2,6 +2,10 @@
   border: 2px solid red;
 }
 
+body {
+  background-color: #f3e9f1;
+}
+
 .card {
   overflow: hidden;
   box-shadow: 2px 3px 12px -6px rgba(0, 0, 0, 0.75);
@@ -20,6 +24,7 @@
   border-radius: 50%;
   color: #fff;
   text-align: center;
+  line-height: 1.15;
 }
 
 .bubble-add {
@@ -33,41 +38,53 @@
 @keyframes sk-bounce-add {
   0%, 40%, 70%, 85%, 93%, 100% {
     transform: scale(1);
+    -webkit-transform: scale(1);
   }
   20% {
     transform: scale(1.5);
+    -webkit-transform: scale(1.5);
   }
   60% {
     transform: scale(1.35);
+    -webkit-transform: scale(1.35);
   }
   80% {
     transform: scale(1.25);
+    -webkit-transform: scale(1.25);
   }
   90% {
     transform: scale(1.1);
+    -webkit-transform: scale(1.1);
   }
   97% {
     transform: scale(1.05);
+    -webkit-transform: scale(1.05);
   }
 }
 @keyframes sk-bounce-remove {
   0%, 40%, 70%, 85%, 93%, 100% {
     transform: scale(1);
+    -webkit-transform: scale(1);
   }
   20% {
     transform: scale(0.2);
+    -webkit-transform: scale(0.2);
   }
   60% {
     transform: scale(0.3);
+    -webkit-transform: scale(0.3);
   }
   80% {
     transform: scale(0.45);
+    -webkit-transform: scale(0.45);
   }
   90% {
     transform: scale(0.6);
+    -webkit-transform: scale(0.6);
   }
   97% {
     transform: scale(0.8);
+    -webkit-transform: scale(0.8);
   }
 }
 .basket-item {
