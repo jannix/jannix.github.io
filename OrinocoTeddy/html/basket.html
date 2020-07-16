@@ -44,15 +44,16 @@
             <form id="form_1" action="#" onsubmit="sendOrder(); return false" method="post">
                 <div class="form-group">
                     <label for="name">Nom</label>
-                    <input id="name" type="text" class="form-control" required />
+                    <input id="name" type="text" class="form-control" required onfocusout="checkField(event)" pattern="[a-zA-Z ,.'-]{2,}$" />
                 </div>
                 <div class="form-group">
                     <label for="surname">Prénom</label>
-                    <input id="surname" type="text" class="form-control" required />
+                    <input id="surname" type="text" class="form-control" required onfocusout="checkField(event)" pattern="[a-zA-Z ,.'-]{2,}$" />
                 </div>
                 <div class="form-group">
                     <label for="inputAddress">Adresse</label>
-                    <input type="text" class="form-control" id="inputAddress" placeholder="69 rue de la Paix" required>
+                    <input type="text" class="form-control" id="inputAddress" placeholder="69 rue de la Paix" required onfocusout="checkField(event)"
+                        pattern="[a-zA-Z0-9~#^*()[\]{}|\\,.: -]{3,}$">
                 </div>
                 <div class="form-group">
                     <label for="inputAddress2">Adresse 2</label>
@@ -61,16 +62,17 @@
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label for="inputZip">Code postal</label>
-                        <input type="text" pattern="[0-9]{5}" title="Code postal à 5 chiffres" class="form-control" id="inputZip" required>
+                        <input type="text" title="Code postal à 5 chiffres" class="form-control" id="inputZip" required onfocusout="checkField(event)"
+                               pattern="[a-zA-Z0-9 -]{2,}$">
                     </div>
                     <div class="form-group col-md-6">
                         <label for="inputCity">Ville</label>
-                        <input type="text" class="form-control" id="inputCity" required>
+                        <input type="text" class="form-control" id="inputCity" required onfocusout="checkField(event)" pattern="[a-zA-Z ,.'-]{2,}$">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="email">Adresse email :</label>
-                    <input id="email" class="form-control" type="email" required />
+                    <input id="email" class="form-control" type="email" required onfocusout="checkField(event)" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$" />
                 </div>
                 <button id="orderBtn" type="submit" class="btn btn-primary">
                     <span>Commander</span>

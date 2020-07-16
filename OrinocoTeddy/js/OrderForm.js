@@ -1,6 +1,15 @@
+const validatorsRules = {
+    namePattern: '[a-zA-Z ,.\'-]{2,}$',
+    addressPattern: '[a-zA-Z0-9~#^*()[\\]{}|\\\\,.: -]{3,}$',
+    zipPattern: '[a-zA-Z0-9 -]{2,}$',
+    emailPattern: '^\\w+([\\.-]?\\w+)*@\\w+([\\.-]?\\w+)*(\\.\\w{2,4})+$',
+};
+
 function sendOrder() {
+    if (!canOrder()) {
+        return;
+    }
     document.getElementById('spinner').classList.remove('d-none');
-    //todo check all field
     const contact = {
         firstName: getInputValue('surname'),
         lastName: getInputValue('name'),
@@ -33,6 +42,18 @@ function sendOrder() {
         });
 }
 
+function canOrder() {
+    if (BasketManager.getItems().length === 0) {
+        return false;
+    }
+    return matchPattern(getInputValue('name'), validatorsRules.namePattern) &&
+        matchPattern(getInputValue('surname'), validatorsRules.namePattern) &&
+        matchPattern(getInputValue('inputAddress'), validatorsRules.addressPattern) &&
+        matchPattern(getInputValue('inputZip'), validatorsRules.zipPattern) &&
+        matchPattern(getInputValue('inputCity'), validatorsRules.namePattern) &&
+        matchPattern(getInputValue('email'), validatorsRules.emailPattern);
+}
+
 function getInputValue(inputID) {
     const inputElem = document.getElementById(inputID);
     return inputElem.value;
@@ -46,3 +67,32 @@ function getOrderIds() {
     }
     return orderIds;
 }
+
+function checkField($event) {
+    const srcElem = $event.srcElement;
+    let isValidated = false;
+    if (srcElem.id === 'name' || srcElem.id === 'surname' || srcElem.id === 'inputCity') {
+        isValidated = matchPattern(srcElem.value, validatorsRules.namePattern);
+    } else if (srcElem.id === 'inputZip') {
+        isValidated = matchPattern(srcElem.value, validatorsRules.zipPattern);
+    } else if (srcElem.id === 'email') {
+        isValidated = matchPattern(srcElem.value, validatorsRules.emailPattern);
+    } else if (srcElem.id === 'inputAddress') {
+        isValidated = matchPattern(srcElem.value, validatorsRules.addressPattern);
+    }
+    if (isValidated) {
+        srcElem.classList.add('is-valid');
+        srcElem.classList.remove('is-invalid');
+    } else {
+        srcElem.classList.add('is-invalid');
+        srcElem.classList.remove('is-valid');
+    }
+
+    return isValidated;
+}
+
+function matchPattern(value, pattern) {
+    const regex = new RegExp(pattern);
+    return regex.test(value);
+}
+
