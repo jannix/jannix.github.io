@@ -23,7 +23,6 @@ function sendOrder() {
         body: JSON.stringify(request)
     }).then(response => response.json())
         .then(data => {
-            console.log('Success:', data);
             sessionStorage.setItem('ORDER_DATA', JSON.stringify(data));
             document.location.href = './confirmation.html';
         })

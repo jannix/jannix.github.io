@@ -4,7 +4,6 @@ window.onload = function () {
     const responseOrder = JSON.parse(sessionStorage.getItem('ORDER_DATA'));
     if (responseOrder) {
         initSuccessOrder(responseOrder);
-        console.log(responseOrder);
         displayOrderList(responseOrder.products);
         BasketManager.emptyBasket();
     } else {
@@ -35,14 +34,12 @@ function displayOrderList(orderProducts) {
     const basketList = document.getElementById('basket-list');
     basketList.setAttribute('itemscope', '');
     basketList.setAttribute('itemtype', 'http://schema.org/ItemList');
-    console.log(orderProducts);
     for (let i = 0; i < orderProducts.length; i++) {
         addItem(basketList, orderProducts[i]);
     }
 }
 
 function addItem(basketList, teddy) {
-    console.log(teddy);
     let divItem = document.createElement('div');
     divItem.setAttribute('class', 'row product-detail basket-item');
     divItem.setAttribute('itemprop', 'itemListElement');

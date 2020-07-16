@@ -26,7 +26,6 @@ function updateTotalPrice() {
             '                    <p><strong>' + (BasketManager.getTotalPrice() / 100) + '€</strong></p>\n' +
             '                </div>';
     }
-
 }
 
 function initBasketLit() {
@@ -45,14 +44,6 @@ function initBasketLit() {
         return;
     }
     for (let i = 0; i < basketItems.length; i++) {
-        /*'                    <select name="qty" id="qty" onchange="selectQty(this)">\n' +
-            '                        <option value="1">1</option>\n' +
-            '                        <option value="2">2</option>\n' +
-            '                        <option value="3">3</option>\n' +
-            '                        <option value="4">4</option>\n' +
-            '                    </select>\n' +
-            '                    <button class="btn-warning">Delete</button>\n' +
-            '\n' +*/
         addItem(basketList, basketItems[i]);
     }
     let divTotalPrice = document.createElement('div');
@@ -117,7 +108,6 @@ function createItemPrices(teddy, qty) {
 }
 
 function createFigure(teddy) {
-    console.log('createFigure');
     let figureItem = document.createElement('figure');
     figureItem.setAttribute('id', 'teddyFig-' + teddy._id + teddy.color);
     figureItem.setAttribute('class', 'col-12 col-md-2 col-lg-3 px-4');
@@ -129,7 +119,7 @@ function createFigure(teddy) {
 
 function createDeleteBtn(teddy, removeEvent) {
     let btn = document.createElement('button');
-    btn.innerHTML = 'Delete';// '<button class="btn-warning">Delete</button>';
+    btn.innerHTML = 'Delete';
     btn.setAttribute('class', 'btn-warning');
 
     btn.addEventListener("click", function () {
@@ -139,8 +129,4 @@ function createDeleteBtn(teddy, removeEvent) {
         btn.dispatchEvent(removeEvent);
     });
     return btn;
-}
-
-function selectQty(selecter) {
-    console.log(selecter.value);
 }

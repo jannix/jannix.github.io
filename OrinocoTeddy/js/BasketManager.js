@@ -4,7 +4,7 @@ let BasketManager = (function () {
     let bubbleElem = null;
 
     function createInstance() {
-        var object = new Object();
+        const object = new Object();
         items = JSON.parse(localStorage.getItem('BASKET'));
         if (bubbleElem === null) {
             bubbleElem = document.getElementById('bubble-basket');
@@ -22,7 +22,6 @@ let BasketManager = (function () {
 
     function addItem(item) {
         items.push(item);
-        console.log(items);
         localStorage.setItem('BASKET', JSON.stringify(items));
         bubbleElem.innerHTML = items.length;
         if (bubbleElem.classList.contains('d-none')) {
@@ -117,8 +116,6 @@ let BasketManager = (function () {
         getInstance: function () {
             if (!instance) {
                 instance = createInstance();
-            } else {
-                console.log('already instance');
             }
             return instance;
         },
