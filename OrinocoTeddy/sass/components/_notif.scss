@@ -1,3 +1,7 @@
+#basket-link {
+  position: relative;
+}
+
 .bubble-num {
   margin: auto;
   height: 20px;
@@ -7,6 +11,9 @@
   color: #fff;
   text-align: center;
   line-height: 1.15;
+  position: absolute;
+  top: 0;
+  right: 0;
 }
 
 .bubble-add {

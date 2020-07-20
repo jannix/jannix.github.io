@@ -66,7 +66,7 @@ function buildColorSelect(colors) {
 
     const selectLabel = document.createElement('label');
     selectLabel.setAttribute('for', 'selectColor');
-    selectLabel.innerHTML = 'Couleur : ';
+    selectLabel.innerHTML = '<em>Couleur</em> : ';
     teddyDetails.appendChild(selectLabel);
 
     const selectList = document.createElement("select");
