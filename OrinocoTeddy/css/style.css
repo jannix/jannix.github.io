@@ -168,4 +168,8 @@ header .navbar-brand {
   text-align: center;
 }
 
+label {
+  margin-right: 10px;
+}
+
 /*# sourceMappingURL=style.css.map */

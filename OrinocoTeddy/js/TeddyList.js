@@ -1,5 +1,5 @@
 function getTeddyList() {
-    fetch("http://localhost:3000/api/teddies").then(res => {
+    fetch(API_TEDDIES).then(res => {
         return res.json();
     }).then(teddies => {
         initTeddyList(teddies);

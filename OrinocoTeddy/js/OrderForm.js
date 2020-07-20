@@ -24,7 +24,7 @@ function sendOrder() {
       contact: contact,
       products: products,
     };
-    fetch('http://localhost:3000/api/teddies/order', {
+    fetch(API_TEDDIES+'order', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'

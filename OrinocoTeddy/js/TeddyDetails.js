@@ -11,14 +11,14 @@ window.onload = function () {
         data[tmp[0]] = tmp[1];
     }
 
-    fetch("http://localhost:3000/api/teddies/"+data.id).then(res => {
+    fetch(API_TEDDIES+data.id).then(res => {
         return res.json();
     }).then(teddy => {
         currentTeddy = teddy;
         initTeddyDetails(teddy);
     });
 
-    fetch("http://localhost:3000/api/teddies").then(res => {
+    fetch(API_TEDDIES).then(res => {
         return res.json();
     }).then(teddies => {
         initTeddyList(teddies);
@@ -64,6 +64,11 @@ function buildTeddyDetails(teddy) {
 function buildColorSelect(colors) {
     let teddyDetails = document.getElementById('teddyDetails');
 
+    const selectLabel = document.createElement('label');
+    selectLabel.setAttribute('for', 'selectColor');
+    selectLabel.innerHTML = 'Couleur : ';
+    teddyDetails.appendChild(selectLabel);
+
     const selectList = document.createElement("select");
     selectList.id = "selectColor";
     teddyDetails.appendChild(selectList);
@@ -91,7 +96,7 @@ function initTeddyList(teddies) {
 
 function buildTeddyCard(teddy) {
     const colDiv = document.createElement('div');
-    colDiv.setAttribute('class', 'col-3 col-md-1 col-lg-2 my-3');
+    colDiv.setAttribute('class', 'col-6 col-md-1 col-lg-2 my-3');
     const cardDiv = document.createElement('div');
     cardDiv.setAttribute('class', 'card h-100');
     cardDiv.setAttribute('itemprop', 'itemListElement');
