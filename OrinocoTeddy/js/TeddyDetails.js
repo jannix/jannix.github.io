@@ -1,4 +1,5 @@
 let currentTeddy = null;
+const MAX_OTHER_TEDDY = 5;
 window.onload = function () {
     BasketManager.getInstance();
 
@@ -76,10 +77,15 @@ function buildColorSelect(colors) {
 }
 function initTeddyList(teddies) {
     let sectionList = document.getElementById('otherTeddies');
+    let i = 0;
     for (let teddy of teddies)
     {
+        if (i >= MAX_OTHER_TEDDY) {
+            break;
+        }
         const colDiv = buildTeddyCard(teddy);
         sectionList.appendChild(colDiv);
+        i++;
     }
 }
 
