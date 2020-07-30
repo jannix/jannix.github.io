@@ -10,6 +10,10 @@ h1 {
   margin-top: 5px;
 }
 
+section h2 {
+  margin-top: 15px;
+}
+
 .card {
   overflow: hidden;
   box-shadow: 2px 3px 12px -6px rgba(0, 0, 0, 0.75);
@@ -172,6 +176,10 @@ header .navbar-brand {
 
 [id^=teddyFig] > img {
   width: 100%;
+}
+
+#teddyOrder {
+  margin-top: 15px;
 }
 
 #order-message {

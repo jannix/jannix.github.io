@@ -3,7 +3,21 @@ function getTeddyList() {
         return res.json();
     }).then(teddies => {
         initTeddyList(teddies);
+    }).catch(function() {
+        initEmptyList();
     });
+}
+
+function initEmptyList() {
+    let sectionList = document.getElementById('teddy-list');
+    const colDiv = document.createElement('div');
+    colDiv.setAttribute('class', 'col-12 my-3');
+
+    colDiv.innerHTML = "<p>\n" +
+        "                <h2>Notre liste est vide.</h2>\n" +
+        "                <span>Vérifier votre connexion ou réessayer plus tard...</span>\n" +
+        "            </p>";
+    sectionList.appendChild(colDiv);
 }
 
 function initTeddyList(teddies) {
