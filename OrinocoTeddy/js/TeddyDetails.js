@@ -1,11 +1,11 @@
 let currentTeddy = null;
 const MAX_OTHER_TEDDY = 5;
+let data = {};
 window.onload = function () {
     BasketManager.getInstance();
 
     let url = document.location.href,
-        params = url.split('?')[1].split('&'),
-        data = {}, tmp;
+        params = url.split('?')[1].split('&'), tmp;
     for (let i = 0, l = params.length; i < l; i++) {
         tmp = params[i].split('=');
         data[tmp[0]] = tmp[1];
@@ -87,6 +87,10 @@ function initTeddyList(teddies) {
     {
         if (i >= MAX_OTHER_TEDDY) {
             break;
+        }
+        if (teddy._id === data.id) {
+            i++;
+            continue;
         }
         const colDiv = buildTeddyCard(teddy);
         sectionList.appendChild(colDiv);
