@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const userRoutes = require('./routes/user.routes');
+const sauceRoutes = require('./routes/sauce.routes');
 
 const app = express();
 mongoose.connect('mongodb+srv://JannixOpen:OpenC10@cluster0.mkwry.mongodb.net/SoPekocko?retryWrites=true&w=majority',
@@ -20,6 +21,7 @@ app.use((req, res, next) => {
 app.use(bodyParser.json());
 
 app.use('/api/auth', userRoutes);
+app.use('/api/sauces', sauceRoutes);
 
 app.use((req, res) => {
     res.json({ message: 'Votre requête a bien été reçue !' });
