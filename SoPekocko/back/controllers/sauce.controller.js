@@ -1,6 +1,4 @@
 const Sauce = require('../models/sauce.model');
-const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
 const fs = require('fs');
 
 exports.postSauce = (req, res, next) => {
@@ -65,7 +63,8 @@ exports.modifySauce = (req, res, next) => {
             likes: 0,
             dislikes: 0,
             usersLiked: [],
-            usersDisliked: []};
+            usersDisliked: []
+        };
     }
     Sauce.updateOne({ _id: req.params.id }, { ...sauceObject, _id: req.params.id })
         .then(() => res.status(200).json({ message: 'Objet modifié !'}))
