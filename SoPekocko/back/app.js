@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+const helmet = require("helmet");
 const userRoutes = require('./routes/user.routes');
 const sauceRoutes = require('./routes/sauce.routes');
 const secretConst = require('./constants/secret-constants');
@@ -19,6 +20,8 @@ app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
     next();
 });
+
+app.use(helmet());
 
 app.use(bodyParser.json());
 
