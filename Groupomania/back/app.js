@@ -32,8 +32,8 @@ app.use((req, res) => {
     res.json({ message: 'Votre requête a bien été reçue !' });
 });
 
-db.sequelize.sync();/*{ force: true }).then(() => {
+db.sequelize.sync({ alter: true }).then(() => {
     console.log("Drop and re-sync db.");
-});*/ //only for dev to drop tables
+}); //only for dev to drop tables
 
 module.exports = app;
