@@ -1,0 +1,35 @@
+@import "./../../sass/main";
+
+.login-form-container {
+  flex-basis: 66.66%;
+  color: $primary-text-colour;
+  font-family: $primary-text-font;
+  & form {
+    @include display-flex-column-center;
+    & #login-form-title {
+      font-size: 20px;
+      font-weight: $font-weight-semibold;
+    }
+  }
+
+  & .login-form-inputs-container {
+    @include display-flex-column-center;
+    margin-top: 10px;
+    margin-bottom: 15px;
+    & input {
+      min-height:30px;
+      min-width: 200px;
+      background-color: $primary-bg-colour;
+      color: $primary-line-colour;
+      font-size: 16px;
+      font-weight: 500;
+      border: none;
+      border-bottom: $primary-line-colour solid 2px;
+      margin-bottom: 8px;
+      padding-left: 8px;
+      &::placeholder {
+        opacity: 1;
+      }
+    }
+  }
+}
