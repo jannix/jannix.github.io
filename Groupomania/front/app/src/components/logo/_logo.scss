@@ -1,11 +1,9 @@
 @import "./../../sass/main";
 
 .logo-container {
-  border: solid green 2px;
   flex-basis: 33.33%;
   @include display-flex-column-center;
   & img {
-    border: solid red 1px;
     max-width: 40%;
     max-height: 40%;
   }
