@@ -36,10 +36,10 @@ export default class LoginForm extends React.Component {
                 <form onSubmit={this.handleSubmit}>
                     <h2 id="login-form-title">Connexion</h2>
                     <div className="login-form-inputs-container">
-                        <input type="email" name="email" value={this.state.email} onChange={this.handleChangeEmail}
-                            placeholder="Email"/>
-                        <input type="password" name="password" value={this.state.password} onChange={this.handleChangePassword}
-                            placeholder="Mot de Passe"/>
+                        <input type="email" name="email"  autocomplete="off" value={this.state.email} onChange={this.handleChangeEmail}/>
+                        <label className="input-placeholder">Email</label>
+                        <input type="password" name="password" value={this.state.password} onChange={this.handleChangePassword}/>
+                        <label className="input-placeholder">Mot de Passe</label>
                     </div>
                     <div className="login-form-btns-container">
                         <button type="submit">Connexion</button>

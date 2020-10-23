@@ -1,10 +1,18 @@
 @import "./../../sass/main";
 
+$ph-relative-top: -34px;
+$ph-relative-left: 8px;
+$phhover-relative-trans-top: -10px;
+$phfocus-relative-trans-top: -15px;
+$phfocus-relative-trans-left: -4px;
+
+
 .login-form-container {
   color: $primary-text-colour;
   font-family: $primary-text-font;
   & form {
     @include display-flex-column-center;
+    justify-items: center;
     & #login-form-title {
       font-size: 20px;
       font-weight: $font-weight-semibold;
@@ -13,21 +21,49 @@
 
   & .login-form-inputs-container {
     @include display-flex-column-center;
+    height: 120px;
+    width: 220px;
     margin-top: 10px;
-    margin-bottom: 15px;
+    margin-bottom: 5px;
+    //border: solid red 1px;
     & input {
+      z-index: 1;
+      font-size: 16px;
       min-height:30px;
       min-width: 200px;
-      background-color: $primary-bg-colour;
+      background: transparent;
       color: $primary-line-colour;
-      font-size: 16px;
-      font-weight: 500;
       border: none;
       border-bottom: $primary-line-colour solid 2px;
-      margin-bottom: 8px;
+      //border: solid blue 1px;
       padding-left: 8px;
-      &::placeholder {
-        opacity: 1;
+      &:hover {
+
+      }
+
+      &+label.input-placeholder {
+        //border: solid green 1px;
+        z-index: 0;
+        margin: 0px;
+        position: relative;
+        top: $ph-relative-top;
+        left: $ph-relative-left;
+        width: 100%;
+        color: $primary-line-colour;
+        transition: 0.3s;
+      }
+
+      &:hover+label.input-placeholder {
+        top: $ph-relative-top + $phhover-relative-trans-top;
+      }
+      &:focus+label.input-placeholder {
+        top: $ph-relative-top + $phfocus-relative-trans-top;
+        left: $ph-relative-left + $phfocus-relative-trans-left;
+        font-size: 12px;
+        //TODO: fix margin bot bug
+      }
+      &:focus{
+        outline: none;
       }
     }
   }
