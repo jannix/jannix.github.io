@@ -1,9 +1,8 @@
 import React from 'react';
-import "./_login-form.scss";
+import "./_signin-form.scss";
 import * as Constants from "../../constants/apiconst";
-import InputForm from "./InputForm.component";
 
-export default class LoginForm extends React.Component {
+export default class SigninForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = {email: '', password: ''};
@@ -16,20 +15,20 @@ export default class LoginForm extends React.Component {
         this.setState({[targetName]: targetValue});
     }
 
-    handleChangeEmail(name: string, value: string) {
+    handleChangeEmail(event) {
         //TODO: check email format
-        this.handleChangeState(name, value);
+        this.handleChangeState(event.target.name, event.target.value);
     }
 
-    handleChangePassword(name: string, value: string) {
+    handleChangePassword(event) {
         //TODO: check password format
-        this.handleChangeState(name, value);
+        this.handleChangeState(event.target.name, event.target.value);
     }
 
     handleSubmit(event) {
         event.preventDefault();
 
-        fetch(Constants.API_AUTH+'login', {
+        /*fetch(Constants.API_AUTH+'login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -42,7 +41,7 @@ export default class LoginForm extends React.Component {
             })
             .catch((error) => {
                 console.error('Error:', error);
-            });
+            });*/
     }
 
     render() {
@@ -51,11 +50,18 @@ export default class LoginForm extends React.Component {
                 <form onSubmit={this.handleSubmit}>
                     <h2 id="login-form-title">Connexion</h2>
                     <div className="login-form-inputs-container">
-                        <InputForm value={this.state.email} inputType="email" inputName="email" inputLabel="Email"
-                                   changeValue={this.handleChangeEmail}/>
+                        <div>
+                            <input className={(this.state.email? "has-content":"")} type="email" name="email"
+                                   autoComplete="false" value={this.state.email} onChange={this.handleChangeEmail}/>
+                            <label className="input-placeholder">Email</label>
+                        </div>
 
-                        <InputForm value={this.state.password} inputType="password" inputName="password" inputLabel="Mot de Passe"
-                                   changeValue={this.handleChangePassword}/>
+                        <div>
+                            <input className={(this.state.password? "has-content":"")} type="password" name="password"
+                                   value={this.state.password} onChange={this.handleChangePassword}/>
+                            <label className="input-placeholder">Mot de Passe</label>
+                        </div>
+
                     </div>
                     <div className="login-form-btns-container">
                         <button id="first-time-btn" onClick={this.props.onUserClickFirstTime}>Première fois?</button>

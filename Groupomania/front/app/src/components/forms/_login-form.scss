@@ -1,11 +1,5 @@
 @import "./../../sass/main";
 
-$ph-relative-top: -34px;
-$ph-relative-left: 8px;
-$phhover-relative-trans-top: -10px;
-$phfocus-relative-trans-top: -15px;
-$phfocus-relative-trans-left: -4px;
-
 .login-form-container {
   color: $primary-text-colour;
   font-family: $primary-text-font;
@@ -24,46 +18,6 @@ $phfocus-relative-trans-left: -4px;
     width: 220px;
     margin-top: 10px;
     margin-bottom: 5px;
-    & input {
-      z-index: 1;
-      font-size: 16px;
-      min-height:30px;
-      min-width: 200px;
-      background: transparent;
-      color: $primary-line-colour;
-      border: none;
-      border-bottom: $primary-line-colour solid 2px;
-      padding-left: 8px;
-
-      & + label.input-placeholder {
-        z-index: 0;
-        margin: 0;
-        position: relative;
-        top: $ph-relative-top;
-        left: $ph-relative-left;
-        width: 100%;
-        color: $primary-line-colour;
-        transition: 0.3s;
-      }
-
-      &.has-content + label.input-placeholder {
-        top: $ph-relative-top + $phfocus-relative-trans-top;
-        left: $ph-relative-left + $phfocus-relative-trans-left;
-        font-size: 12px;
-      }
-
-      &:hover + label.input-placeholder {
-        top: $ph-relative-top + $phhover-relative-trans-top;
-      }
-      &:focus + label.input-placeholder {
-        top: $ph-relative-top + $phfocus-relative-trans-top;
-        left: $ph-relative-left + $phfocus-relative-trans-left;
-        font-size: 12px;
-      }
-      &:focus{
-        outline: none;
-      }
-    }
   }
 }
 
