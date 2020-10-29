@@ -6,7 +6,6 @@ $phhover-relative-trans-top: -10px;
 $phfocus-relative-trans-top: -15px;
 $phfocus-relative-trans-left: -4px;
 
-
 .login-form-container {
   color: $primary-text-colour;
   font-family: $primary-text-font;
@@ -25,7 +24,6 @@ $phfocus-relative-trans-left: -4px;
     width: 220px;
     margin-top: 10px;
     margin-bottom: 5px;
-    //border: solid red 1px;
     & input {
       z-index: 1;
       font-size: 16px;
@@ -35,16 +33,11 @@ $phfocus-relative-trans-left: -4px;
       color: $primary-line-colour;
       border: none;
       border-bottom: $primary-line-colour solid 2px;
-      //border: solid blue 1px;
       padding-left: 8px;
-      &:hover {
 
-      }
-
-      &+label.input-placeholder {
-        //border: solid green 1px;
+      & + label.input-placeholder {
         z-index: 0;
-        margin: 0px;
+        margin: 0;
         position: relative;
         top: $ph-relative-top;
         left: $ph-relative-left;
@@ -53,18 +46,31 @@ $phfocus-relative-trans-left: -4px;
         transition: 0.3s;
       }
 
-      &:hover+label.input-placeholder {
-        top: $ph-relative-top + $phhover-relative-trans-top;
-      }
-      &:focus+label.input-placeholder {
+      &.has-content + label.input-placeholder {
         top: $ph-relative-top + $phfocus-relative-trans-top;
         left: $ph-relative-left + $phfocus-relative-trans-left;
         font-size: 12px;
-        //TODO: fix margin bot bug
+      }
+
+      &:hover + label.input-placeholder {
+        top: $ph-relative-top + $phhover-relative-trans-top;
+      }
+      &:focus + label.input-placeholder {
+        top: $ph-relative-top + $phfocus-relative-trans-top;
+        left: $ph-relative-left + $phfocus-relative-trans-left;
+        font-size: 12px;
       }
       &:focus{
         outline: none;
       }
     }
   }
+}
+
+.login-form-btns-container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-items: center;
+  justify-content: space-between;
 }

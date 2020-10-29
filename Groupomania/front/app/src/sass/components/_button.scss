@@ -1,0 +1,22 @@
+button {
+  font-size: $s_btn-font-size;
+  background-color: $primary-blue-color;
+  border: none;
+  color: $primary-text-colour;
+  border-radius: 5px;
+  height: 30px;
+  width: 100px;
+}
+
+#first-time-btn {
+  width: 100%;
+  font-size: $s_btn-font-size;
+  background: none!important;
+  border: none;
+  padding: 0!important;
+  /*input has OS specific font-family*/
+  color: $primary-blue-color;
+  font-style: italic;
+  cursor: pointer;
+  overflow: visible;
+}
