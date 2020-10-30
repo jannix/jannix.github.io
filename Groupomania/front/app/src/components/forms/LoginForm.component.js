@@ -29,6 +29,7 @@ export default class LoginForm extends React.Component {
     }
 
     handleSubmit(event) {
+        console.log("SUBMITTEDDDD");
         event.preventDefault();
 
         fetch(Constants.API_AUTH+'login', {
@@ -60,7 +61,7 @@ export default class LoginForm extends React.Component {
                                    changeValue={this.handleChangePassword}/>
                     </div>
                     <div className="login-form-btns-container">
-                        <button id="first-time-btn" onClick={this.props.onUserClickFirstTime}>Première fois?</button>
+                        <button id="first-time-btn" type="button" onClick={this.props.onUserClickFirstTime}>Première fois?</button>
                         <button type="submit">Connexion</button>
                     </div>
                 </form>

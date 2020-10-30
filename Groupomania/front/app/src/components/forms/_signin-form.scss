@@ -1,0 +1,30 @@
+@import "./../../sass/main";
+
+.login-form-container {
+  color: $primary-text-colour;
+  font-family: $primary-text-font;
+  & form {
+    @include display-flex-column-center;
+    justify-items: center;
+    & #login-form-title {
+      font-size: 20px;
+      font-weight: $font-weight-semibold;
+    }
+  }
+
+  & .login-form-inputs-container {
+    @include display-flex-column-center;
+    height: 240px;
+    width: 220px;
+    margin-top: 10px;
+    margin-bottom: 5px;
+  }
+}
+
+.login-form-btns-container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-items: center;
+  justify-content: space-between;
+}
