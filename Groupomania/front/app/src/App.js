@@ -3,6 +3,7 @@ import './App.scss';
 import LogoConnection from "./components/logo/Logo.component";
 import LoginForm from "./components/forms/LoginForm.component";
 import { CSSTransition } from 'react-transition-group';
+import SigninForm from "./components/forms/SigninForm.component";
 
 
 function App() {
@@ -19,17 +20,10 @@ function App() {
             <LoginForm onUserClickFirstTime={handleClickFirstTime}/>
         )}
         <CSSTransition in={showSignin} timeout={300} classNames="alert" unmountOnExit
-            onEnter={() => setShowLogin(false)}
-            onExited={() => setShowLogin(true)}>
-            <div onClose={() => setShowSignin(false)}>
-                <p>
-                    This alert message is being transitioned in and
-                    out of the DOM.
-                </p>
-                <button onClick={() => setShowSignin(false)}>
-                    Close
-                </button>
-            </div>
+                       onEnter={() => setShowLogin(false)}
+                       onExited={() => setShowLogin(true)}
+                       nodeRef={React.useRef()}>
+            <SigninForm onClose={() => setShowSignin(false)} onClickReturn={() => setShowSignin(false)}/>
         </CSSTransition>
         {/*TODO: create form sign up, hide it then unhide when handleClickFirstTime*/}
     </div>

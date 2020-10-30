@@ -1,14 +1,12 @@
 import React from 'react';
 import "./_signin-form.scss";
-import * as Constants from "../../constants/apiconst";
+//import * as Constants from "../../constants/apiconst";
 
 export default class SigninForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = {email: '', password: ''};
-        this.handleChangeEmail = this.handleChangeEmail.bind(this);
-        this.handleChangePassword = this.handleChangePassword.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
+
     }
 
     handleChangeState(targetName, targetValue) {
@@ -50,22 +48,12 @@ export default class SigninForm extends React.Component {
                 <form onSubmit={this.handleSubmit}>
                     <h2 id="login-form-title">Connexion</h2>
                     <div className="login-form-inputs-container">
-                        <div>
-                            <input className={(this.state.email? "has-content":"")} type="email" name="email"
-                                   autoComplete="false" value={this.state.email} onChange={this.handleChangeEmail}/>
-                            <label className="input-placeholder">Email</label>
-                        </div>
 
-                        <div>
-                            <input className={(this.state.password? "has-content":"")} type="password" name="password"
-                                   value={this.state.password} onChange={this.handleChangePassword}/>
-                            <label className="input-placeholder">Mot de Passe</label>
-                        </div>
 
                     </div>
                     <div className="login-form-btns-container">
-                        <button id="first-time-btn" onClick={this.props.onUserClickFirstTime}>Première fois?</button>
-                        <button type="submit">Connexion</button>
+                        <button onClick={this.props.onClickReturn}>Retour</button>
+                        <button>Suivant</button>
                     </div>
                 </form>
             </div>

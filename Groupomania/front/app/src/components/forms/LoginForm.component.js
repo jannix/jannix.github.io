@@ -4,6 +4,8 @@ import * as Constants from "../../constants/apiconst";
 import InputForm from "./InputForm.component";
 
 export default class LoginForm extends React.Component {
+    onUserClickFirstTime: () => void;
+
     constructor(props) {
         super(props);
         this.state = {email: '', password: ''};
