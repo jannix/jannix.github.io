@@ -7,6 +7,7 @@ import SigninForm from "./components/forms/SigninForm.component";
 
 
 function App() {
+    const nodeRef = React.useRef(null);
     const [showLogin, setShowLogin] = useState(true);
     const [showSignin, setShowSignin] = useState(false);
     function handleClickFirstTime() {
@@ -20,13 +21,20 @@ function App() {
         <div className="transition-container">
             <CSSTransition in={showLogin} timeout={300} classNames="login" unmountOnExit
                            onEnter={() => setShowLogin(true)}
-                           onExited={() => setShowSignin(true)}>
-                <LoginForm onUserClickFirstTime={handleClickFirstTime}/>
+                           onExited={() => setShowSignin(true)}
+                           nodeRef={nodeRef}>
+                <div ref={nodeRef}>
+                    <LoginForm onUserClickFirstTime={handleClickFirstTime}/>
+                </div>
+
             </CSSTransition>
             <CSSTransition in={showSignin} timeout={300} classNames="signin" unmountOnExit
                            onEnter={() => setShowLogin(false)}
-                           onExited={() => setShowLogin(true)}>
-                <SigninForm onClose={() => setShowSignin(false)} onClickReturn={() => setShowSignin(false)}/>
+                           onExited={() => setShowLogin(true)}
+                           nodeRef={nodeRef}>
+                <div ref={nodeRef}>
+                    <SigninForm onClose={() => setShowSignin(false)} onClickReturn={() => setShowSignin(false)}/>
+                </div>
             </CSSTransition>
         </div>
 
