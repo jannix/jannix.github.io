@@ -17,6 +17,7 @@ export default class SigninForm extends React.Component {
         this.handleChangePasswordConfirm = this.handleChangePasswordConfirm.bind(this);
         this.handleChangeState = this.handleChangeState.bind(this);
         this.onClickNext = this.onClickNext.bind(this);
+        this.onClickReturn = this.onClickReturn.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
@@ -54,6 +55,10 @@ export default class SigninForm extends React.Component {
 
     onClickNext() {
         this.setState({showStep1: false});
+    }
+
+    onClickReturn() {
+        this.setState({showStep2: false});
     }
 
     handleSubmit(event) {
@@ -108,7 +113,7 @@ export default class SigninForm extends React.Component {
                         </CSSTransition>
                         <CSSTransition in={this.state.showStep2} timeout={300} classNames="signin2" unmountOnExit
                                        onEnter={() => this.setShowStep2(true)}
-                                       onExited={() => this.setShowStep2(false)}>
+                                       onExited={() => this.setShowStep1(true)}>
                             <div className="login-form-inputs-container">
                                 <InputForm value={this.state.username} inputType="text" inputName="username"
                                            inputLabel="Pseudo"
@@ -125,6 +130,7 @@ export default class SigninForm extends React.Component {
                             </div>
                         </CSSTransition>
                     </div>
+                    {/*//TODO: change to avoid blink buttons*/}
                     {this.state.showStep1 > 0 &&
                     <div className="login-form-btns-container">
                         <button id="return-btn" type="button" onClick={this.props.onClickReturn}>Retour</button>
@@ -133,7 +139,7 @@ export default class SigninForm extends React.Component {
                     }
                     {this.state.showStep2 > 0 &&
                     <div className="login-form-btns-container">
-                        <button id="return-btn" type="button" onClick={this.props.onClickReturn}>Retour</button>
+                        <button id="return-btn" type="button" onClick={this.onClickReturn}>Retour</button>
                         <button type="submit">Confirmer</button>
                     </div>
                     }
