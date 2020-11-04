@@ -2,6 +2,7 @@ import React from 'react';
 import "./_login-form.scss";
 import * as Constants from "../../constants/apiconst";
 import InputForm from "./InputForm.component";
+import {matchPattern, validatorsRules} from "../../utils/validator";
 
 export default class LoginForm extends React.Component {
     onUserClickFirstTime: () => void;
@@ -11,25 +12,23 @@ export default class LoginForm extends React.Component {
         this.state = {email: '', password: ''};
         this.handleChangeEmail = this.handleChangeEmail.bind(this);
         this.handleChangePassword = this.handleChangePassword.bind(this);
+        this.handleChangeState = this.handleChangeState.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    handleChangeState(targetName, targetValue) {
+    handleChangeState(targetName: string, targetValue: string): void {
         this.setState({[targetName]: targetValue});
     }
 
-    handleChangeEmail(name: string, value: string) {
-        //TODO: check email format
-        this.handleChangeState(name, value);
+    canSubmit(): boolean {
+        return matchPattern(this.state.username, validatorsRules.emailPattern) &&
+            matchPattern(this.state.username, validatorsRules.passwordPattern);
     }
 
-    handleChangePassword(name: string, value: string) {
-        //TODO: check password format
-        this.handleChangeState(name, value);
-    }
-
-    handleSubmit(event) {
-        console.log("SUBMITTEDDDD");
+    handleSubmit(event): void {
+        if (!this.canSubmit()) {
+            return;
+        }
         event.preventDefault();
 
         fetch(Constants.API_AUTH+'login', {
@@ -55,10 +54,18 @@ export default class LoginForm extends React.Component {
                     <h2 id="login-form-title">Connexion</h2>
                     <div className="login-form-inputs-container">
                         <InputForm value={this.state.email} inputType="email" inputName="email" inputLabel="Email"
-                                   changeValue={this.handleChangeEmail}/>
+                                   inputWrongBehavior={{wrongTxt: 'Wrong mail ganaganaganga',
+                                       isWrong: function (value: string): boolean {
+                                           return !matchPattern(value, validatorsRules.emailPattern);
+                                       }}}
+                                   changeValue={this.handleChangeState}/>
 
                         <InputForm value={this.state.password} inputType="password" inputName="password" inputLabel="Mot de Passe"
-                                   changeValue={this.handleChangePassword}/>
+                                   inputWrongBehavior={{wrongTxt: 'Password ganaganaganga',
+                                       isWrong: function (value: string): boolean {
+                                           return !matchPattern(value, validatorsRules.passwordPattern);
+                                       }}}
+                                   changeValue={this.handleChangeState}/>
                     </div>
                     <div className="login-form-btns-container">
                         <button id="first-time-btn" type="button" onClick={this.props.onUserClickFirstTime}>Première fois?</button>

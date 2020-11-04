@@ -6,6 +6,21 @@ $phhover-relative-trans-top: -10px;
 $phfocus-relative-trans-top: -15px;
 $phfocus-relative-trans-left: -4px;
 
+.input-container {
+  padding-top: 13px;
+  height: 57px;
+  & .wrong-input {
+    position: relative;
+    top: -20px;
+    &__label {
+      font-size: 12px;
+      margin: 0;
+      padding: 0;
+      color: $red-error;
+    }
+  }
+}
+
 input {
   position: relative;
   z-index: 1;
@@ -45,5 +60,10 @@ input {
   }
   &:focus{
     outline: none;
+  }
+
+  &:invalid {
+    box-shadow:none;
+    border-bottom: $red-error solid 2px;
   }
 }
