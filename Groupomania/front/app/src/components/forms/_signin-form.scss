@@ -1,18 +1,18 @@
 @import "./../../sass/main";
 
-.login-form-container {
+.signin-form-container {
   color: $primary-text-colour;
   font-family: $primary-text-font;
   & form {
     @include display-flex-column-center;
     justify-items: center;
-    & #login-form-title {
+    & #signin-form-title {
       font-size: 20px;
       font-weight: $font-weight-semibold;
     }
   }
 
-  & .login-form-inputs-container {
+  & .signin-form-inputs-container {
     @include display-flex-column-center;
     height: 297px;
     width: 220px;
@@ -21,7 +21,7 @@
   }
 }
 
-.login-form-btns-container {
+.signin-form-btns-container {
   width: 100%;
   display: flex;
   align-items: center;

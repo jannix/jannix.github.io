@@ -86,14 +86,14 @@ export default class SigninForm extends React.Component {
 
     render() {
         return (
-            <div className="login-form-container">
+            <div className="signin-form-container">
                 <form onSubmit={this.handleSubmit}>
-                    <h2 id="login-form-title">Création de compte</h2>
+                    <h2 id="signin-form-title">Création de compte</h2>
                     <div className="transition-container">
                         <CSSTransition in={this.state.showStep1} timeout={300} classNames="signin1" unmountOnExit
                                        onEnter={() => this.setShowStep1(true)}
                                        onExited={() => this.setShowStep2(true)}>
-                            <div className="login-form-inputs-container">
+                            <div className="signin-form-inputs-container">
                                 <InputForm value={this.state.email} inputType="email" inputName="email" inputLabel="Email"
                                            inputWrongBehavior={{wrongTxt: validatorMessages.email.pattern,
                                                isWrong: function (value: string): boolean {
@@ -126,7 +126,7 @@ export default class SigninForm extends React.Component {
                         <CSSTransition in={this.state.showStep2} timeout={300} classNames="signin2" unmountOnExit
                                        onEnter={() => this.setShowStep2(true)}
                                        onExited={() => this.setShowStep1(true)}>
-                            <div className="login-form-inputs-container">
+                            <div className="signin-form-inputs-container">
                                 <InputForm value={this.state.username} inputType="text" inputName="username"
                                            inputLabel="Pseudo"
                                            changeValue={this.handleChangeState}/>
@@ -158,13 +158,13 @@ export default class SigninForm extends React.Component {
                     </div>
                     {/*//TODO: change to avoid blink buttons*/}
                     {this.state.showStep1 > 0 &&
-                    <div className="login-form-btns-container">
+                    <div className="signin-form-btns-container">
                         <button id="return-btn" type="button" onClick={this.props.onClickReturn}>Retour</button>
                         <button type="button" onClick={this.onClickNext}>Suivant</button>
                     </div>
                     }
                     {this.state.showStep2 > 0 &&
-                    <div className="login-form-btns-container">
+                    <div className="signin-form-btns-container">
                         <button id="return-btn" type="button" onClick={this.onClickReturn}>Retour</button>
                         <button type="submit">Confirmer</button>
                     </div>
