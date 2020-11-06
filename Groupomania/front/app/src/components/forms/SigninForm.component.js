@@ -1,7 +1,7 @@
 import React from 'react';
 import "./_signin-form.scss";
 import InputForm from "./InputForm.component";
-import {matchPattern, validatorsRules} from "../../utils/validator";
+import {matchPattern, validatorMessages, validatorsRules} from "../../utils/validator";
 import {CSSTransition} from "react-transition-group";
 import * as Constants from "../../constants/apiconst";
 
@@ -12,16 +12,8 @@ export default class SigninForm extends React.Component {
             password: '', passwordConfirm: '',
             username: '', firstName: '', lastName: '', job: '',
             showStep1: true, showStep2: false};
-        //TODO: make 1 handle, send with callback to validation check to the Input
-        this.handleChangeEmail = this.handleChangeEmail.bind(this);
-        this.handleChangeEmailConfirm = this.handleChangeEmailConfirm.bind(this);
-        this.handleChangePassword = this.handleChangePassword.bind(this);
-        this.handleChangePasswordConfirm = this.handleChangePasswordConfirm.bind(this);
+
         this.handleChangeState = this.handleChangeState.bind(this);
-        this.handleChangeUsername = this.handleChangeUsername.bind(this);
-        this.handleChangeFirstname = this.handleChangeFirstname.bind(this);
-        this.handleChangeLastname = this.handleChangeLastname.bind(this);
-        this.handleChangeJob = this.handleChangeJob.bind(this);
         this.onClickNext = this.onClickNext.bind(this);
         this.onClickReturn = this.onClickReturn.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -37,64 +29,6 @@ export default class SigninForm extends React.Component {
 
     handleChangeState(targetName: string, targetValue: string): void {
         this.setState({[targetName]: targetValue});
-    }
-
-    handleChangeEmail(name: string, value: string): void {
-        if (!matchPattern(value, validatorsRules.emailPattern)) {
-            //TODO: Mets du rouge
-        }
-        this.handleChangeState(name, value);
-    }
-
-    handleChangeEmailConfirm(name: string, value: string): void {
-        if (!matchPattern(value, validatorsRules.emailPattern) || this.state.email !== value) {
-            //TODO: better notes if match but not ===
-            //TODO: Mets du rouge
-        }
-        this.handleChangeState(name, value);
-    }
-
-    handleChangePassword(name: string, value: stringt): void {
-        if (!matchPattern(value, validatorsRules.passwordPattern)) {
-            //TODO: Mets du rouge
-        }
-        this.handleChangeState(name, value);
-    }
-
-    handleChangePasswordConfirm(name: string, value: string): void {
-        if (!matchPattern(value, validatorsRules.passwordPattern) || this.state.password !== value) {
-            //TODO: better notes if match but not ===
-            //TODO: Mets du rouge
-        }
-        this.handleChangeState(name, value);
-    }
-
-    handleChangeUsername(name: string, value: string): void {
-        if (!matchPattern(value, validatorsRules.usernamePatter)) {
-            //TODO: Mets du rouge
-        }
-        this.handleChangeState(name, value);
-    }
-
-    handleChangeFirstname(name: string, value: string): void {
-        if (!matchPattern(value, validatorsRules.firstnamePattern)) {
-            //TODO: Mets du rouge
-        }
-        this.handleChangeState(name, value);
-    }
-
-    handleChangeLastname(name: string, value: string): void {
-        if (!matchPattern(value, validatorsRules.lastnamePattern)) {
-            //TODO: Mets du rouge
-        }
-        this.handleChangeState(name, value);
-    }
-
-    handleChangeJob(name: string, value: string): void {
-        if (!matchPattern(value, validatorsRules.jobPattern)) {//TODO: Make it a job list from server
-            //TODO: Mets du rouge
-        }
-        this.handleChangeState(name, value);
     }
 
     onClickNext(): void {
@@ -116,7 +50,7 @@ export default class SigninForm extends React.Component {
         return this.canGoToStep2() && matchPattern(this.state.username, validatorsRules.usernamePattern) &&
             matchPattern(this.state.username, validatorsRules.firstnamePattern) &&
             matchPattern(this.state.password, validatorsRules.lastnamePattern) &&
-            matchPattern(this.state.username, validatorsRules.jobPattern);
+            (this.state.job !== '');
     }
 
     handleSubmit(event): void {
@@ -161,16 +95,32 @@ export default class SigninForm extends React.Component {
                                        onExited={() => this.setShowStep2(true)}>
                             <div className="login-form-inputs-container">
                                 <InputForm value={this.state.email} inputType="email" inputName="email" inputLabel="Email"
-                                           changeValue={this.handleChangeEmail}/>
+                                           inputWrongBehavior={{wrongTxt: validatorMessages.email.pattern,
+                                               isWrong: function (value: string): boolean {
+                                                   return !matchPattern(value, validatorsRules.emailPattern);
+                                               }}}
+                                           changeValue={this.handleChangeState}/>
                                 <InputForm value={this.state.emailConfirm} inputType="email" inputName="emailConfirm"
                                            inputLabel="(confirmer email)"
-                                           changeValue={this.handleChangeEmailConfirm}/>
+                                           inputWrongBehavior={{wrongTxt: validatorMessages.email.pattern,
+                                               isWrong: function (value: string): boolean {
+                                                   return !matchPattern(value, validatorsRules.emailPattern);
+                                               }}}
+                                           changeValue={this.handleChangeState}/>
                                 <InputForm value={this.state.password} inputType="password" inputName="password"
                                            inputLabel="Mot de Passe"
-                                           changeValue={this.handleChangePassword}/>
+                                           inputWrongBehavior={{wrongTxt: validatorMessages.password.pattern,
+                                               isWrong: function (value: string): boolean {
+                                                   return !matchPattern(value, validatorsRules.passwordPattern);
+                                               }}}
+                                           changeValue={this.handleChangeState}/>
                                 <InputForm value={this.state.passwordConfirm} inputType="password" inputName="passwordConfirm"
                                            inputLabel="(confirmer mot de passe)"
-                                           changeValue={this.handleChangePasswordConfirm}/>
+                                           inputWrongBehavior={{wrongTxt: validatorMessages.password.pattern,
+                                               isWrong: function (value: string): boolean {
+                                                   return !matchPattern(value, validatorsRules.passwordPattern);
+                                               }}}
+                                           changeValue={this.handleChangeState}/>
                             </div>
                         </CSSTransition>
                         <CSSTransition in={this.state.showStep2} timeout={300} classNames="signin2" unmountOnExit
@@ -179,16 +129,30 @@ export default class SigninForm extends React.Component {
                             <div className="login-form-inputs-container">
                                 <InputForm value={this.state.username} inputType="text" inputName="username"
                                            inputLabel="Pseudo"
-                                            changeValue={this.handleChangeState}/>
+                                           changeValue={this.handleChangeState}/>
                                 <InputForm value={this.state.lastName} inputType="text" inputName="lastName"
                                            inputLabel="Nom de famille"
-                                           changeValue={this.handleChangeEmailConfirm}/>
+                                           inputWrongBehavior={{wrongTxt: validatorMessages.lastName.pattern,
+                                               isWrong: function (value: string): boolean {
+                                                   return !matchPattern(value, validatorsRules.lastnamePattern);
+                                               }}}
+                                           changeValue={this.handleChangeState}/>
                                 <InputForm value={this.state.firstName} inputType="text" inputName="firstName"
                                            inputLabel="Prénom"
-                                           changeValue={this.handleChangePassword}/>
+                                           inputWrongBehavior={{wrongTxt: validatorMessages.firstName.pattern,
+                                               isWrong: function (value: string): boolean {
+                                                   return !matchPattern(value, validatorsRules.firstnamePattern);
+                                               }}}
+                                           changeValue={this.handleChangeState}/>
+                                {/*TODO: Job should be a select with datas from server*/}
                                 <InputForm value={this.state.job} inputType="text" inputName="job"
                                            inputLabel="Poste"
-                                           changeValue={this.handleChangePasswordConfirm}/>
+                                           inputWrongBehavior={{wrongTxt: validatorMessages.job.required,
+                                               isWrong: function (value: string): boolean {
+                                               //TODO: check a list of jobs
+                                                   return false;
+                                               }}}
+                                           changeValue={this.handleChangeState}/>
                             </div>
                         </CSSTransition>
                     </div>

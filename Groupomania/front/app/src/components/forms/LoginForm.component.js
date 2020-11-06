@@ -2,7 +2,7 @@ import React from 'react';
 import "./_login-form.scss";
 import * as Constants from "../../constants/apiconst";
 import InputForm from "./InputForm.component";
-import {matchPattern, validatorsRules} from "../../utils/validator";
+import {matchPattern, validatorMessages, validatorsRules} from "../../utils/validator";
 
 export default class LoginForm extends React.Component {
     onUserClickFirstTime: () => void;
@@ -10,8 +10,6 @@ export default class LoginForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = {email: '', password: ''};
-        this.handleChangeEmail = this.handleChangeEmail.bind(this);
-        this.handleChangePassword = this.handleChangePassword.bind(this);
         this.handleChangeState = this.handleChangeState.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
@@ -54,14 +52,14 @@ export default class LoginForm extends React.Component {
                     <h2 id="login-form-title">Connexion</h2>
                     <div className="login-form-inputs-container">
                         <InputForm value={this.state.email} inputType="email" inputName="email" inputLabel="Email"
-                                   inputWrongBehavior={{wrongTxt: 'Wrong mail ganaganaganga',
+                                   inputWrongBehavior={{wrongTxt: validatorMessages.email.pattern,
                                        isWrong: function (value: string): boolean {
                                            return !matchPattern(value, validatorsRules.emailPattern);
                                        }}}
                                    changeValue={this.handleChangeState}/>
 
                         <InputForm value={this.state.password} inputType="password" inputName="password" inputLabel="Mot de Passe"
-                                   inputWrongBehavior={{wrongTxt: 'Password ganaganaganga',
+                                   inputWrongBehavior={{wrongTxt: validatorMessages.password.pattern,
                                        isWrong: function (value: string): boolean {
                                            return !matchPattern(value, validatorsRules.passwordPattern);
                                        }}}

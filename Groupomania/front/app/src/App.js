@@ -17,7 +17,6 @@ function App() {
   return (
     <div className="App">
         <LogoConnection/>
-
         <div className="transition-container">
             <CSSTransition in={showLogin} timeout={300} classNames="login" unmountOnExit
                            onEnter={() => setShowLogin(true)}
