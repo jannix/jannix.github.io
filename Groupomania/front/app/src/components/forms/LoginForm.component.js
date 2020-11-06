@@ -19,8 +19,8 @@ export default class LoginForm extends React.Component {
     }
 
     canSubmit(): boolean {
-        return matchPattern(this.state.username, validatorsRules.emailPattern) &&
-            matchPattern(this.state.username, validatorsRules.passwordPattern);
+        return matchPattern(this.state.email, validatorsRules.emailPattern) &&
+            matchPattern(this.state.password, validatorsRules.passwordPattern);
     }
 
     handleSubmit(event): void {
@@ -67,7 +67,7 @@ export default class LoginForm extends React.Component {
                     </div>
                     <div className="login-form-btns-container">
                         <button id="first-time-btn" type="button" onClick={this.props.onUserClickFirstTime}>Première fois?</button>
-                        <button type="submit">Connexion</button>
+                        <button type="submit" disabled={!this.canSubmit()}>Connexion</button>
                     </div>
                 </form>
             </div>

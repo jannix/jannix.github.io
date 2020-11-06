@@ -12,6 +12,7 @@ export default class SigninForm extends React.Component {
             password: '', passwordConfirm: '',
             username: '', firstName: '', lastName: '', job: '',
             showStep1: true, showStep2: false};
+        this.myRef = React.createRef();
 
         this.handleChangeState = this.handleChangeState.bind(this);
         this.onClickNext = this.onClickNext.bind(this);
@@ -48,14 +49,13 @@ export default class SigninForm extends React.Component {
 
     canSubmit(): boolean {
         return this.canGoToStep2() && matchPattern(this.state.username, validatorsRules.usernamePattern) &&
-            matchPattern(this.state.username, validatorsRules.firstnamePattern) &&
-            matchPattern(this.state.password, validatorsRules.lastnamePattern) &&
+            matchPattern(this.state.firstName, validatorsRules.firstnamePattern) &&
+            matchPattern(this.state.lastName, validatorsRules.lastnamePattern) &&
             (this.state.job !== '');
     }
 
     handleSubmit(event): void {
         if (!this.canSubmit()) {
-            //TODO: Put red
             return;
         }
         console.log("send user => ", this.state);
@@ -92,8 +92,9 @@ export default class SigninForm extends React.Component {
                     <div className="transition-container">
                         <CSSTransition in={this.state.showStep1} timeout={300} classNames="signin1" unmountOnExit
                                        onEnter={() => this.setShowStep1(true)}
-                                       onExited={() => this.setShowStep2(true)}>
-                            <div className="signin-form-inputs-container">
+                                       onExited={() => this.setShowStep2(true)}
+                                       nodeRef={this.myRef}>
+                            <div ref={this.myRef} className="signin-form-inputs-container">
                                 <InputForm value={this.state.email} inputType="email" inputName="email" inputLabel="Email"
                                            inputWrongBehavior={{wrongTxt: validatorMessages.email.pattern,
                                                isWrong: function (value: string): boolean {
@@ -125,8 +126,9 @@ export default class SigninForm extends React.Component {
                         </CSSTransition>
                         <CSSTransition in={this.state.showStep2} timeout={300} classNames="signin2" unmountOnExit
                                        onEnter={() => this.setShowStep2(true)}
-                                       onExited={() => this.setShowStep1(true)}>
-                            <div className="signin-form-inputs-container">
+                                       onExited={() => this.setShowStep1(true)}
+                                       nodeRef={this.myRef}>
+                            <div ref={this.myRef} className="signin-form-inputs-container">
                                 <InputForm value={this.state.username} inputType="text" inputName="username"
                                            inputLabel="Pseudo"
                                            changeValue={this.handleChangeState}/>
@@ -160,13 +162,13 @@ export default class SigninForm extends React.Component {
                     {this.state.showStep1 > 0 &&
                     <div className="signin-form-btns-container">
                         <button id="return-btn" type="button" onClick={this.props.onClickReturn}>Retour</button>
-                        <button type="button" onClick={this.onClickNext}>Suivant</button>
+                        <button type="button" onClick={this.onClickNext} disabled={!this.canGoToStep2()}>Suivant</button>
                     </div>
                     }
                     {this.state.showStep2 > 0 &&
                     <div className="signin-form-btns-container">
                         <button id="return-btn" type="button" onClick={this.onClickReturn}>Retour</button>
-                        <button type="submit">Confirmer</button>
+                        <button type="submit" disabled={!this.canSubmit()}>Confirmer</button>
                     </div>
                     }
                 </form>

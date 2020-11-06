@@ -1,3 +1,6 @@
+$disabled-btn-color: #4f64be;
+$disabled-txt-color: #bebebe;
+
 button {
   font-size: $s_btn-font-size;
   background-color: $primary-blue-color;
@@ -6,6 +9,10 @@ button {
   border-radius: 5px;
   height: 30px;
   width: 100px;
+  &:disabled {
+    background-color: $disabled-btn-color;
+    color: $disabled-txt-color;
+  }
 }
 
 #first-time-btn {
