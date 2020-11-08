@@ -60,7 +60,6 @@ export default class SigninForm extends React.Component {
         if (!this.canSubmit()) {
             return;
         }
-        console.log("send user => ", this.state);
         event.preventDefault();
         const newUser = {
             email: this.state.email,

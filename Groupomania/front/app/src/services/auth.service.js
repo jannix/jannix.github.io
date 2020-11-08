@@ -20,6 +20,7 @@ export function createUser(newUser: any) {
             .then(data => {
                 console.log(data);
                 //TODO: keep token, go to home page (for now user details page)
+                localStorage.setItem('token', data.token);
                 resolve(data);
             })
             .catch((error) => {
