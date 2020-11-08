@@ -1,0 +1,52 @@
+@import "./../../sass/main";
+
+.login-page-container {
+  background-color: $primary-bg-colour;
+  display: flex;//TODO: display in otherway to make cool animation depending on screen size
+  flex-direction: column;
+  max-height: 100%;
+  & > div {
+    display:flex;
+    justify-content:center;
+  }
+}
+
+.transition-container {
+  width: 100%;
+}
+
+.signin-enter {
+  opacity: 0;
+  transform: translateX(80px);
+}
+.signin-enter-active {
+  opacity: 1;
+  transform: translateX(0);
+  transition: opacity 300ms, transform 300ms;
+}
+.signin-exit {
+  opacity: 1;
+}
+.signin-exit-active {
+  opacity: 0;
+  transform: translateX(80px);
+  transition: opacity 300ms, transform 300ms;
+}
+
+.login-enter {
+  opacity: 0;
+  transform: scale(0.2);
+}
+.login-enter-active {
+  opacity: 1;
+  transform: scale(1);
+  transition: opacity 300ms, transform 300ms;
+}
+.login-exit {
+  opacity: 1;
+}
+.login-exit-active {
+  opacity: 0;
+  transform: scale(0.2);
+  transition: opacity 300ms, transform 300ms;
+}

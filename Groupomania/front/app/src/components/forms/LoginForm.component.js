@@ -1,17 +1,19 @@
 import React from 'react';
 import "./_login-form.scss";
-import * as Constants from "../../constants/apiconst";
 import InputForm from "./InputForm.component";
 import {matchPattern, validatorMessages, validatorsRules} from "../../utils/validator";
+import {loginUser, logout} from "../../services/auth.service";
 
 export default class LoginForm extends React.Component {
     onUserClickFirstTime: () => void;
+    routerHistory: any;
 
     constructor(props) {
         super(props);
         this.state = {email: '', password: ''};
         this.handleChangeState = this.handleChangeState.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        logout();//TODO: remove, just for test
     }
 
     handleChangeState(targetName: string, targetValue: string): void {
@@ -29,20 +31,9 @@ export default class LoginForm extends React.Component {
         }
         event.preventDefault();
 
-        fetch(Constants.API_AUTH+'login', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(this.state)
-        }).then(response => response.json())
-            .then(data => {
-                console.log(data);
-                //TODO: keep token, go to home page (for now user details page)
-            })
-            .catch((error) => {
-                console.error('Error:', error);
-            });
+        loginUser(this.state).then(() => {
+            this.props.routerHistory.push('/settings/account');
+        });
     }
 
     render() {

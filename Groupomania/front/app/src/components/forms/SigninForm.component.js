@@ -3,9 +3,11 @@ import "./_signin-form.scss";
 import InputForm from "./InputForm.component";
 import {matchPattern, validatorMessages, validatorsRules} from "../../utils/validator";
 import {CSSTransition} from "react-transition-group";
-import * as Constants from "../../constants/apiconst";
+import {createUser} from "../../services/auth.service";
 
 export default class SigninForm extends React.Component {
+    routerHistory: any;
+
     constructor(props) {
         super(props);
         this.state = {email: '', emailConfirm: '',
@@ -67,21 +69,9 @@ export default class SigninForm extends React.Component {
             firstName: this.state.firstName,
             lastName: this.state.lastName,
         };
-
-        fetch(Constants.API_AUTH+'signin', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(newUser)
-        }).then(response => response.json())
-            .then(data => {
-                console.log(data);
-                //TODO: keep token, go to home page (for now user details page)
-            })
-            .catch((error) => {
-                console.error('Error:', error);
-            });
+        createUser(newUser).then(() => {
+            this.props.routerHistory.push('/settings/account');
+        });
     }
 
     render() {
