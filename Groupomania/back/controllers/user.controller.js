@@ -6,6 +6,7 @@ const Login = db.logins;
 const constants = require('../constants/secret-constants');
 
 exports.signup = (req, res, next) => {
+    console.log("SIGNED UP")
     bcrypt.hash(req.body.password, 10)
         .then(hash => {
             const login = {
@@ -20,7 +21,15 @@ exports.signup = (req, res, next) => {
                         firstName: req.body.firstName,
                         lastName: req.body.lastName
                     };
-                    User.create(user).then((data) => res.status(201).json({ message: 'Utilisateur créé !' }))
+                    User.create(user).then((data) => res.status(201).json({
+                        message: 'Utilisateur créé !' ,
+                        loginId: data.dataValues.id,
+                        token: jwt.sign(
+                            { loginId: data.dataValues.id, },
+                            constants.AUTH_TOKEN,
+                            { expiresIn: '24h' }
+                        )
+                    }))
                         .catch(error => res.status(400).json({ error }));
                 })
                 .catch(err => {

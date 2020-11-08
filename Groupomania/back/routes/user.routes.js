@@ -5,7 +5,7 @@ const rat = require("../middlewares/limit-req.middleware");
 
 const userCtrl = require('../controllers/user.controller');
 
-router.post('/signup', celebrate({
+router.post('/signin', celebrate({
         [Segments.BODY]: Joi.object().keys({
             email: Joi.string().required(),
             password: Joi.string().required(),
