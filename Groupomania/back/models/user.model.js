@@ -12,6 +12,22 @@ module.exports = (sequelize, Sequelize) => {
             type: Sequelize.STRING,
             allowNull: false,
         },
+        jobId: {
+            type: Sequelize.INTEGER,
+            allowNull: true,
+        },
+        karma: {
+            type: Sequelize.INTEGER,
+            allowNull: true,
+        },
+        about: {
+            type: Sequelize.STRING,
+            allowNull: true,
+        },
+        birthdate: {
+            type: Sequelize.DATEONLY,
+            allowNull: true,
+        },
         login : {
             type: Sequelize.INTEGER,
             allowNull: false,
