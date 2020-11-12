@@ -13,7 +13,6 @@ export default class LoginForm extends React.Component {
         this.state = {email: '', password: ''};
         this.handleChangeState = this.handleChangeState.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
-        logout();//TODO: remove, just for test
     }
 
     handleChangeState(targetName: string, targetValue: string): void {

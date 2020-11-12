@@ -1,0 +1,27 @@
+@import "./../../sass/main";
+
+.account-settings-panel-container {
+  background-color: $dark-bg;
+  color: $primary-text-colour;
+  font-family: $primary-text-font;
+  text-align: center;
+  flex-grow: 1;
+  & section {
+    text-align: left;
+    & h2 {
+      margin: 5px;
+      margin-left: 20px;
+      color: $grey-text-colour;
+      font-size: $b_settings-acc-sub-title;
+    }
+    & .settings-field-container {
+      border-bottom: solid 2px $light-grey;
+      border-top: solid 2px $light-grey;
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      background-color: $dark-grey;
+      margin-bottom: 15px;
+    }
+  }
+}
