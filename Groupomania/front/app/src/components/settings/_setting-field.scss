@@ -1,0 +1,25 @@
+@import "./../../sass/main";
+
+.setting-field-container {
+  display: flex;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  & .texts-container {
+    flex-grow: 1;
+    margin-left: 10px;
+    & p {
+      font-size: $s_settings-acc-sub-title;
+      margin: 0;
+    }
+    & .setting-title {
+      font-weight: $font-weight-semibold;
+    }
+    & .current-value {
+      color: $grey-text-colour;
+    }
+  }
+  & .arrow-container {
+    align-self: center;
+    margin-right: 15px;
+  }
+}

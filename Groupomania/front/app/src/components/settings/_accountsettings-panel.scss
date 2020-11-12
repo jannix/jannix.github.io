@@ -6,13 +6,15 @@
   font-family: $primary-text-font;
   text-align: center;
   flex-grow: 1;
+  & h1 {
+    font-size: $post-title-font-size;
+  }
   & section {
     text-align: left;
     & h2 {
-      margin: 5px;
-      margin-left: 20px;
+      margin: 5px 5px 5px 30px;
       color: $grey-text-colour;
-      font-size: $b_settings-acc-sub-title;
+      font-size: $s_settings-acc-sub-title;
     }
     & .settings-field-container {
       border-bottom: solid 2px $light-grey;
@@ -21,7 +23,7 @@
       display: flex;
       flex-direction: column;
       background-color: $dark-grey;
-      margin-bottom: 15px;
+      margin-bottom: 5px;
     }
   }
 }

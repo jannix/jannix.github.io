@@ -2,7 +2,7 @@ import React from 'react';
 import "./_login-form.scss";
 import InputForm from "./InputForm.component";
 import {matchPattern, validatorMessages, validatorsRules} from "../../utils/validator";
-import {loginUser, logout} from "../../services/auth.service";
+import {loginUser} from "../../services/auth.service";
 
 export default class LoginForm extends React.Component {
     onUserClickFirstTime: () => void;

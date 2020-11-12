@@ -15,6 +15,24 @@ button {
   }
 }
 
+button {
+  &.arrow {
+    border-radius: 1px;
+    height: 20px;
+    width: 10px;
+    background: none;
+    border: solid $grey-text-colour;
+    border-width: 0 5px 5px 0;
+    display: inline-block;
+    margin-bottom: 10px;
+  }
+
+  &.right {
+    transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+  }
+}
+
 #first-time-btn {
   width: 100%;
   font-size: $s_btn-font-size;
