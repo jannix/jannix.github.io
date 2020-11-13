@@ -1,7 +1,7 @@
 import React from 'react';
 import "./_accountsettings-panel.scss";
 import SettingField from "./SettingField.component";
-import {getUserData} from "../../services/auth.service";
+import {getUserData} from "../../services/user.service";
 
 export default class AccountSettingsPanel extends React.Component {
 
@@ -22,10 +22,10 @@ export default class AccountSettingsPanel extends React.Component {
             return;
         }
         getUserData(localStorage.getItem('user-id')).then((userData) => {
-            this.setState({firstName: userData.userFound.firstName});
-            this.setState({lastName: userData.userFound.lastName});
-            this.setState({birthdate: userData.userFound.birthdate});
-            this.setState({username: userData.userFound.username});
+            this.setState({firstName: (userData.userFound.firstName? userData.userFound.firstName: this.state.firstName)});
+            this.setState({lastName: (userData.userFound.lastName? userData.userFound.lastName: this.state.lastName)});
+            this.setState({birthdate: (userData.userFound.birthdate? userData.userFound.birthdate: this.state.birthdate)});
+            this.setState({username: (userData.userFound.username? userData.userFound.username: this.state.username)});
         });
     }
 

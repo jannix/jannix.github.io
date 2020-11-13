@@ -1,9 +1,5 @@
 import * as Constants from "../constants/apiconst";
 
-const header = {
-    'Content-Type': 'application/json',
-    'Authorization': 'Bearer ' + localStorage.getItem('token'),
-};
 //let isAuth$ = new BehaviorSubject<boolean>(false);
 //let authToken: string;//TODO: store in different cookie, make the server rebuild the tok
 /*https://medium.com/lightrail/getting-token-authentication-right-in-a-stateless-single-page-application-57d0c6474e3
@@ -13,9 +9,12 @@ const header = {
 
 export function createUser(newUser: any): Promise<any>  {
     return new Promise((resolve, reject) => {
-        fetch(Constants.API_AUTH+'signin', {
+        fetch(Constants.API_USER+'auth/signin', {
             method: 'POST',
-            headers: header,
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + localStorage.getItem('token'),
+            },
             body: JSON.stringify(newUser)
         }).then(response => response.json())
             .then(data => {
@@ -30,19 +29,14 @@ export function createUser(newUser: any): Promise<any>  {
     });
 }
 
-export function getToken() {
-    return this.authToken;
-}
-
-export function getUserId() {
-    return this.userId;
-}
-
 export function loginUser(userLogins: any): Promise<any> {
     return new Promise((resolve, reject) => {
-        fetch(Constants.API_AUTH+'login', {
+        fetch(Constants.API_USER+'auth/login', {
             method: 'POST',
-            headers: header,
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + localStorage.getItem('token'),
+            },
             body: JSON.stringify(userLogins)
         }).then(response => response.json())
             .then(data => {
@@ -60,21 +54,4 @@ export function loginUser(userLogins: any): Promise<any> {
 
 export function logout() {
     localStorage.removeItem('token');
-}
-
-//TODO: move in User utils?
-export function getUserData(userId: number): Promise<any> {
-    return new Promise((resolve, reject) => {
-        fetch(Constants.API_AUTH+userId, {
-            method: 'GET',
-            headers: header
-        }).then(response => response.json())
-            .then(data => {
-                resolve(data);
-            })
-            .catch((error) => {
-                console.error('Error:', error);
-                reject(error);
-            });
-    });
 }
