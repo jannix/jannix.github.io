@@ -5,6 +5,8 @@ import {getUserData} from "../../services/user.service";
 
 export default class AccountSettingsPanel extends React.Component {
 
+    errorAuth: () => void;
+
     constructor(props) {
         super(props);
         this.state = {email: 'Email non retrouvé', password: '***********',
@@ -18,14 +20,19 @@ export default class AccountSettingsPanel extends React.Component {
 
     fillUserDatas() {
         if (!localStorage.getItem('user-id')) {
-            this.props.routerHistory.push('/');
+            this.props.errorAuth();
             return;
         }
         getUserData(localStorage.getItem('user-id')).then((userData) => {
+            this.setState({email: (userData.userFound.email? userData.userFound.email: this.state.email)});
             this.setState({firstName: (userData.userFound.firstName? userData.userFound.firstName: this.state.firstName)});
             this.setState({lastName: (userData.userFound.lastName? userData.userFound.lastName: this.state.lastName)});
             this.setState({birthdate: (userData.userFound.birthdate? userData.userFound.birthdate: this.state.birthdate)});
             this.setState({username: (userData.userFound.username? userData.userFound.username: this.state.username)});
+        }).catch((error) => {
+            if (String(error).includes('403')) {
+                this.props.errorAuth();
+            }
         });
     }
 

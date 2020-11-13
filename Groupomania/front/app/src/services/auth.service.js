@@ -1,4 +1,5 @@
 import * as Constants from "../constants/apiconst";
+import {HandleError} from "../utils/responseHandler";
 
 //let isAuth$ = new BehaviorSubject<boolean>(false);
 //let authToken: string;//TODO: store in different cookie, make the server rebuild the tok
@@ -15,8 +16,8 @@ export function createUser(newUser: any): Promise<any>  {
                 'Content-Type': 'application/json',
                 'Authorization': 'Bearer ' + localStorage.getItem('token'),
             },
-            body: JSON.stringify(newUser)
-        }).then(response => response.json())
+            body: JSON.stringify(newUser)})
+            .then(HandleError)
             .then(data => {
                 localStorage.setItem('token', data.token);
                 localStorage.setItem('user-id', data.userId);
@@ -38,7 +39,7 @@ export function loginUser(userLogins: any): Promise<any> {
                 'Authorization': 'Bearer ' + localStorage.getItem('token'),
             },
             body: JSON.stringify(userLogins)
-        }).then(response => response.json())
+        }).then(HandleError)
             .then(data => {
                 //TODO: keep token in secure way
                 localStorage.setItem('token', data.token);

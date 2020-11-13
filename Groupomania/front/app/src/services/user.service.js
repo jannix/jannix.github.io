@@ -1,4 +1,5 @@
 import * as Constants from "../constants/apiconst";
+import {HandleError} from "../utils/responseHandler";
 
 export function getUserData(userId: number): Promise<any> {
     return new Promise((resolve, reject) => {
@@ -7,8 +8,8 @@ export function getUserData(userId: number): Promise<any> {
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': 'Bearer ' + localStorage.getItem('token'),
-            }
-        }).then(response => response.json())
+            }})
+            .then(HandleError)
             .then(data => {
                 resolve(data);
             })
