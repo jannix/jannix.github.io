@@ -22,6 +22,6 @@ router.post('/login', celebrate({
             password: Joi.string().required(),
         })
     }), rat.limiter, userCtrl.login);
-
+//TODO: create user route?
 router.get('/:id', auth, userCtrl.getUserById);
 module.exports = router;

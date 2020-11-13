@@ -20,16 +20,15 @@ exports.signup = (req, res, next) => {
                         firstName: req.body.firstName,
                         lastName: req.body.lastName
                     };
-                    User.create(user).then((data) => res.status(201).json({
+                    User.create(user).then((user) => res.status(201).json({
                         message: 'Utilisateur créé !' ,
-                        loginId: data.dataValues.id,
+                        userId: user.id,
                         token: jwt.sign(
                             { loginId: data.dataValues.id, },
                             constants.AUTH_TOKEN,
                             { expiresIn: '24h' }
                         )
-                    }))
-                        .catch(error => res.status(400).json({ error }));
+                    })).catch(error => res.status(400).json({ error }));
                 })
                 .catch(err => {
                     res.status(500).send({
@@ -37,9 +36,6 @@ exports.signup = (req, res, next) => {
                             err.message || "Some error occurred while creating the Login."
                     });
                 });
-            /*user.save()
-                .then(() => res.status(201).json({ message: 'Utilisateur créé !' }))
-                .catch(error => res.status(400).json({ error }));*/
         })
         .catch(error => res.status(500).json({ error }));
 };
@@ -52,13 +48,15 @@ exports.login = (req, res, next) => {
                 if (!valid) {
                     return res.status(401).json({ error: 'Mot de passe incorrect !' });
                 }
-                res.status(200).json({
-                    loginId: login[0].dataValues.id,
-                    token: jwt.sign(
-                        { loginId: login[0].dataValues.id },
-                        constants.AUTH_TOKEN,
-                        { expiresIn: '24h' }
-                    )
+                getUserByLoginId(login[0].dataValues.id).then((user) => {
+                    res.status(200).json({
+                        userId: user[0].dataValues.id,
+                        token: jwt.sign(
+                            { loginId: login[0].dataValues.id },
+                            constants.AUTH_TOKEN,
+                            { expiresIn: '24h' }
+                        )
+                    });
                 });
             })
             .catch(error => res.status(500).json({ error }));
@@ -95,4 +93,14 @@ exports.getUserById = (req, res, next) => {
             })
         })
         .catch(error => res.status(500).json({ error }));
+};
+
+function getUserByLoginId(loginId) {
+    return User.findAll({ where: { login: loginId } });
+}
+
+exports.getUserByLoginId = (req, res, next) => {
+    getUserByLoginId(req.params.id ).then( user => {
+
+    }).catch(error => res.status(500).json({ error }));
 };
