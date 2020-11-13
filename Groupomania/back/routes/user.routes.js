@@ -6,7 +6,7 @@ const rat = require("../middlewares/limit-req.middleware");
 
 const userCtrl = require('../controllers/user.controller');
 
-router.post('/signin', celebrate({
+router.post('/auth/signin', celebrate({
         [Segments.BODY]: Joi.object().keys({
             email: Joi.string().required(),
             password: Joi.string().required(),
@@ -16,12 +16,13 @@ router.post('/signin', celebrate({
         })
     }), userCtrl.signup);
 
-router.post('/login', celebrate({
+router.post('/auth/login', celebrate({
         [Segments.BODY]: Joi.object().keys({
             email: Joi.string().required(),
             password: Joi.string().required(),
         })
     }), rat.limiter, userCtrl.login);
-//TODO: create user route?
+
 router.get('/:id', auth, userCtrl.getUserById);
+
 module.exports = router;

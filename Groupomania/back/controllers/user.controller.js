@@ -6,6 +6,7 @@ const Login = db.logins;
 const constants = require('../constants/secret-constants');
 
 exports.signup = (req, res, next) => {
+    console.log('signup');
     bcrypt.hash(req.body.password, 10)
         .then(hash => {
             const login = {
@@ -41,6 +42,7 @@ exports.signup = (req, res, next) => {
 };
 
 exports.login = (req, res, next) => {
+    console.log('login');
     Login.findAll({ where: { email: req.body.email } }).then( login => {
         bcrypt.compare(req.body.password, login[0].dataValues.password)
             .then(valid => {
@@ -71,6 +73,7 @@ function isMySelf(authToken, loginId) {
 }
 
 exports.getUserById = (req, res, next) => {
+    console.log('getUserById');
     User.findAll({ where: { id: req.params.id } }).then( user => {
         if (!user) {
             return res.status(401).json({ error: 'Utilisateur inexistant !' });
