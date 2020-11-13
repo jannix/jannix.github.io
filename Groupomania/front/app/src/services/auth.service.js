@@ -1,7 +1,8 @@
 import * as Constants from "../constants/apiconst";
 
 const header = {
-    'Content-Type': 'application/json'
+    'Content-Type': 'application/json',
+    'Authorization': 'Bearer ' + localStorage.getItem('token'),
 };
 //let isAuth$ = new BehaviorSubject<boolean>(false);
 //let authToken: string;//TODO: store in different cookie, make the server rebuild the tok
@@ -10,7 +11,7 @@ const header = {
 * */
 //let userId: string;
 
-export function createUser(newUser: any) {
+export function createUser(newUser: any): Promise<any>  {
     return new Promise((resolve, reject) => {
         fetch(Constants.API_AUTH+'signin', {
             method: 'POST',
@@ -18,9 +19,8 @@ export function createUser(newUser: any) {
             body: JSON.stringify(newUser)
         }).then(response => response.json())
             .then(data => {
-                console.log(data);
-                //TODO: keep token, go to home page (for now user details page)
                 localStorage.setItem('token', data.token);
+                localStorage.setItem('user-id', data.userId);
                 resolve(data);
             })
             .catch((error) => {
@@ -38,7 +38,7 @@ export function getUserId() {
     return this.userId;
 }
 
-export function loginUser(userLogins: any) {
+export function loginUser(userLogins: any): Promise<any> {
     return new Promise((resolve, reject) => {
         fetch(Constants.API_AUTH+'login', {
             method: 'POST',
@@ -46,9 +46,9 @@ export function loginUser(userLogins: any) {
             body: JSON.stringify(userLogins)
         }).then(response => response.json())
             .then(data => {
-                console.log(data);
                 //TODO: keep token in secure way
                 localStorage.setItem('token', data.token);
+                localStorage.setItem('user-id', data.userId);
                 resolve(data);
             })
             .catch((error) => {
@@ -60,4 +60,21 @@ export function loginUser(userLogins: any) {
 
 export function logout() {
     localStorage.removeItem('token');
+}
+
+//TODO: move in User utils?
+export function getUserData(userId: number): Promise<any> {
+    return new Promise((resolve, reject) => {
+        fetch(Constants.API_AUTH+userId, {
+            method: 'GET',
+            headers: header
+        }).then(response => response.json())
+            .then(data => {
+                resolve(data);
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+                reject(error);
+            });
+    });
 }
