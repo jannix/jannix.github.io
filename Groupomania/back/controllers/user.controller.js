@@ -6,7 +6,6 @@ const Login = db.logins;
 const constants = require('../constants/secret-constants');
 
 exports.signup = (req, res, next) => {
-    console.log('signup');
     bcrypt.hash(req.body.password, 10)
         .then(hash => {
             const login = {
@@ -20,6 +19,7 @@ exports.signup = (req, res, next) => {
                         username: req.body.username,
                         firstName: req.body.firstName,
                         lastName: req.body.lastName
+
                     };
                     User.create(user).then((user) => res.status(201).json({
                         message: 'Utilisateur créé !' ,
@@ -42,7 +42,6 @@ exports.signup = (req, res, next) => {
 };
 
 exports.login = (req, res, next) => {
-    console.log('login');
     Login.findAll({ where: { email: req.body.email } }).then( login => {
         bcrypt.compare(req.body.password, login[0].dataValues.password)
             .then(valid => {
@@ -74,36 +73,34 @@ function isMySelf(authToken, loginId) {
 
 exports.getUserById = (req, res, next) => {
     console.log('getUserById');
-    User.findAll({ where: { id: req.params.id } }).then( user => {
+    User.findByPk(req.params.id, {raw: true}).then( user => {
         if (!user) {
             return res.status(401).json({ error: 'Utilisateur inexistant !' });
         }
         let dataToSend;
-        if (isMySelf(req.headers.authorization.split(' ')[1], user[0].dataValues.login)) {
-            dataToSend = user[0].dataValues;
+        if (isMySelf(req.headers.authorization.split(' ')[1], user.login)) {
+            Login.findByPk(user.login, {raw: true}).then((login) => {
+                dataToSend = {
+                    email: login.email,
+                    ...user
+                };
+                res.status(200).json({userFound: dataToSend});
+            });
         } else {
+
             dataToSend = {
-                username: user[0].dataValues.username,
-                firstName: user[0].dataValues.firstName,
-                lastName: user[0].dataValues.lastName,
-                jobId: user[0].dataValues.jobId,
-                karma: user[0].dataValues.karma,
-                about: user[0].dataValues.about,
-            }
+                username: user.username,
+                firstName: user.firstName,
+                lastName: user.lastName,
+                jobId: user.jobId,
+                karma: user.karma,
+                about: user.about,
+            };
+            res.status(200).json({userFound: dataToSend});
         }
-        res.status(200).json({
-                userFound: dataToSend
-            })
-        })
-        .catch(error => res.status(500).json({ error }));
+    }).catch(error => res.status(500).json({ error }));
 };
 
 function getUserByLoginId(loginId) {
     return User.findAll({ where: { login: loginId } });
 }
-
-exports.getUserByLoginId = (req, res, next) => {
-    getUserByLoginId(req.params.id ).then( user => {
-
-    }).catch(error => res.status(500).json({ error }));
-};
