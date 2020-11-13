@@ -6,7 +6,6 @@ const Login = db.logins;
 const constants = require('../constants/secret-constants');
 
 exports.signup = (req, res, next) => {
-    console.log("SIGNED UP")
     bcrypt.hash(req.body.password, 10)
         .then(hash => {
             const login = {
@@ -46,8 +45,6 @@ exports.signup = (req, res, next) => {
 };
 
 exports.login = (req, res, next) => {
-    console.log("!!! LOG IN !!!");
-    console.log(req.body.email);
     Login.findAll({ where: { email: req.body.email } }).then( login => {
         bcrypt.compare(req.body.password, login[0].dataValues.password)
             .then(valid => {
@@ -56,9 +53,9 @@ exports.login = (req, res, next) => {
                     return res.status(401).json({ error: 'Mot de passe incorrect !' });
                 }
                 res.status(200).json({
-                    loginId: login[0].dataValues._id,
+                    loginId: login[0].dataValues.id,
                     token: jwt.sign(
-                        { loginId: login[0].dataValues._id },
+                        { loginId: login[0].dataValues.id },
                         constants.AUTH_TOKEN,
                         { expiresIn: '24h' }
                     )
@@ -66,26 +63,36 @@ exports.login = (req, res, next) => {
             })
             .catch(error => res.status(500).json({ error }));
     }).catch(error => res.status(500).json({ error }));
-    /*User.findOne({ email: req.body.email })
-        .then(user => {
-            if (!user) {
-                return res.status(401).json({ error: 'Utilisateur non trouvé !' });
+};
+
+//TODO: move in util functions
+function isMySelf(authToken, loginId) {
+    const decodedToken = jwt.verify(authToken, constants.AUTH_TOKEN);
+    const tokenId = decodedToken.loginId;
+    return tokenId === loginId;
+}
+
+exports.getUserById = (req, res, next) => {
+    User.findAll({ where: { id: req.params.id } }).then( user => {
+        if (!user) {
+            return res.status(401).json({ error: 'Utilisateur inexistant !' });
+        }
+        let dataToSend;
+        if (isMySelf(req.headers.authorization.split(' ')[1], user[0].dataValues.login)) {
+            dataToSend = user[0].dataValues;
+        } else {
+            dataToSend = {
+                username: user[0].dataValues.username,
+                firstName: user[0].dataValues.firstName,
+                lastName: user[0].dataValues.lastName,
+                jobId: user[0].dataValues.jobId,
+                karma: user[0].dataValues.karma,
+                about: user[0].dataValues.about,
             }
-            bcrypt.compare(req.body.password, user.password)
-                .then(valid => {
-                    if (!valid) {
-                        return res.status(401).json({ error: 'Mot de passe incorrect !' });
-                    }
-                    res.status(200).json({
-                        userId: user._id,
-                        token: jwt.sign(
-                            { userId: user._id },
-                            constants.AUTH_TOKEN,
-                            { expiresIn: '24h' }
-                        )
-                    });
-                })
-                .catch(error => res.status(500).json({ error }));
+        }
+        res.status(200).json({
+                userFound: dataToSend
+            })
         })
-        .catch(error => res.status(500).json({ error }));*/
+        .catch(error => res.status(500).json({ error }));
 };
