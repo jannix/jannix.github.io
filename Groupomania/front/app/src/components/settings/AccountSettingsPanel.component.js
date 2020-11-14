@@ -6,16 +6,23 @@ import {getUserData} from "../../services/user.service";
 export default class AccountSettingsPanel extends React.Component {
 
     errorAuth: () => void;
+    panelBehavior: () => void;
 
     constructor(props) {
         super(props);
         this.state = {email: 'Email non retrouvé', password: '***********',
             username: 'Pseudo non retrouvé', firstName: 'Prénom non retrouvé',
             lastName: 'Nom non retrouvé', job: '', birthdate: 'JJ/MM/AAAA'};
+        this.fillUserDatas = this.fillUserDatas.bind(this);
+        this.testClick = this.testClick.bind(this);
     }
 
     componentDidMount(): void {
         this.fillUserDatas();
+    }
+
+    componentWillUnmount(): void {
+
     }
 
     fillUserDatas() {
@@ -36,6 +43,13 @@ export default class AccountSettingsPanel extends React.Component {
         });
     }
 
+    testClick(currentValue: string): void {
+        console.log('currentValue : ' + currentValue);
+        if (this.props.panelBehavior) {
+            this.props.panelBehavior();
+        }
+    }
+
     render() {
         return (
             <div className="account-settings-panel-container">
@@ -44,7 +58,7 @@ export default class AccountSettingsPanel extends React.Component {
                     <section>
                         <h2>Logins</h2>
                         <div className="settings-field-container">
-                            <SettingField settingTitle="Adresse Email" currentValue={this.state.email}/>
+                            <SettingField settingTitle="Adresse Email" currentValue={this.state.email} clickFunction={this.testClick}/>
                             <SettingField settingTitle="Changer le Mot de Passe" currentValue={this.state.password}/>
                         </div>
                     </section>

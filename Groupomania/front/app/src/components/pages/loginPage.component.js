@@ -25,7 +25,6 @@ function LoginPage(props) {
                     <div ref={nodeRef}>
                         <LoginForm onUserClickFirstTime={handleClickFirstTime} routerHistory={props.history}/>
                     </div>
-
                 </CSSTransition>
                 <CSSTransition in={showSignin} timeout={300} classNames="signin" unmountOnExit
                                onEnter={() => setShowLogin(false)}

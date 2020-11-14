@@ -2,7 +2,7 @@
 
 .login-page-container {
   background-color: $primary-bg-colour;
-  display: flex;//TODO: display in otherway to make cool animation depending on screen size
+  display: flex;
   flex-direction: column;
   max-height: 100%;
   & > div {
