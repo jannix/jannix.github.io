@@ -1,0 +1,1 @@
+export const BREAKPOINT_TABLET_SIZE = 768;
