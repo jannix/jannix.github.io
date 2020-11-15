@@ -35,7 +35,21 @@ router.put("/useredit/:id", celebrate({
     })
 }), auth, userCtrl.updateUserInfo);
 
-router.get('/:id', auth, userCtrl.getUserById);
+router.put("/emailedit/:id", celebrate({
+    [Segments.BODY]: Joi.object().keys({
+        newEmail: Joi.string().required(),
+        password: Joi.string().required(),
+    })
+}), auth, userCtrl.updateUserEmail);
+
+router.put("/passwordedit/:id", celebrate({
+    [Segments.BODY]: Joi.object().keys({
+        password: Joi.string().required(),
+        newPassword: Joi.string().required(),
+    })
+}), auth, userCtrl.updateUserPassword);
+
+router.get('/:id', userCtrl.getUserById);
 
 
 module.exports = router;
