@@ -13,20 +13,28 @@
   }
 }
 
-.account-settings-enter {
-  opacity: 1;
+.from-left-appear {
+  display: none;
+  transform: translateX(-600px);
 }
-.account-settings-enter-active {
-  opacity: 0;
-  transform: scale(0.2);
-  transition: opacity 300ms, transform 300ms;
+
+.from-left-appear-active {
+  transform: translateX(0px);
+  transition: transform 400ms ease-in-out;
 }
-.account-settings-exit {
-  opacity: 1;
-  transform: scale(0.2);
+
+.from-left-enter {
+  transform: translateX(-600px);
 }
-.account-settings-exit-active {
-  opacity: 1;
-  transform: scale(1);
-  transition: opacity 300ms, transform 300ms;
+
+.from-left-enter-active {
+  transform: translateX(0px);
+  transition: transform 400ms ease-in-out;
+}
+.from-left-exit {
+  transform: translateX(0px);
+}
+.from-left-exit-active {
+  transform: translateX(-600px);
+  transition: transform 600ms ease-in-out;
 }

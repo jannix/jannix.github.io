@@ -44,7 +44,6 @@ export default class AccountSettingsPanel extends React.Component {
     }
 
     testClick(currentValue: string): void {
-        console.log('currentValue : ' + currentValue);
         if (this.props.panelBehavior) {
             this.props.panelBehavior();
         }

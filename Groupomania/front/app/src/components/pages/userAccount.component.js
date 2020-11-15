@@ -13,7 +13,7 @@ import { CSSTransition } from 'react-transition-group';
 function UserAccount() {
 
     const nodeRef = React.useRef(null);
-    const [hideAccountSettings, setHideAccountSettings] = useState(false);
+    const [displayAccountSettings, setDisplayAccountSettings] = useState(true);
     const { width } = useWindowDimensions();
     let history = useHistory();
     let location = useLocation();
@@ -24,8 +24,7 @@ function UserAccount() {
     };
 
     let switchDisplayAccountSettings = () => {
-        console.log('SWITCH');
-        setHideAccountSettings(!hideAccountSettings);
+        setDisplayAccountSettings(!displayAccountSettings);
     };
 
     if (width > BREAKPOINT_TABLET_SIZE) {
@@ -40,16 +39,14 @@ function UserAccount() {
     } else {
         return (
             <div className="user-account-container">
-
-                    <CSSTransition in={!hideAccountSettings} timeout={300} classNames="account-settings" unmountOnExit
-                                   onEnter={() => setHideAccountSettings(false)}
-                                   onExited={() => setHideAccountSettings(true)}
-                                   nodeRef={nodeRef}>
-                        <div ref={nodeRef}>
-                            <AccountSettingsPanel errorAuth={goToLogin} panelBehavior={switchDisplayAccountSettings}/>
-                        </div>
-                    </CSSTransition>
-
+                <CSSTransition in={displayAccountSettings} timeout={1000} appear={true} classNames="from-left" unmountOnExit
+                               onEnter={() => setDisplayAccountSettings(true)}
+                               onExited={() => setDisplayAccountSettings(false)}
+                               nodeRef={nodeRef}>
+                    <div ref={nodeRef}>
+                        <AccountSettingsPanel errorAuth={goToLogin} panelBehavior={switchDisplayAccountSettings}/>
+                    </div>
+                </CSSTransition>
             </div>
         );
     }
