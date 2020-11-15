@@ -23,6 +23,19 @@ router.post('/auth/login', celebrate({
         })
     }), rat.limiter, userCtrl.login);
 
+
+router.put("/useredit/:id", celebrate({
+    [Segments.BODY]: Joi.object().keys({
+        username: Joi.string().allow(''),
+        firstName: Joi.string().allow(null),
+        lastName: Joi.string().allow(null),
+        jobId: Joi.number().allow(0),
+        about: Joi.string().allow(''),
+        birthdate: Joi.date().allow(null),
+    })
+}), auth, userCtrl.updateUserInfo);
+
 router.get('/:id', auth, userCtrl.getUserById);
+
 
 module.exports = router;

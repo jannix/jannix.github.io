@@ -30,38 +30,63 @@ exports.signup = (req, res, next) => {
                             { expiresIn: '24h' }
                         )
                     })).catch(error => res.status(400).json({ error }));
-                })
-                .catch(err => {
+                }).catch(err => {
                     res.status(500).send({
                         message:
                             err.message || "Some error occurred while creating the Login."
                     });
                 });
-        })
-        .catch(error => res.status(500).json({ error }));
+        }).catch(error => res.status(500).json({ error }));
 };
 
 exports.login = (req, res, next) => {
-    Login.findAll({ where: { email: req.body.email } }).then( login => {
-        bcrypt.compare(req.body.password, login[0].dataValues.password)
-            .then(valid => {
-                console.log("bcrypted !!!");
-                if (!valid) {
-                    return res.status(401).json({ error: 'Mot de passe incorrect !' });
-                }
-                getUserByLoginId(login[0].dataValues.id).then((user) => {
-                    res.status(200).json({
-                        userId: user[0].dataValues.id,
-                        token: jwt.sign(
-                            { loginId: login[0].dataValues.id },
-                            constants.AUTH_TOKEN,
-                            { expiresIn: '24h' }
-                        )
-                    });
-                });
-            })
-            .catch(error => res.status(500).json({ error }));
+    Login.findAll({ where: { email: req.body.email } })
+        .then( login => {
+            bcrypt.compare(req.body.password, login[0].dataValues.password)
+                .then(valid => {
+                    console.log("bcrypted !!!");
+                    if (!valid) {
+                        return res.status(401).json({ error: 'Mot de passe incorrect !' });
+                    }
+                    getUserByLoginId(login[0].dataValues.id)
+                        .then((user) => {
+                            res.status(200).json({
+                                userId: user[0].dataValues.id,
+                                token: jwt.sign(
+                                    { loginId: login[0].dataValues.id },
+                                    constants.AUTH_TOKEN,
+                                    { expiresIn: '24h' })
+                            });
+                        });
+                }).catch(error => res.status(500).json({ error }));
     }).catch(error => res.status(500).json({ error }));
+};
+
+exports.updateLoginInfo = (req, res) => {
+
+};
+
+exports.updateUserInfo = (req, res) => {
+    User.findByPk(req.params.id, {raw: true}).then( user => {
+        if (!user) {
+            return res.status(401).json({ error: 'Utilisateur inexistant !' });
+        }
+        if (isMySelf(req.headers.authorization.split(' ')[1], user.login)) {
+            User.update(req.body, { where: { id: req.params.id } }).then(result => {
+                if (result[0] === 1) {
+                    res.status(200).json({
+                        message: 'Utilisateur update !' ,
+                        result: result
+                    })
+                } else {
+                    res.status(404).json({ error: "Error, user probably was not found. User ID : " + req.params.id });
+                }
+            }).catch(err => {res.status(500).send({message: err})});
+        } else {
+            res.status(403).json({ error: 'Forbidden: You do not have the right to update another user.' });
+        }
+    }).catch(error => res.status(500).json({ error }))
+
 };
 
 //TODO: move in util functions
@@ -72,7 +97,6 @@ function isMySelf(authToken, loginId) {
 }
 
 exports.getUserById = (req, res, next) => {
-    console.log('getUserById');
     User.findByPk(req.params.id, {raw: true}).then( user => {
         if (!user) {
             return res.status(401).json({ error: 'Utilisateur inexistant !' });
@@ -87,7 +111,6 @@ exports.getUserById = (req, res, next) => {
                 res.status(200).json({userFound: dataToSend});
             });
         } else {
-
             dataToSend = {
                 username: user.username,
                 firstName: user.firstName,
