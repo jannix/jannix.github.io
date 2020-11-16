@@ -8,6 +8,7 @@ export function getUserData(userId: number): Promise<any> {
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': 'Bearer ' + localStorage.getItem('token'),
+                'userId': localStorage.getItem('user-id'),
             }})
             .then(HandleError)
             .then(data => {

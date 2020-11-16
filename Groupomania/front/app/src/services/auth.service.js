@@ -15,6 +15,7 @@ export function createUser(newUser: any): Promise<any>  {
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': 'Bearer ' + localStorage.getItem('token'),
+                'userId': localStorage.getItem('user-id'),
             },
             body: JSON.stringify(newUser)})
             .then(HandleError)
@@ -37,6 +38,7 @@ export function loginUser(userLogins: any): Promise<any> {
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': 'Bearer ' + localStorage.getItem('token'),
+                'userId': localStorage.getItem('user-id'),
             },
             body: JSON.stringify(userLogins)
         }).then(HandleError)

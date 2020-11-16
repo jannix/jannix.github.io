@@ -14,7 +14,7 @@ export default class AccountSettingsPanel extends React.Component {
             username: 'Pseudo non retrouvé', firstName: 'Prénom non retrouvé',
             lastName: 'Nom non retrouvé', job: '', birthdate: 'JJ/MM/AAAA'};
         this.fillUserDatas = this.fillUserDatas.bind(this);
-        this.testClick = this.testClick.bind(this);
+        this.callPanelBehavior = this.callPanelBehavior.bind(this);
     }
 
     componentDidMount(): void {
@@ -43,7 +43,7 @@ export default class AccountSettingsPanel extends React.Component {
         });
     }
 
-    testClick(currentValue: string): void {
+    callPanelBehavior(): void {
         if (this.props.panelBehavior) {
             this.props.panelBehavior();
         }
@@ -57,7 +57,7 @@ export default class AccountSettingsPanel extends React.Component {
                     <section>
                         <h2>Logins</h2>
                         <div className="settings-field-container">
-                            <SettingField settingTitle="Adresse Email" currentValue={this.state.email} clickFunction={this.testClick}/>
+                            <SettingField settingTitle="Adresse Email" currentValue={this.state.email}/>
                             <SettingField settingTitle="Changer le Mot de Passe" currentValue={this.state.password}/>
                         </div>
                     </section>

@@ -3,6 +3,8 @@ import "./_login-form.scss";
 import InputForm from "./InputForm.component";
 import {matchPattern, validatorMessages, validatorsRules} from "../../utils/validator";
 import {loginUser} from "../../services/auth.service";
+import Toast from "../toast/Toast.component";
+import errorIcon from '../../assets/error.svg';
 
 export default class LoginForm extends React.Component {
     onUserClickFirstTime: () => void;
@@ -10,7 +12,7 @@ export default class LoginForm extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {email: '', password: ''};
+        this.state = {email: '', password: '', toastList: []};
         this.handleChangeState = this.handleChangeState.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
@@ -29,9 +31,25 @@ export default class LoginForm extends React.Component {
             return;
         }
         event.preventDefault();
+        const logins = {
+            email: this.state.email,
+            password: this.state.password,
+        };
 
-        loginUser(this.state).then(() => {
+        loginUser(logins).then((res) => {
             this.props.routerHistory.push('/settings/account');
+        }).catch( err => {
+            console.log('PUT A TOAST : ' + err);
+            this.setState({toastList: [...this.state.toastList, {
+                    id: 2,
+                    title: 'Danger',
+                    description: 'This is a error toast component',
+                    backgroundColor: '#d9534f',
+                    icon: errorIcon
+                }]});
+            console.log(this.state.toastList[0]);
+            this.forceUpdate();
+            //TODO things with toast settings I guess?
         });
     }
 
@@ -60,6 +78,7 @@ export default class LoginForm extends React.Component {
                         <button type="submit" disabled={!this.canSubmit()}>Connexion</button>
                     </div>
                 </form>
+                <Toast toastList={this.state.toastList} position="bottom-left" autoDelete={false} autoDeleteTime={5000}/>
             </div>
         );
     }
