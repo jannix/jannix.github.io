@@ -9,6 +9,7 @@ $phfocus-relative-trans-left: -4px;
 .input-container {
   padding-top: 13px;
   height: 57px;
+  min-width: 100%;
   & .wrong-input {
     border-bottom: solid $red-error 2px;
   }
@@ -35,7 +36,7 @@ input {
   color: $primary-line-colour;
   border: none;
   border-bottom: $primary-line-colour solid 2px;
-  padding-left: 8px;
+  //padding-left: 8px;
 
   & + label.input-placeholder {
     z-index: 0;

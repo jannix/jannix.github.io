@@ -32,8 +32,6 @@
     }
     & form {
       & > .settings-field-container {
-        @include display-flex-column-center;
-        width: 100%;
       }
     }
   }
