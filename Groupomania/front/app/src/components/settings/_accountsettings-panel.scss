@@ -20,11 +20,7 @@
       color: $grey-text-colour;
       font-size: $s_settings-acc-sub-title;
     }
-    & form {
-      @include display-flex-column-center;
-      height: 297px;
-      width: 100%;
-    }
+
     & .settings-field-container {
       border-bottom: solid 2px $light-grey;
       border-top: solid 2px $light-grey;
@@ -33,6 +29,12 @@
       flex-direction: column;
       background-color: $dark-grey;
       margin-bottom: 5px;
+    }
+    & form {
+      & > .settings-field-container {
+        @include display-flex-column-center;
+        width: 100%;
+      }
     }
   }
 }
