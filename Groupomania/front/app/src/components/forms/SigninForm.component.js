@@ -119,7 +119,7 @@ export default class SigninForm extends React.Component {
                                        nodeRef={this.myRef}>
                             <div ref={this.myRef} className="signin-form-inputs-container">
                                 <InputForm value={this.state.username} inputType="text" inputName="username"
-                                           inputLabel="Pseudo"
+                                           inputLabel="Pseudo (opt.)"
                                            changeValue={this.handleChangeState}/>
                                 <InputForm value={this.state.lastName} inputType="text" inputName="lastName"
                                            inputLabel="Nom de famille"
@@ -129,7 +129,7 @@ export default class SigninForm extends React.Component {
                                                }}}
                                            changeValue={this.handleChangeState}/>
                                 <InputForm value={this.state.firstName} inputType="text" inputName="firstName"
-                                           inputLabel="Prénom"
+                                           inputLabel="Prénom(s)"
                                            inputWrongBehavior={{wrongTxt: validatorMessages.firstName.pattern,
                                                isWrong: function (value: string): boolean {
                                                    return !matchPattern(value, validatorsRules.firstnamePattern);
