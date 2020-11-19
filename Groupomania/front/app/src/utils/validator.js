@@ -1,6 +1,6 @@
 export const validatorsRules = {
-    firstnamePattern: '[a-zA-Z ,.\'-]{2,}$',
-    lastnamePattern: '[a-zA-Z ,.\'-]{2,}$',
+    firstnamePattern: '^[a-zA-Z ,.\'-]{2,}$',
+    lastnamePattern: '^[a-zA-Z ,.\'-]{2,}$',
     usernamePattern: '[a-zA-Z0-9.\'-]{2,}$',
     emailPattern: '^\\w+([\\.-]?\\w+)*@\\w+([\\.-]?\\w+)*(\\.\\w{2,4})+$',
     passwordPattern: '^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*_~`:;",/}{>|.<=)(+-]).{8,}$',

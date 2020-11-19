@@ -55,6 +55,27 @@ export function loginUser(userLogins: any): Promise<any> {
     });
 }
 
+export function editUser(userId: number, editedUser: any): Promise<any>  {
+    return new Promise((resolve, reject) => {
+        fetch(Constants.API_USER+'useredit/'+userId, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + localStorage.getItem('token'),
+                'userId': localStorage.getItem('user-id'),
+            },
+            body: JSON.stringify(editedUser)})
+            .then(HandleError)
+            .then(data => {
+                resolve(data);
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+                reject(error);
+            });
+    });
+}
+
 export function logout() {
     localStorage.removeItem('token');
 }

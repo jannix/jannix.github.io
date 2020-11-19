@@ -4,18 +4,19 @@ import SettingField from "./SettingField.component";
 import {getUserData} from "../../services/user.service";
 import {matchPattern, validatorMessages, validatorsRules} from "../../utils/validator";
 import InputForm from "../forms/InputForm.component";
+import {editUser} from "../../services/auth.service";
 
 export default class AccountSettingsPanel extends React.Component {
-
+    routerHistory: any;
     errorAuth: () => void;
     panelBehavior: () => void;
 
     constructor(props) {
         super(props);
         this.state = {email: 'Email non retrouvé', password: '***********',
-            username: 'Aucun pseudo', firstName: 'Prénom non retrouvé',
-            lastName: 'Nom non retrouvé', job: '', birthdate: 'JJ/MM/AAAA',
-            description: 'Aucune description'};
+            username: '', firstName: '',
+            lastName: '', jobId: '', birthdate: '',
+            about: ''};
         this.fillUserDatas = this.fillUserDatas.bind(this);
         this.callPanelBehavior = this.callPanelBehavior.bind(this);
         this.handleChangeState = this.handleChangeState.bind(this);
@@ -45,6 +46,8 @@ export default class AccountSettingsPanel extends React.Component {
             this.setState({lastName: (userData.userFound.lastName? userData.userFound.lastName: this.state.lastName)});
             this.setState({birthdate: (userData.userFound.birthdate? userData.userFound.birthdate: this.state.birthdate)});
             this.setState({username: (userData.userFound.username? userData.userFound.username: this.state.username)});
+            this.setState({jobId: (userData.userFound.jobId? userData.userFound.jobId: this.state.jobId)});
+            this.setState({about: (userData.userFound.about? userData.userFound.about: this.state.about)});
         }).catch((error) => {
             if (String(error).includes('403')) {
                 this.props.errorAuth();
@@ -59,10 +62,10 @@ export default class AccountSettingsPanel extends React.Component {
     }
 
     canSubmit(): boolean {
-        return matchPattern(this.state.username, validatorsRules.usernamePattern) &&
+        return (this.state.username === '' || matchPattern(this.state.username, validatorsRules.usernamePattern)) &&
             matchPattern(this.state.firstName, validatorsRules.firstnamePattern) &&
-            matchPattern(this.state.lastName, validatorsRules.lastnamePattern) &&
-            (this.state.job !== '');//TODO: other test for date and descriptions
+            matchPattern(this.state.lastName, validatorsRules.lastnamePattern);// &&
+            //(this.state.jobId !== '');//TODO: other test for date and descriptions
     }
 
 
@@ -71,14 +74,18 @@ export default class AccountSettingsPanel extends React.Component {
             return;
         }
         event.preventDefault();
-        /*const editedUser = {
+        console.log(this.state.birthdate);
+        const editedUser = {
             username: this.state.username,
             firstName: this.state.firstName,
             lastName: this.state.lastName,
+            about: this.state.about,
+            birthdate: this.state.birthdate,
+            jobId: -1//TODO: change with correct jobId issued by inputlist
         };
-        editUser(editedUser).then(() => {
+        editUser(localStorage.getItem('user-id'), editedUser).then(() => {
             this.props.routerHistory.push('/settings/account');
-        });*/
+        });
     }
 
     render() {
@@ -114,13 +121,13 @@ export default class AccountSettingsPanel extends React.Component {
                                                    return !matchPattern(value, validatorsRules.firstnamePattern);
                                                }}}
                                            changeValue={this.handleChangeState}/>
-                                <InputForm value={this.state.description} inputType="text" inputName="description"
+                                <InputForm value={this.state.about} inputType="text" inputName="about"
                                            inputLabel="Description"
                                            changeValue={this.handleChangeState}/>
                                 <InputForm value={this.state.birthdate} inputType="date" inputName="birthdate"
                                            inputLabel="Date de naissance"
                                            changeValue={this.handleChangeState}/>
-                                <InputForm value={this.state.job} inputType="list" inputName="job"
+                                <InputForm value={this.state.jobId} inputType="list" inputName="jobId"
                                            inputLabel="Poste"
                                            changeValue={this.handleChangeState}/>
                             </div>

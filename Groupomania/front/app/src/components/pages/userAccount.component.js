@@ -44,7 +44,8 @@ function UserAccount() {
                                onExited={() => setDisplayAccountSettings(false)}
                                nodeRef={nodeRef}>
                     <div ref={nodeRef}>
-                        <AccountSettingsPanel errorAuth={goToLogin} panelBehavior={switchDisplayAccountSettings}/>
+                        <AccountSettingsPanel errorAuth={goToLogin} panelBehavior={switchDisplayAccountSettings}
+                                              routerHistory={history}/>
                     </div>
                 </CSSTransition>
             </div>
