@@ -31,10 +31,13 @@ exports.signup = (req, res, next) => {
 };
 
 exports.login = (req, res, next) => {
+    console.log('get to login');
     Login.findAll({ where: { email: req.body.email } }).then( login => {
+        console.log('found the login');
             bcrypt.compare(req.body.password, login[0].dataValues.password).then(valid => {
                     console.log("bcrypted !!!");
                     if (!valid) {
+                        console.log('not valid');
                         return res.status(401).json({ error: 'Mot de passe incorrect !' });
                     }
                     getUserByLoginId(login[0].dataValues.id)
@@ -58,7 +61,6 @@ exports.updateUserEmail = (req, res) => {
             return res.status(401).json({ error: 'Utilisateur inexistant !' });
         }
         if (isMySelf(req.headers.authorization.split(' ')[1], user.login)) {
-            //TODO: check if password isn't already used
             Login.findByPk(user.login, {raw: true}).then( login => {
                 bcrypt.compare(req.body.password, login.password).then( valid => {
                     if (!valid) {
