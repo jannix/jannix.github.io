@@ -37,7 +37,7 @@ export default class LoginForm extends React.Component {
         };
 
         loginUser(logins).then((res) => {
-            this.props.routerHistory.push('/settings/account');
+            this.props.routerHistory.push('/');
         }).catch( err => {
             toast.error('Mauvais identifiants...', {
                 position: "bottom-left",

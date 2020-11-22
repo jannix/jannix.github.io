@@ -4,6 +4,7 @@ import InputForm from "./InputForm.component";
 import {matchPattern, validatorMessages, validatorsRules} from "../../utils/validator";
 import {CSSTransition} from "react-transition-group";
 import {createUser} from "../../services/auth.service";
+import {toast} from "react-toastify";
 
 export default class SigninForm extends React.Component {
     routerHistory: any;
@@ -69,7 +70,17 @@ export default class SigninForm extends React.Component {
             lastName: this.state.lastName,
         };
         createUser(newUser).then(() => {
-            this.props.routerHistory.push('/settings/account');
+            this.props.routerHistory.push('/');
+        }).catch( err => {
+            toast.error('Utilisateur non créé, vérifier les informations...', {
+                position: "bottom-left",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
         });
     }
 

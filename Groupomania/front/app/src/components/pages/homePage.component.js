@@ -1,13 +1,13 @@
-import React, {useState} from 'react';
+import React from 'react';
 import './_home-page.scss';
-import LogoConnection from "./../logo/Logo.component";
+import Header from "../common/Header.component";
 
 
-function HomePage(props) {
+function HomePage() {
 
     return (
         <div className="home-page-container">
-            <LogoConnection/>
+            <Header/>
         </div>
     );
 }

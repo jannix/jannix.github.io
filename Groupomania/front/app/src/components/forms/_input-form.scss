@@ -24,50 +24,51 @@ $phfocus-relative-trans-left: -4px;
       color: $red-error;
     }
   }
-}
 
-input {
-  position: relative;
-  z-index: 1;
-  font-size: 16px;
-  min-height:30px;
-  width: 100%;
-  background: transparent;
-  color: $primary-line-colour;
-  border: none;
-  border-bottom: $primary-line-colour solid 2px;
-  //padding-left: 8px;
-
-  & + label.input-placeholder {
-    z-index: 0;
-    margin: 0;
+  input {
     position: relative;
-    top: $ph-relative-top;
-    left: $ph-relative-left;
+    z-index: 1;
+    font-size: 16px;
+    min-height:30px;
     width: 100%;
+    background: transparent;
     color: $primary-line-colour;
-    transition: 0.3s;
-  }
+    border: none;
+    border-bottom: $primary-line-colour solid 2px;
+    //padding-left: 8px;
 
-  &.has-content + label.input-placeholder {
-    top: $ph-relative-top + $phfocus-relative-trans-top;
-    left: $ph-relative-left + $phfocus-relative-trans-left;
-    font-size: 12px;
-  }
+    & + label.input-placeholder {
+      z-index: 0;
+      margin: 0;
+      position: relative;
+      top: $ph-relative-top;
+      left: $ph-relative-left;
+      width: 100%;
+      color: $primary-line-colour;
+      transition: 0.3s;
+    }
 
-  &:hover + label.input-placeholder {
-    top: $ph-relative-top + $phhover-relative-trans-top;
-  }
-  &:focus + label.input-placeholder {
-    top: $ph-relative-top + $phfocus-relative-trans-top;
-    left: $ph-relative-left + $phfocus-relative-trans-left;
-    font-size: 12px;
-  }
-  &:focus{
-    outline: none;
-  }
+    &.has-content + label.input-placeholder {
+      top: $ph-relative-top + $phfocus-relative-trans-top;
+      left: $ph-relative-left + $phfocus-relative-trans-left;
+      font-size: 12px;
+    }
 
-  &:invalid {
-    box-shadow:none;
+    &:hover + label.input-placeholder {
+      top: $ph-relative-top + $phhover-relative-trans-top;
+    }
+    &:focus + label.input-placeholder {
+      top: $ph-relative-top + $phfocus-relative-trans-top;
+      left: $ph-relative-left + $phfocus-relative-trans-left;
+      font-size: 12px;
+    }
+    &:focus{
+      outline: none;
+    }
+
+    &:invalid {
+      box-shadow:none;
+    }
   }
 }
+

@@ -5,6 +5,7 @@ import {getUserData} from "../../services/user.service";
 import {matchPattern, validatorMessages, validatorsRules} from "../../utils/validator";
 import InputForm from "../forms/InputForm.component";
 import {editUser} from "../../services/auth.service";
+import {toast} from "react-toastify";
 
 export default class AccountSettingsPanel extends React.Component {
     routerHistory: any;
@@ -84,7 +85,26 @@ export default class AccountSettingsPanel extends React.Component {
             jobId: -1//TODO: change with correct jobId issued by inputlist
         };
         editUser(localStorage.getItem('user-id'), editedUser).then(() => {
+            toast.success('Changements effectués...', {
+                position: "bottom-left",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
             this.props.routerHistory.push('/settings/account');
+        }).catch( err => {
+            toast.error('Vérifier les informations...', {
+                position: "bottom-left",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
         });
     }
 
