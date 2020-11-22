@@ -2,6 +2,7 @@
 
 .account-settings-panel-container {
   margin: 20px 20px 20px 20px;
+  padding-bottom: 20px;
   border-radius: 7px;
   -webkit-box-shadow: -7px -5px 8px -1px rgba(0,0,0,0.41);
   box-shadow: -7px -5px 8px -1px rgba(0,0,0,0.45);
@@ -31,7 +32,8 @@
       margin-bottom: 5px;
     }
     & form {
-      & > .settings-field-container {
+      & button {
+        margin-left: auto;
       }
     }
   }

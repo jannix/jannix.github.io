@@ -91,7 +91,7 @@ export default class AccountSettingsPanel extends React.Component {
     render() {
         return (
             <div className="account-settings-panel-container">
-                <div>
+
                     <h1>Réglage du Compte</h1>
                     <section>
                         <h2>Logins</h2>
@@ -130,11 +130,11 @@ export default class AccountSettingsPanel extends React.Component {
                                 <InputForm value={this.state.jobId} inputType="list" inputName="jobId"
                                            inputLabel="Poste"
                                            changeValue={this.handleChangeState}/>
+                                <button type="submit" disabled={!this.canSubmit()}>Sauver</button>
                             </div>
-                            <button type="submit" disabled={!this.canSubmit()}>Sauvegarder</button>
                         </form>
                     </section>
-                </div>
+
             </div>
         );
     }
