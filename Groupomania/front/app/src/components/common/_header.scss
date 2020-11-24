@@ -3,13 +3,15 @@
 .header-container {
   background: $dark-grey;
   & .upper-row {
+    padding-top: 5px;
     display: flex;
-    justify-content: space-around;
-    & #avatar {
+    justify-content: space-between;
+    & .round-icon {
       & img {
         max-height: 32px;
         max-width: 32px;
         margin: 5px;
+        //padding: 3px 3px 15px 15px;
       }
     }
     & #search {
@@ -25,7 +27,6 @@
       }
     }
   }
-
   & .tab-row {
     & #home-tab {
       display: flex;
@@ -40,11 +41,13 @@
         background: #FF1847;
       }
       & ul {
+        flex-grow: 1;
         padding: 0;
         margin: 0;
         list-style: none;
         display: flex;
         & li {
+          flex-grow: 1;
           margin: 0 40px 0 0;
           opacity: .4;
           transition: all 0.4s ease;
@@ -61,15 +64,10 @@
             font-size: $s_tab-font-size;
             background: none;
             display: block;
+            margin: auto;
           }
         }
       }
-      /*& button {
-        flex-grow: 1;
-        background: none;
-        border-radius: 0;
-        border-bottom: solid 2px $grey-text-colour;
-      }*/
     }
   }
 }

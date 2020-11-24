@@ -1,0 +1,54 @@
+
+.from-left-appear {
+  display: none;
+  transform: translateX(-600px);
+}
+
+.from-left-appear-active {
+  transform: translateX(0px);
+  transition: transform 400ms ease-in-out;
+}
+
+.from-left-enter {
+  transform: translateX(-600px);
+}
+
+.from-left-enter-active {
+  transform: translateX(0px);
+  transition: transform 400ms ease-in-out;
+}
+.from-left-exit {
+  transform: translateX(0px);
+}
+.from-left-exit-active {
+  transform: translateX(-600px);
+  transition: transform 600ms ease-in-out;
+}
+
+
+
+.from-bottom-appear {
+  display: none;
+  transform: translateY(-600px);
+}
+
+.from-bottom-appear-active {
+  transform: translateY(0px);
+  transition: transform 400ms ease-in-out;
+}
+
+.from-bottom-enter {
+  transform: translateX(-600px);
+}
+
+.from-bottom-enter-active {
+  transform: translateY(0px);
+  transition: transform 400ms ease-in-out;
+}
+.from-bottom-exit {
+  transform: translateY(0px);
+}
+.from-bottom-exit-active {
+  transform: translateY(-600px);
+  transition: transform 600ms ease-in-out;
+}

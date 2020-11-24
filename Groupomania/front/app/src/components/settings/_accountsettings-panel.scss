@@ -3,10 +3,7 @@
 .account-settings-panel-container {
   margin: 20px 20px 20px 20px;
   padding-bottom: 20px;
-  border-radius: 7px;
-  -webkit-box-shadow: -7px -5px 8px -1px rgba(0,0,0,0.41);
-  box-shadow: -7px -5px 8px -1px rgba(0,0,0,0.45);
-  background-color: $dark-bg;
+  @include dark-panel-bordered;
   color: $primary-text-colour;
   font-family: $primary-text-font;
   text-align: center;

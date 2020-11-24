@@ -1,0 +1,21 @@
+@import "./../../sass/main";
+
+.creation-settings-container {
+  & section {
+    background-color: $dark-white;
+    max-width: 90%;
+    padding: 8px;
+    border-radius: 7px;
+    border: solid 3px $primary-blue-color;
+    display: flex;
+    & div {
+      flex: 1;
+      @include display-flex-column-center;
+      & img {
+        max-height: 64px;
+        max-width: 64px;
+      }
+    }
+  }
+
+}
