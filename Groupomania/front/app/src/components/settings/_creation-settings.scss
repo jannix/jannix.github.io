@@ -1,9 +1,11 @@
 @import "./../../sass/main";
 
 .creation-settings-container {
+  position: fixed;
+  width: 90%;
   & section {
     background-color: $dark-white;
-    max-width: 90%;
+    //max-width: 90%;
     padding: 8px;
     border-radius: 7px;
     border: solid 3px $primary-blue-color;

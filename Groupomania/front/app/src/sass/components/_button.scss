@@ -50,3 +50,24 @@ button {
 #return-btn {
   background-color: $primary-line-colour;
 }
+
+#closebtn {
+  margin: auto;
+  width: 25px;
+  height: 25px;
+  & > .closebtnbar {
+    height: 25px;
+    width: 2px;
+    background-color: black;
+    transform: rotate(45deg);
+    Z-index: 1;
+    & > .closebtnbar2 {
+      height: 25px;
+      width: 2px;
+      background-color: black;
+      transform: rotate(90deg);
+      Z-index: 2;
+    }
+  }
+}
+

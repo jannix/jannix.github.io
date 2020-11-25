@@ -1,10 +1,12 @@
 import React from 'react';
 import "./_creation-settings.scss";
+import CloseBtn from "../common/CloseBtn.component";
 
 export default class CreationSettings extends React.Component {
 
     showCreateTopic: () => void;
     showCreateSub: () => void;
+    closeBehavior: () => void;
     constructor(props) {
         super(props);
         this.clickOnNewSub = this.clickOnNewSub.bind(this);
@@ -27,6 +29,7 @@ export default class CreationSettings extends React.Component {
         return (
             <div className="creation-settings-container">
                 <section>
+                    <CloseBtn closeBehavior={this.props.closeBehavior}/>
                     <div>
                         <img onClick={this.clickOnNewTopic} src={window.location.origin + '/images/topicicon.png'} alt="Topic Icon" title="Create New Topic"/>
                         <h4>Nouveau Sujet</h4>
@@ -35,7 +38,6 @@ export default class CreationSettings extends React.Component {
                         <img onClick={this.clickOnNewSub} src={window.location.origin + '/images/subicon.png'} alt="Sub Icon" title="Create New Sub"/>
                         <h4>Nouveau Fil</h4>
                     </div>
-
                 </section>
             </div>
         );
