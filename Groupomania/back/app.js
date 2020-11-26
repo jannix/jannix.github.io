@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const cors = require("cors");
 const helmet = require("helmet");
 const userRoutes = require('./routes/user.routes');
+const subRoutes = require('./routes/sub.routes');
 //const secretConst = require('./constants/secret-constants');
 const path = require('path');
 
@@ -23,6 +24,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/images', express.static(path.join(__dirname, 'images')));
 
 app.use('/api/user', userRoutes);
+app.use('/api/sub', subRoutes);
 
 app.get("/", (req, res) => {
     res.json({ message: "Welcome to Groupomania Social Platfrom." });
