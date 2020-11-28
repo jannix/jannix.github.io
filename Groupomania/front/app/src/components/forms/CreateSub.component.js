@@ -5,12 +5,18 @@ import {matchPattern, validatorMessages, validatorsRules} from "../../utils/vali
 import {toast, ToastContainer} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import {createSub} from "../../services/sub.service";
+import TextAreaForm from "./TextAreaForm.component";
 
 export default class CreateSub extends React.Component {
 
     constructor(props) {
         super(props);
         this.state = {title: '', description: '', subjectId: [-1]};
+        this.handleChangeState = this.handleChangeState.bind(this);
+    }
+
+    handleChangeState(targetName: string, targetValue: string): void {
+        this.setState({[targetName]: targetValue});
     }
 
     canSubmit(): boolean {
@@ -57,7 +63,7 @@ export default class CreateSub extends React.Component {
                                            return !matchPattern(value, validatorsRules.lastnamePattern);
                                        }}}
                                    changeValue={this.handleChangeState}/>
-                        <InputForm value={this.state.description} inputType="text" inputName="description"
+                        <TextAreaForm value={this.state.description} inputType="text" inputName="description" inputHeight="75px"
                                    inputLabel="Description"
                                    changeValue={this.handleChangeState}/>
                         <InputForm value={this.state.subjectId} inputType="list" inputName="subject"
