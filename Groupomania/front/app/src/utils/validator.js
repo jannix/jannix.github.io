@@ -4,6 +4,8 @@ export const validatorsRules = {
     usernamePattern: '[a-zA-Z0-9.\'-]{2,}$',
     emailPattern: '^\\w+([\\.-]?\\w+)*@\\w+([\\.-]?\\w+)*(\\.\\w{2,4})+$',
     passwordPattern: '^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*_~`:;",/}{>|.<=)(+-]).{8,}$',
+    titlePattern: '^[a-zA-Z,.\'-_]{2,}$',
+    descriptionPattern: '^[a-zA-Z ,.\'-]{2,}$',
 };//TODO: Get the patterns from server
 
 export function matchPattern(value, pattern) {

@@ -26,6 +26,7 @@ $phfocus-relative-trans-left: -4px;
   }
 
   textarea {
+    resize: none;
     position: relative;
     z-index: 1;
     font-size: 16px;
@@ -35,7 +36,6 @@ $phfocus-relative-trans-left: -4px;
     color: $primary-line-colour;
     border: none;
     border-bottom: $primary-line-colour solid 2px;
-    //padding-left: 8px;
 
     & + label.input-placeholder {
       z-index: 0;

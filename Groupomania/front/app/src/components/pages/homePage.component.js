@@ -53,7 +53,7 @@ function HomePage() {
                            onExited={() => setShowCreateSub(false)}
                            nodeRef={nodeRef2}>
                 <div ref={nodeRef2}>
-                    <CreateSub/>
+                    <CreateSub closeBehavior={disappearAllMenu}/>
                 </div>
             </CSSTransition>
             <CSSTransition in={showCreateTopic} timeout={300} classNames="from-bottom" unmountOnExit
