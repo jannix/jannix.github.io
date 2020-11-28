@@ -3,6 +3,7 @@ import './_home-page.scss';
 import Header from "../common/Header.component";
 import {CSSTransition} from "react-transition-group";
 import CreationSettings from "../settings/CreationSettings.component";
+import CreateSub from "../forms/CreateSub.component";
 
 
 function HomePage() {
@@ -52,7 +53,7 @@ function HomePage() {
                            onExited={() => setShowCreateSub(false)}
                            nodeRef={nodeRef2}>
                 <div ref={nodeRef2}>
-                    <p>CREATE SUB</p>
+                    <CreateSub/>
                 </div>
             </CSSTransition>
             <CSSTransition in={showCreateTopic} timeout={300} classNames="from-bottom" unmountOnExit

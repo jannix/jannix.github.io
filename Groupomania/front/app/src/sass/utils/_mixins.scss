@@ -9,6 +9,7 @@
   -webkit-box-shadow: -7px -5px 8px -1px rgba(0,0,0,0.41);
   box-shadow: -7px -5px 8px -1px rgba(0,0,0,0.45);
   background-color: $dark-bg;
+  color: $primary-text-colour;
 }
 
 @mixin DEBUG_box($color) {
