@@ -29,26 +29,26 @@
 
 .from-bottom-appear {
   display: none;
-  transform: translateY(600px);
+  transform: translateY(1700px);
 }
 
 .from-bottom-appear-active {
-  transform: translateY(0px);
-  transition: transform 400ms ease-in-out;
+  transform: translateY(1700px);
+  transition: transform 300ms ease-in-out;
 }
 
 .from-bottom-enter {
-  transform: translateY(600px);
+  transform: translateY(1700px);
 }
 
 .from-bottom-enter-active {
-  transform: translateY(0px);
-  transition: transform 400ms ease-in-out;
+  transform: translateY(572px);
+  transition: transform 350ms ease-in-out;
 }
 .from-bottom-exit {
-  transform: translateY(0px);
+  transform: translateY(572px);
 }
 .from-bottom-exit-active {
-  transform: translateY(600px);
-  transition: transform 600ms ease-in-out;
+  transform: translateY(1700px);
+  transition: transform 450ms ease-in-out;
 }

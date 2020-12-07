@@ -40,7 +40,7 @@ function HomePage() {
         <div className="home-page-container">
             <Header showCreateMenu={appearCreateMenu} isShowCreateMenu={showCreateMenu}/>
 
-            <CSSTransition in={showCreateMenu} timeout={300} classNames="from-left" unmountOnExit
+            <CSSTransition in={showCreateMenu} timeout={600} classNames="from-left" unmountOnExit
                            onEnter={() => setShowCreateMenu(true)}
                            onExited={() => setShowCreateMenu(false)}
                            nodeRef={nodeRef}>
@@ -48,7 +48,7 @@ function HomePage() {
                     <CreationSettings showCreateTopic={appearCreateTopic} showCreateSub={appearCreateSub} closeBehavior={disappearAllMenu}/>
                 </div>
             </CSSTransition>
-            <CSSTransition in={showCreateSub} timeout={300} classNames="from-bottom" unmountOnExit
+            <CSSTransition in={showCreateSub} timeout={600} classNames="from-bottom" unmountOnExit
                            onEnter={() => setShowCreateSub(true)}
                            onExited={() => setShowCreateSub(false)}
                            nodeRef={nodeRef2}>
@@ -56,7 +56,7 @@ function HomePage() {
                     <CreateSub closeBehavior={disappearAllMenu}/>
                 </div>
             </CSSTransition>
-            <CSSTransition in={showCreateTopic} timeout={300} classNames="from-bottom" unmountOnExit
+            <CSSTransition in={showCreateTopic} timeout={600} classNames="from-bottom" unmountOnExit
                            onEnter={() => setShowCreateTopic(true)}
                            onExited={() => setShowCreateTopic(false)}
                            nodeRef={nodeRef2}>
@@ -64,7 +64,7 @@ function HomePage() {
                     <p>CREATE TOPIC</p>
                 </div>
             </CSSTransition>
-
+            {/*TODO: main display should be a view component*/}
             <p>
 
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum lorem ex, interdum in malesuada vel, eleifend ac velit. Morbi pretium, dolor eu porta vehicula, nisi purus tempus libero, id accumsan mi eros et enim. Suspendisse potenti. Curabitur vitae vulputate eros, sit amet ullamcorper erat. Fusce eleifend iaculis magna non venenatis. Nulla facilisi. Aliquam ultrices rutrum turpis at rhoncus. Curabitur iaculis mi dui, sed ornare odio lobortis eget. Ut non elit diam. Quisque lacinia massa lacus, quis consequat nisi feugiat vitae. Nullam porttitor ipsum sed nisi sagittis finibus. Donec id augue nec ante congue aliquet tincidunt sit amet lectus. Duis a ipsum vitae sem molestie dignissim sit amet vel orci. Integer luctus velit efficitur faucibus commodo. Proin odio lorem, luctus in tincidunt sed, sagittis sit amet est.
