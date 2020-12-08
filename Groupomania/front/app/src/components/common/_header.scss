@@ -25,6 +25,20 @@
         border-radius: 5px;
         padding-left: 20px;
       }
+      & .search-list-result {
+        position: absolute;
+        top: 29px;
+        left: 0;
+        right: 0;
+        z-index: 1;
+        border-radius: 5px;
+        background: $light-grey;
+        padding-bottom: 4px;
+        & li {
+          margin: 7px;
+          list-style-type: none;
+        }
+      }
     }
   }
   & .tab-row {

@@ -111,50 +111,48 @@ export default class AccountSettingsPanel extends React.Component {
     render() {
         return (
             <div className="account-settings-panel-container">
-
-                    <h1>Réglage du Compte</h1>
-                    <section>
-                        <h2>Logins</h2>
+                <h1>Réglage du Compte</h1>
+                <section>
+                    <h2>Logins</h2>
+                    <div className="settings-field-container">
+                        <SettingField settingTitle="Adresse Email" currentValue={this.state.email}/>
+                        <SettingField settingTitle="Changer le Mot de Passe" currentValue={this.state.password}/>
+                    </div>
+                </section>
+                <section>
+                    <form onSubmit={this.handleSubmit}>
+                        <h2>Informations</h2>
                         <div className="settings-field-container">
-                            <SettingField settingTitle="Adresse Email" currentValue={this.state.email}/>
-                            <SettingField settingTitle="Changer le Mot de Passe" currentValue={this.state.password}/>
+                            <InputForm value={this.state.username} inputType="text" inputName="username"
+                                       inputLabel="Pseudo"
+                                       changeValue={this.handleChangeState}/>
+                            <InputForm value={this.state.lastName} inputType="text" inputName="lastName"
+                                       inputLabel="Nom de famille"
+                                       inputWrongBehavior={{wrongTxt: validatorMessages.lastName.pattern,
+                                           isWrong: function (value: string): boolean {
+                                               return !matchPattern(value, validatorsRules.lastnamePattern);
+                                           }}}
+                                       changeValue={this.handleChangeState}/>
+                            <InputForm value={this.state.firstName} inputType="text" inputName="firstName"
+                                       inputLabel="Prénom(s)"
+                                       inputWrongBehavior={{wrongTxt: validatorMessages.firstName.pattern,
+                                           isWrong: function (value: string): boolean {
+                                               return !matchPattern(value, validatorsRules.firstnamePattern);
+                                           }}}
+                                       changeValue={this.handleChangeState}/>
+                            <InputForm value={this.state.about} inputType="text" inputName="about"
+                                       inputLabel="Description"
+                                       changeValue={this.handleChangeState}/>
+                            <InputForm value={this.state.birthdate} inputType="date" inputName="birthdate"
+                                       inputLabel="Date de naissance"
+                                       changeValue={this.handleChangeState}/>
+                            <InputForm value={this.state.jobId} inputType="list" inputName="jobId"
+                                       inputLabel="Poste"
+                                       changeValue={this.handleChangeState}/>
+                            <button type="submit" disabled={!this.canSubmit()}>Sauver</button>
                         </div>
-                    </section>
-                    <section>
-                        <form onSubmit={this.handleSubmit}>
-                            <h2>Informations</h2>
-                            <div className="settings-field-container">
-                                <InputForm value={this.state.username} inputType="text" inputName="username"
-                                           inputLabel="Pseudo"
-                                           changeValue={this.handleChangeState}/>
-                                <InputForm value={this.state.lastName} inputType="text" inputName="lastName"
-                                           inputLabel="Nom de famille"
-                                           inputWrongBehavior={{wrongTxt: validatorMessages.lastName.pattern,
-                                               isWrong: function (value: string): boolean {
-                                                   return !matchPattern(value, validatorsRules.lastnamePattern);
-                                               }}}
-                                           changeValue={this.handleChangeState}/>
-                                <InputForm value={this.state.firstName} inputType="text" inputName="firstName"
-                                           inputLabel="Prénom(s)"
-                                           inputWrongBehavior={{wrongTxt: validatorMessages.firstName.pattern,
-                                               isWrong: function (value: string): boolean {
-                                                   return !matchPattern(value, validatorsRules.firstnamePattern);
-                                               }}}
-                                           changeValue={this.handleChangeState}/>
-                                <InputForm value={this.state.about} inputType="text" inputName="about"
-                                           inputLabel="Description"
-                                           changeValue={this.handleChangeState}/>
-                                <InputForm value={this.state.birthdate} inputType="date" inputName="birthdate"
-                                           inputLabel="Date de naissance"
-                                           changeValue={this.handleChangeState}/>
-                                <InputForm value={this.state.jobId} inputType="list" inputName="jobId"
-                                           inputLabel="Poste"
-                                           changeValue={this.handleChangeState}/>
-                                <button type="submit" disabled={!this.canSubmit()}>Sauver</button>
-                            </div>
-                        </form>
-                    </section>
-
+                    </form>
+                </section>
             </div>
         );
     }

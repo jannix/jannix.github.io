@@ -1,5 +1,6 @@
 import React from 'react';
 import "./_header.scss";
+import {getSubsByTitle} from "../../services/sub.service";
 
 export default class Header extends React.Component {
 
@@ -7,16 +8,33 @@ export default class Header extends React.Component {
     showCreateMenu: (appear: boolean) => void;
     constructor(props) {
         super(props);
-        this.state = {isSub: true};
+        this.state = {isSub: true, searchOption: []};
         this.clickOnSub = this.clickOnSub.bind(this);
         this.clickOnNews = this.clickOnNews.bind(this);
         this.clickOnAvatar = this.clickOnAvatar.bind(this);
         this.clickOnCreate = this.clickOnCreate.bind(this);
+        this.clickSearchCandidate = this.clickSearchCandidate.bind(this);
         this.handleSearchChangeValue = this.handleSearchChangeValue.bind(this);
     }
 
     handleSearchChangeValue(event): void {
-        //TODO: search sub api
+        if (!event.target.value) {
+            this.setState({searchOption: []});
+            return;
+        }
+        getSubsByTitle(event.target.value).then((res) => {
+            if (res.subsFound) {
+                this.setState({searchOption: res.subsFound});
+            } else {
+                this.setState({searchOption: []});
+            }
+        }).catch( err => {
+            this.setState({searchOption: []});
+        });
+    }
+
+    clickSearchCandidate(event): void {
+        //TODO: go to the fil page
     }
 
     //TODO: improve by making better css and components
@@ -53,6 +71,15 @@ export default class Header extends React.Component {
                     </div>
                     <div id="search">
                         <input type="text" placeholder="Search..." onChange={this.handleSearchChangeValue}/>
+                        {this.state.searchOption.length > 0 &&
+                        <ul className="search-list-result">
+                            {this.state.searchOption.map( sub => (
+                                <li key={sub.id} onClick={this.clickSearchCandidate} >
+                                    { sub.title }
+                                </li>
+                            ))}
+                        </ul>
+                        }
                     </div>
                 </div>
                 <div className="tab-row">
