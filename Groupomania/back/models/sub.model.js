@@ -2,7 +2,8 @@ module.exports = (sequelize, Sequelize) => {
     const Sub = sequelize.define("sub", {
         title: {
             type: Sequelize.STRING,
-            allowNull: false
+            allowNull: false,
+            unique: true
         },
         description: {
             type: Sequelize.STRING,

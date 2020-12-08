@@ -13,7 +13,9 @@ router.post('/create', celebrate({
         ownerId: Joi.number().required(),
         subjectIds: Joi.array()/*.items(Joi.number)*/.required(),//TODO: fix validation array type
     })
-}), /*auth,*/ subCtrl.create);
+}), auth, subCtrl.create);
+
+router.get('/getbytitle/:title', subCtrl.getByTitle);
 /*
 router.post('/auth/login', celebrate({
     [Segments.BODY]: Joi.object().keys({
