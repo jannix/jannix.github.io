@@ -3,6 +3,7 @@ const jwt = require('jsonwebtoken');
 const db = require('../models');
 const User = db.users;
 const Login = db.logins;
+const Sub = db.subs;
 const constants = require('../constants/secret-constants');
 
 exports.signup = (req, res, next) => {
@@ -16,7 +17,9 @@ exports.signup = (req, res, next) => {
                 login: data.dataValues.id,
                 username: req.body.username,
                 firstName: req.body.firstName,
-                lastName: req.body.lastName
+                lastName: req.body.lastName,
+                karma: 0,
+                subscriptionIds: [1]
             };
             User.create(user).then((user) => res.status(201).json({
                 message: 'Utilisateur créé !' ,
@@ -31,7 +34,6 @@ exports.signup = (req, res, next) => {
 };
 
 exports.login = (req, res, next) => {
-    console.log('get to login');
     Login.findAll({ where: { email: req.body.email } }).then( login => {
         console.log('found the login');
             bcrypt.compare(req.body.password, login[0].dataValues.password).then(valid => {
@@ -145,6 +147,33 @@ exports.updateUserInfo = (req, res) => {
 
 };
 
+exports.joinSub = (req, res) => {
+    User.findByPk(req.params.id).then( user => {
+        if (!user) {
+            return res.status(401).json({ error: 'Utilisateur inexistant !' });
+        }
+        if (isMySelf(req.headers.authorization.split(' ')[1], user.login)) {
+            //TODO:add sub id to subscriptionIds
+            console.log(user.subscriptionIds);
+            user.subscriptionIds.push(req.body.subId);
+            console.log(user.subscriptionIds);
+            /*User.update(req.body, { where: { id: req.params.id } }).then(result => {
+                if (result[0] === 1) {
+                    res.status(200).json({
+                        message: 'Utilisateur update !',
+                        result: result
+                    })
+                } else {
+                    res.status(404).json({ error: "Error, user probably was not found. User ID : " + req.params.id });
+                }
+            }).catch(err => {res.status(500).send({message: err})});*/
+        } else {
+            res.status(403).json({ error: 'Forbidden: You do not have the right to update another user.' });
+        }
+    }).catch(error => res.status(500).json({ error }))
+
+};
+
 //TODO: move in util functions
 function isMySelf(authToken, loginId) {
     const decodedToken = jwt.verify(authToken, constants.AUTH_TOKEN);
@@ -183,3 +212,18 @@ exports.getUserById = (req, res, next) => {
 function getUserByLoginId(loginId) {
     return User.findAll({ where: { login: loginId } });
 }
+
+exports.getUserSubscriptions = async (req, res, next) => {
+    const user = await User.findByPk(req.params.id, {raw: true});
+    if (!user) {
+        return res.status(401).json({ error: 'Utilisateur inexistant !' });
+    }
+    let userSubs = [];
+    if (user.subscriptionIds && user.subscriptionIds.length > 0) {
+        for (const value of user.subscriptionIds) {
+            const res = await Sub.findByPk(value, {raw: true});
+            userSubs.push(res);
+        }
+    }
+    res.status(200).json({userSubscriptions: userSubs});
+};

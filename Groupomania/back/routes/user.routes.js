@@ -49,7 +49,15 @@ router.put("/passwordedit/:id", celebrate({
     })
 }), auth, userCtrl.updateUserPassword);
 
+router.put("/joinsub/:id", celebrate({
+    [Segments.BODY]: Joi.object().keys({
+        subId: Joi.number().required(),
+    })
+}), auth, userCtrl.joinSub);
+
 router.get('/:id', userCtrl.getUserById);
+
+router.get('/getsubscriptions/:id', userCtrl.getUserSubscriptions);
 
 
 module.exports = router;

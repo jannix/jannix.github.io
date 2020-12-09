@@ -36,6 +36,6 @@ app.use((req, res) => {
 
 db.sequelize.sync({ alter: true }).then(() => {
     console.log("Drop and re-sync db.");
-}); //only for dev to drop tables
+}); //{ force: true }only for dev to drop tables
 
 module.exports = app;

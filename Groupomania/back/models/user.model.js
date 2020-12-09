@@ -28,6 +28,15 @@ module.exports = (sequelize, Sequelize) => {
             type: Sequelize.DATEONLY,
             allowNull: true,
         },
+        subscriptionIds: {
+            type: Sequelize.ARRAY(Sequelize.INTEGER),
+            allowNull: true,
+        },
+        isAdmin: {
+            type: Sequelize.BOOLEAN,
+            allowNull: false,
+            defaultValue: false,
+        },
         login : {
             type: Sequelize.INTEGER,
             allowNull: false,
