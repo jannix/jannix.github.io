@@ -61,7 +61,7 @@ export default class Header extends React.Component {
 
     render() {
         return (
-            <div className="header-container">
+            <header className="header-container">
                 <div className="upper-row">
                     <div className="round-icon">
                         <img onClick={this.clickOnAvatar} src={window.location.origin + '/images/testiconavatar.png'} alt="user Avatar" title="User Profile"/>
@@ -90,7 +90,7 @@ export default class Header extends React.Component {
                         </ul>
                     </nav>
                 </div>
-            </div>
+            </header>
         );
     }
 }
