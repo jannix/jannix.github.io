@@ -18,7 +18,6 @@ export default class SelectForm extends React.Component {
     }
 
     handleChangeValue(event): void {
-        console.log(event);
         this.props.changeValue(event.target.name, event.target.value);
         if (this.props.inputWrongBehavior) {
             if (event.target.value === '') {

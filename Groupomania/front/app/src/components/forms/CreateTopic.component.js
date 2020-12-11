@@ -17,7 +17,6 @@ export default class CreateTopic extends React.Component {
         this.state = {title: '', text: '', subOptions: []};
         this.handleChangeState = this.handleChangeState.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
-
     }
 
     componentDidMount(): void {
@@ -63,7 +62,7 @@ export default class CreateTopic extends React.Component {
             <div className="create-topic-container">
                 <CloseBtn closeBehavior={this.props.closeBehavior}/>
                 <form onSubmit={this.handleSubmit}>
-                    <h2>Nouveau Sujet</h2>
+                    <h2>Nouveau Post</h2>
                     <div className="settings-field-container">
                         <InputForm value={this.state.title} inputType="text" inputName="title"
                                    inputLabel="Titre du Post"

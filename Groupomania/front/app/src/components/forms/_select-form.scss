@@ -1,0 +1,74 @@
+@import "./../../sass/main";
+
+$ph-relative-top: -54px;
+$ph-relative-left: 8px;
+$phhover-relative-trans-top: -8px;
+$phfocus-relative-trans-top: -10px;
+$phfocus-relative-trans-left: -4px;
+
+.select-container {
+  padding-top: 13px;
+  height: 57px;
+  min-width: 100%;
+  & .wrong-input {
+    border-bottom: solid $red-error 2px;
+  }
+  & .wrong-input-txt {
+    line-height: 8px;
+    position: relative;
+    top: -20px;
+    &__label {
+      font-size: 10px;
+      margin: 0;
+      padding: 0;
+      color: $red-error;
+    }
+  }
+
+  select {
+    resize: none;
+    position: relative;
+    z-index: 1;
+    font-size: 16px;
+    min-height:30px;
+    width: 100%;
+    background: transparent;
+    color: $primary-line-colour;
+    border: none;
+    border-bottom: $primary-line-colour solid 2px;
+
+    & + label.input-placeholder {
+      z-index: 0;
+      margin: 0;
+      position: relative;
+      top: $ph-relative-top;
+      left: $ph-relative-left;
+      width: 100%;
+      color: $primary-line-colour;
+      transition: 0.3s;
+    }
+
+    &.has-content + label.input-placeholder {
+      top: $ph-relative-top + $phfocus-relative-trans-top;
+      left: $ph-relative-left + $phfocus-relative-trans-left;
+      font-size: 12px;
+    }
+
+    &:hover + label.input-placeholder {
+      top: $ph-relative-top + $phhover-relative-trans-top;
+    }
+    &:focus + label.input-placeholder {
+      top: $ph-relative-top + $phfocus-relative-trans-top;
+      left: $ph-relative-left + $phfocus-relative-trans-left;
+      font-size: 12px;
+    }
+    &:focus{
+      outline: none;
+    }
+
+    &:invalid {
+      box-shadow:none;
+    }
+  }
+}
+
