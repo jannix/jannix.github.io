@@ -1,5 +1,5 @@
 import React from 'react';
-import "./_create-topic.scss";
+import "./_create-ocpost.scss";
 import InputForm from "./InputForm.component";
 import {matchPattern, validatorMessages, validatorsRules} from "../../utils/validator";
 import {toast, ToastContainer} from "react-toastify";
@@ -10,7 +10,7 @@ import SelectForm from "./SelectForm.component";
 import {getUserSubscriptions} from "../../services/user.service";
 import {createPost} from "../../services/post.service";
 
-export default class CreateTopic extends React.Component {
+export default class CreateOCPost extends React.Component {
 
     closeBehavior: () => void;
     constructor(props) {
@@ -32,7 +32,7 @@ export default class CreateTopic extends React.Component {
     }
 
     canSubmit(): boolean {
-        return true;
+        return (this.state.subId !== -1) && matchPattern(this.state.title, validatorsRules.titlePattern);
     }
 
     handleSubmit(event): void {

@@ -4,7 +4,7 @@ import Header from "../common/Header.component";
 import {CSSTransition} from "react-transition-group";
 import CreationSettings from "../settings/CreationSettings.component";
 import CreateSub from "../forms/CreateSub.component";
-import CreateTopic from "../forms/CreateTopic.component";
+import CreateOCPost from "../forms/CreateOCPost.component";
 
 
 function HomePage() {
@@ -62,7 +62,7 @@ function HomePage() {
                            onExited={() => setShowCreateTopic(false)}
                            nodeRef={nodeRef2}>
                 <div ref={nodeRef2}>
-                    <CreateTopic closeBehavior={disappearAllMenu}></CreateTopic>
+                    <CreateOCPost closeBehavior={disappearAllMenu}></CreateOCPost>
                 </div>
             </CSSTransition>
             {/*TODO: main display should be a view component*/}
