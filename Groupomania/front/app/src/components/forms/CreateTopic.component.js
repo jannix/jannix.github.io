@@ -8,13 +8,14 @@ import TextAreaForm from "./TextAreaForm.component";
 import CloseBtn from "../common/CloseBtn.component";
 import SelectForm from "./SelectForm.component";
 import {getUserSubscriptions} from "../../services/user.service";
+import {createPost} from "../../services/post.service";
 
 export default class CreateTopic extends React.Component {
 
     closeBehavior: () => void;
     constructor(props) {
         super(props);
-        this.state = {title: '', text: '', subOptions: []};
+        this.state = {title: '', text: '', subId: -1, subOptions: []};
         this.handleChangeState = this.handleChangeState.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
@@ -22,6 +23,7 @@ export default class CreateTopic extends React.Component {
     componentDidMount(): void {
         getUserSubscriptions(localStorage.getItem('user-id')).then(res => {
             this.setState({subOptions: res.userSubscriptions});
+            this.setState({subId: res.userSubscriptions[0].id});
         })
     }
 
@@ -30,7 +32,7 @@ export default class CreateTopic extends React.Component {
     }
 
     canSubmit(): boolean {
-        return false;
+        return true;
     }
 
     handleSubmit(event): void {
@@ -39,11 +41,16 @@ export default class CreateTopic extends React.Component {
         }
         event.preventDefault();
 
-        /*const newTopic = {
+        const newOCPost = {
+            title: this.state.title,
+            text: this.state.text,
+            ownerId: localStorage.getItem('user-id'),
+            parentId: this.state.subId,
+            isOC: true,
         };
-        createTopic(newSub).then((res) => {
+        createPost(newOCPost).then((res) => {
             this.props.closeBehavior();
-            this.props.routerHistory.push('/');
+            this.props.routerHistory.push('/');//TODO: go to post page
         }).catch( err => {
             toast.error('Le sujet n\'a pas pu être créé...', {
                 position: "bottom-left",
@@ -54,7 +61,7 @@ export default class CreateTopic extends React.Component {
                 draggable: true,
                 progress: undefined,
             });
-        });*/
+        });
     }
 
     render() {
@@ -76,7 +83,7 @@ export default class CreateTopic extends React.Component {
                         <TextAreaForm value={this.state.text} inputType="text" inputName="text"
                                       inputLabel="Texte du Post"
                                       changeValue={this.handleChangeState}/>
-                        <SelectForm value={this.state.subId} inputName="sub" options={this.state.subOptions}
+                        <SelectForm value={this.state.subId} inputName="subId" options={this.state.subOptions}
                                    inputLabel="Fil du Post"
                                    changeValue={this.handleChangeState}/>
 

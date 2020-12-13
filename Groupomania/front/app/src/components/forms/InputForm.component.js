@@ -15,6 +15,7 @@ export default class InputForm extends React.Component {
     constructor(props) {
         super(props);
         this.handleChangeValue = this.handleChangeValue.bind(this);
+        this.handleClick = this.handleClick.bind(this);
     }
 
     handleChangeValue(event): void {
@@ -35,11 +36,15 @@ export default class InputForm extends React.Component {
         }
     }
 
+    handleClick(event): void {
+        event.preventDefault();
+    }
+
     render() {
         return (
             <div className="input-container">
                 <input className={(this.props.value? "has-content":"") + ' ' + this.wrongInputCss} type={this.props.inputType} name={this.props.inputName}
-                       autoComplete="off" value={this.props.value} onChange={this.handleChangeValue}/>
+                       autoComplete="off" value={this.props.value} onChange={this.handleChangeValue} onClick={this.handleClick}/>
                 <label className="input-placeholder">{this.props.inputLabel}</label>
                 {this.isWrong &&
                 <div className="wrong-input-txt">
