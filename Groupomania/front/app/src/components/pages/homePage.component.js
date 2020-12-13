@@ -13,18 +13,18 @@ function HomePage() {
 
     const [showCreateMenu, setShowCreateMenu] = useState(false);
     const [showCreateSub, setShowCreateSub] = useState(false);
-    const [showCreateTopic, setShowCreateTopic] = useState(false);
+    const [showCreateOCPost, setShowCreateOCPost] = useState(false);
 
     function appearCreateMenu(appear: boolean) {
         setShowCreateMenu(appear);
         setShowCreateSub(false);
-        setShowCreateTopic(false);
+        setShowCreateOCPost(false);
     }
 
     function disappearAllMenu() {
         setShowCreateMenu(false);
         setShowCreateSub(false);
-        setShowCreateTopic(false);
+        setShowCreateOCPost(false);
     }
 
     function appearCreateSub() {
@@ -32,9 +32,9 @@ function HomePage() {
         setShowCreateSub(true);
     }
 
-    function appearCreateTopic() {
+    function appearCreateOCPost() {
         setShowCreateMenu(false);
-        setShowCreateTopic(true);
+        setShowCreateOCPost(true);
     }
 
     return (
@@ -46,7 +46,7 @@ function HomePage() {
                            onExited={() => setShowCreateMenu(false)}
                            nodeRef={nodeRef}>
                 <div ref={nodeRef}>
-                    <CreationSettings showCreateTopic={appearCreateTopic} showCreateSub={appearCreateSub} closeBehavior={disappearAllMenu}/>
+                    <CreationSettings showCreateOCPost={appearCreateOCPost} showCreateSub={appearCreateSub} closeBehavior={disappearAllMenu}/>
                 </div>
             </CSSTransition>
             <CSSTransition in={showCreateSub} timeout={600} classNames="from-bottom" unmountOnExit
@@ -57,9 +57,9 @@ function HomePage() {
                     <CreateSub closeBehavior={disappearAllMenu}/>
                 </div>
             </CSSTransition>
-            <CSSTransition in={showCreateTopic} timeout={600} classNames="from-bottom" unmountOnExit
-                           onEnter={() => setShowCreateTopic(true)}
-                           onExited={() => setShowCreateTopic(false)}
+            <CSSTransition in={showCreateOCPost} timeout={600} classNames="from-bottom" unmountOnExit
+                           onEnter={() => setShowCreateOCPost(true)}
+                           onExited={() => setShowCreateOCPost(false)}
                            nodeRef={nodeRef2}>
                 <div ref={nodeRef2}>
                     <CreateOCPost closeBehavior={disappearAllMenu}></CreateOCPost>

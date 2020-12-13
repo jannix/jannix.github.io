@@ -66,7 +66,7 @@ export default class CreateOCPost extends React.Component {
 
     render() {
         return (
-            <div className="create-topic-container">
+            <div className="create-ocpost-container">
                 <CloseBtn closeBehavior={this.props.closeBehavior}/>
                 <form onSubmit={this.handleSubmit}>
                     <h2>Nouveau Post</h2>

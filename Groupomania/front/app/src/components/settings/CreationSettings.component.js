@@ -4,13 +4,13 @@ import CloseBtn from "../common/CloseBtn.component";
 
 export default class CreationSettings extends React.Component {
 
-    showCreateTopic: () => void;
+    showCreateOCPost: () => void;
     showCreateSub: () => void;
     closeBehavior: () => void;
     constructor(props) {
         super(props);
         this.clickOnNewSub = this.clickOnNewSub.bind(this);
-        this.clickOnNewTopic = this.clickOnNewTopic.bind(this);
+        this.clickOnNewOCPost = this.clickOnNewOCPost.bind(this);
     }
 
     clickOnNewSub(event): void {
@@ -19,9 +19,9 @@ export default class CreationSettings extends React.Component {
         }
     }
 
-    clickOnNewTopic(event): void {
-        if (this.props.showCreateTopic) {
-            this.props.showCreateTopic();
+    clickOnNewOCPost(event): void {
+        if (this.props.showCreateOCPost) {
+            this.props.showCreateOCPost();
         }
     }
 
@@ -31,7 +31,7 @@ export default class CreationSettings extends React.Component {
                 <section>
                     <CloseBtn closeBehavior={this.props.closeBehavior}/>
                     <div>
-                        <img onClick={this.clickOnNewTopic} src={window.location.origin + '/images/topicicon.png'} alt="Topic Icon" title="Create New Topic"/>
+                        <img onClick={this.clickOnNewOCPost} src={window.location.origin + '/images/topicicon.png'} alt="Topic Icon" title="Create New Topic"/>
                         <h4>Nouveau Sujet</h4>
                     </div>
                     <div>
