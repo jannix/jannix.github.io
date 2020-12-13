@@ -5,6 +5,7 @@ const cors = require("cors");
 const helmet = require("helmet");
 const userRoutes = require('./routes/user.routes');
 const subRoutes = require('./routes/sub.routes');
+const postRoutes = require('./routes/post.routes');
 //const secretConst = require('./constants/secret-constants');
 const path = require('path');
 
@@ -25,6 +26,7 @@ app.use('/images', express.static(path.join(__dirname, 'images')));
 
 app.use('/api/user', userRoutes);
 app.use('/api/sub', subRoutes);
+app.use('/api/post', postRoutes);
 
 app.get("/", (req, res) => {
     res.json({ message: "Welcome to Groupomania Social Platfrom." });

@@ -44,7 +44,6 @@ exports.login = (req, res, next) => {
                     }
                     getUserByLoginId(login[0].dataValues.id)
                         .then((user) => {
-                            console.log('logined : '+ user[0].dataValues.id);
                             res.status(200).json({
                                 userId: user[0].dataValues.id,
                                 token: jwt.sign(
@@ -148,16 +147,13 @@ exports.updateUserInfo = (req, res) => {
 };
 
 exports.joinSub = (req, res) => {
-    User.findByPk(req.params.id).then( user => {
+    User.findByPk(req.params.id, {raw: true}).then( user => {
         if (!user) {
             return res.status(401).json({ error: 'Utilisateur inexistant !' });
         }
         if (isMySelf(req.headers.authorization.split(' ')[1], user.login)) {
-            //TODO:add sub id to subscriptionIds
-            console.log(user.subscriptionIds);
             user.subscriptionIds.push(req.body.subId);
-            console.log(user.subscriptionIds);
-            /*User.update(req.body, { where: { id: req.params.id } }).then(result => {
+            User.update(user, { where: { id: req.params.id } }).then(result => {
                 if (result[0] === 1) {
                     res.status(200).json({
                         message: 'Utilisateur update !',
@@ -166,7 +162,7 @@ exports.joinSub = (req, res) => {
                 } else {
                     res.status(404).json({ error: "Error, user probably was not found. User ID : " + req.params.id });
                 }
-            }).catch(err => {res.status(500).send({message: err})});*/
+            }).catch(err => {res.status(500).send({message: err})});
         } else {
             res.status(403).json({ error: 'Forbidden: You do not have the right to update another user.' });
         }

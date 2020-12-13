@@ -3,7 +3,6 @@ const db = require('../models');
 const Sub = db.subs;
 
 exports.create = (req, res, next) => {
-    console.log(req.body);
     const sub = {
         title: req.body.title,
         description: req.body.description,
