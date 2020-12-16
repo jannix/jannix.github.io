@@ -43,7 +43,8 @@ export default class CreateSub extends React.Component {
         createSub(newSub).then((res) => {
             subscribe(newSub.ownerId, res.subId).then();
             this.props.closeBehavior();
-            this.props.routerHistory.push('/');//TODO: push to the sub page
+            console.log('/f/'+ newSub.title);
+            this.props.routerHistory.push('/f/'+ newSub.title);
         }).catch( err => {
             toast.error('Le fil n\'a pas pu être créé...', {
                 position: "bottom-left",

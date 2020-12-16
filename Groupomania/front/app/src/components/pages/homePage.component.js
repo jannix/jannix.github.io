@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import { useHistory } from "react-router-dom";
 import './_home-page.scss';
 import Header from "../common/Header.component";
 import {CSSTransition} from "react-transition-group";
@@ -8,6 +9,7 @@ import CreateOCPost from "../forms/CreateOCPost.component";
 
 
 function HomePage() {
+    let history = useHistory();
     const nodeRef = React.useRef(null);
     const nodeRef2 = React.useRef(null);
 
@@ -39,7 +41,7 @@ function HomePage() {
 
     return (
         <div className="home-page-container">
-            <Header showCreateMenu={appearCreateMenu} isShowCreateMenu={showCreateMenu}/>
+            <Header showCreateMenu={appearCreateMenu} isShowCreateMenu={showCreateMenu} routerHistory={history}/>
 
             <CSSTransition in={showCreateMenu} timeout={600} classNames="from-left" unmountOnExit
                            onEnter={() => setShowCreateMenu(true)}

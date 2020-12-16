@@ -3,9 +3,10 @@ import "./_header.scss";
 import {getSubsByTitle} from "../../services/sub.service";
 
 export default class Header extends React.Component {
-
+    routerHistory: any;
     isShowCreateMenu: boolean;
     showCreateMenu: (appear: boolean) => void;
+
     constructor(props) {
         super(props);
         this.state = {isSub: true, searchOption: []};
@@ -34,17 +35,22 @@ export default class Header extends React.Component {
     }
 
     clickSearchCandidate(event): void {
-        //TODO: go to the fil page
+        this.setState({searchOption: []});
+        document.getElementById('input-search').value = '';
+        this.props.routerHistory.push('/' + event.currentTarget.innerHTML);
+        //TODO: use smth else than innerhtml
     }
 
     //TODO: improve by making better css and components
     clickOnSub(event): void {
         this.setState({isSub: true});
+        this.props.routerHistory.push('/');
         //TODO: refresh get users sub
     }
 
     clickOnNews(event): void {
         this.setState({isSub: false});
+        this.props.routerHistory.push('/');
         //TODO: refresh get news
     }
 
@@ -70,12 +76,12 @@ export default class Header extends React.Component {
                         <img onClick={this.clickOnCreate} src={window.location.origin + '/images/iconcreate.png'} alt="user Avatar" title="User Profile"/>
                     </div>
                     <div id="search">
-                        <input type="text" placeholder="Search..." onChange={this.handleSearchChangeValue}/>
+                        <input id='input-search' type="text" placeholder="Search..." onChange={this.handleSearchChangeValue}/>
                         {this.state.searchOption.length > 0 &&
                         <ul className="search-list-result">
                             {this.state.searchOption.map( sub => (
-                                <li key={sub.id} onClick={this.clickSearchCandidate} >
-                                    { sub.title }
+                                <li key={'sub'+sub.id} onClick={this.clickSearchCandidate} >
+                                    f/{ sub.title }
                                 </li>
                             ))}
                         </ul>
