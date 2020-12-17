@@ -1,7 +1,7 @@
 @import "./../../sass/main";
 
 .creation-settings-container {
-  position: fixed;
+  position: absolute;
   width: 90%;
   & section {
     background-color: $dark-white;

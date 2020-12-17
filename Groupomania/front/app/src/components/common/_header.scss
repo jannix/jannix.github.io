@@ -2,6 +2,8 @@
 
 .header-container {
   background: $dark-grey;
+  position: sticky;
+  top: 0;
   & .upper-row {
     padding-top: 5px;
     display: flex;
