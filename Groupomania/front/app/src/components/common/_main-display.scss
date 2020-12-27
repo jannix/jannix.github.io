@@ -2,4 +2,25 @@
 
 .main-display-container {
 
+  & .sub-header {
+    border: 1px solid $dark-white;
+    margin: 0;
+    padding: 0 10px 0 10px;
+    color: $primary-text-colour;
+    & div {
+      display: flex;
+      justify-content: space-between;
+      & h1 {
+        margin: 0;
+      }
+      & button {
+        margin-top: 10px;
+      }
+    }
+
+    & p {
+      margin: 0;
+      padding: 10px 0 15px 0;
+    }
+  }
 }

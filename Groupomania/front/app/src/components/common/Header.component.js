@@ -67,9 +67,17 @@ export default class Header extends React.Component {
     }
 
     clickSearchCandidate(event): void {
+        const found = this.state.searchOption.find(element => 'f/' + element.title === event.currentTarget.innerHTML);
+        console.log(found);
         this.setState({searchOption: []});
         document.getElementById('input-search').value = '';
-        this.props.routerHistory.push('/' + event.currentTarget.innerHTML);
+        //this.props.routerHistory.push('/' + event.currentTarget.innerHTML);
+        this.props.routerHistory.push({
+            pathname: '/' + event.currentTarget.innerHTML,
+            state: {
+                sub: found,
+            }
+        })
         //TODO: use smth else than innerhtml
     }
 
@@ -118,6 +126,7 @@ export default class Header extends React.Component {
                             }
                         </div>
                     </div>
+                    {/*TODO: make tab row hide and show*/}
                     <div className="tab-row">
                         <nav id="home-tab">
                             <ul>

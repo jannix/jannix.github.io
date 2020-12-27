@@ -7,7 +7,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import {createSub} from "../../services/sub.service";
 import TextAreaForm from "./TextAreaForm.component";
 import CloseBtn from "../common/CloseBtn.component";
-import {subscribe} from "../../services/user.service";
+import {un_or_subscribe} from "../../services/user.service";
 
 export default class CreateSub extends React.Component {
 
@@ -41,7 +41,7 @@ export default class CreateSub extends React.Component {
             subjectIds: [-1]
         };
         createSub(newSub).then((res) => {
-            subscribe(newSub.ownerId, res.subId).then();
+            un_or_subscribe(newSub.ownerId, res.subId, true).then();
             this.props.closeBehavior();
             console.log('/f/'+ newSub.title);
             this.props.routerHistory.push('/f/'+ newSub.title);

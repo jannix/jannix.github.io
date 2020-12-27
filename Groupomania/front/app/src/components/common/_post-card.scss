@@ -1,0 +1,52 @@
+@import "./../../sass/main";
+
+.router-link {
+  text-decoration: none;
+}
+.postcard-container {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  margin: 8px 0 8px 0;
+  @include dark-panel-bordered;
+  border: 1px solid $primary-line-colour;
+  &:hover {
+    //TODO: make a smooth transition
+    border: 1px solid $dark-white;
+  }
+  & .postcard-banner-container {
+    margin: 0;
+    padding-top: 10px;
+    display: flex;
+    justify-content: flex-start;
+    & .postcard-avatar {
+      padding-left: 15px;
+    }
+    & .postcard-meta-data {
+      padding-left: 5px;
+      color: $grey-text-colour;
+      & h3 {
+        margin: 2px;
+      }
+      & span {
+        display: flex;
+        margin: 2px;
+      }
+    }
+  }
+  & .postcard-content {
+    padding: 0 15px 0 15px;
+    & h2 {
+      margin: 0;
+    }
+    & p {
+      margin: 0;
+      padding: 4px 0 8px 0;
+    }
+  }
+  & .postcard-stats {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 25px 10px 25px;
+  }
+}

@@ -1,18 +1,33 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import { useHistory } from "react-router-dom";
 import './_home-page.scss';
 import Header from "../common/Header.component";
 import MainDisplay from "../common/MainDisplay.component";
+import {getUserData} from "../../services/user.service";
 
 
 function HomePage() {
     let history = useHistory();
 
+    const [user, setUser] = useState(null);
+
+    useEffect(() => {
+        let mounted = true;
+        if (!user) {
+            getUserData(localStorage.getItem('user-id')).then(res => {//TODO: make fct for exact title
+                if (mounted) {
+                    setUser(res.userFound);
+                }
+            });
+        }
+        return () => mounted = false;
+    }, [user]);
+
     return (
         <div className="home-page-container">
             <Header routerHistory={history}/>
             {/*TODO: main display should be a view component*/}
-            <MainDisplay/>
+            {user && <MainDisplay userData={user}/>}
         </div>
     );
 }

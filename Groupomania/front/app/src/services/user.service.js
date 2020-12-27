@@ -41,9 +41,10 @@ export function getUserSubscriptions(userId: number): Promise<any> {
     });
 }
 
-export function subscribe(userId: number, subId: number): Promise<any> {
+export function un_or_subscribe(userId: number, subId: number, join: boolean): Promise<any> {
+    const path = join? 'joinsub/': 'quitsub/';
     return new Promise((resolve, reject) => {
-        fetch(Constants.API_USER+'joinsub/'+userId, {
+        fetch(Constants.API_USER+path+userId, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
