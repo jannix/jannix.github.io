@@ -55,6 +55,12 @@ router.put("/joinsub/:id", celebrate({
     })
 }), auth, userCtrl.joinSub);
 
+router.put("/quitsub/:id", celebrate({
+    [Segments.BODY]: Joi.object().keys({
+        subId: Joi.number().required(),
+    })
+}), auth, userCtrl.quitSub);
+
 router.get('/:id', userCtrl.getUserById);
 
 router.get('/getsubscriptions/:id', userCtrl.getUserSubscriptions);

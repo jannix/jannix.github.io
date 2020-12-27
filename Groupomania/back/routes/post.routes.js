@@ -16,4 +16,6 @@ router.post('/create', celebrate({
     })
 }), auth, postCtrl.create);
 
+router.get('/getposts/:parentId', postCtrl.getByParentId);
+
 module.exports = router;

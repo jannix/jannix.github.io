@@ -152,17 +152,51 @@ exports.joinSub = (req, res) => {
             return res.status(401).json({ error: 'Utilisateur inexistant !' });
         }
         if (isMySelf(req.headers.authorization.split(' ')[1], user.login)) {
-            user.subscriptionIds.push(req.body.subId);
-            User.update(user, { where: { id: req.params.id } }).then(result => {
-                if (result[0] === 1) {
-                    res.status(200).json({
-                        message: 'Utilisateur update !',
-                        result: result
-                    })
-                } else {
-                    res.status(404).json({ error: "Error, user probably was not found. User ID : " + req.params.id });
-                }
-            }).catch(err => {res.status(500).send({message: err})});
+            const index = user.subscriptionIds.indexOf(req.body.subId);
+            if (index === -1) {
+                user.subscriptionIds.push(req.body.subId);
+                User.update(user, { where: { id: req.params.id } }).then(result => {
+                    if (result[0] === 1) {
+                        res.status(200).json({
+                            message: 'Utilisateur update !',
+                            result: result
+                        })
+                    } else {
+                        res.status(404).json({ error: "Error, user probably was not found. User ID : " + req.params.id });
+                    }
+                }).catch(err => {res.status(500).send({message: err})});
+            } else {
+                res.status(403).json({ error: 'Error, user already joined this sub' });
+            }
+
+        } else {
+            res.status(403).json({ error: 'Forbidden: You do not have the right to update another user.' });
+        }
+    }).catch(error => res.status(500).json({ error }))
+};
+
+exports.quitSub = (req, res) => {
+    User.findByPk(req.params.id, {raw: true}).then( user => {
+        if (!user) {
+            return res.status(401).json({ error: 'Utilisateur inexistant !' });
+        }
+        if (isMySelf(req.headers.authorization.split(' ')[1], user.login)) {
+            const index = user.subscriptionIds.indexOf(req.body.subId);
+            if (index !== -1) {
+                user.subscriptionIds.splice(index, 1);
+                User.update(user, { where: { id: req.params.id } }).then(result => {
+                    if (result[0] === 1) {
+                        res.status(200).json({
+                            message: 'Utilisateur update !',
+                            result: result
+                        })
+                    } else {
+                        res.status(404).json({ error: "Error, user probably was not found. User ID : " + req.params.id });
+                    }
+                }).catch(err => {res.status(500).send({message: err})});
+            } else {
+                res.status(404).json({ error: 'Error, user did not joined this sub' });
+            }
         } else {
             res.status(403).json({ error: 'Forbidden: You do not have the right to update another user.' });
         }

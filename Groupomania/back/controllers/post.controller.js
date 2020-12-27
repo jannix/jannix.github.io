@@ -17,3 +17,14 @@ exports.create = (req, res, next) => {
     })).catch(error => res.status(400).json({ error }));
 };
 
+exports.getByParentId = (req, res, next) => {
+    Post.findAll({
+        where: {parentId: req.params.parentId},
+        raw: true
+    }).then( posts => {
+        if (!posts || posts.length === 0) {
+            return res.status(404).json({ error: 'Posts inexistant !' });
+        }
+        res.status(200).json({postsFound: posts});
+    }).catch(error => res.status(500).json({ error }));
+};
