@@ -24,7 +24,7 @@ export default class PostCard extends React.Component {
 
     render() {
         return (
-            <NavLink className='router-link' to='/'>
+            <NavLink className='router-link' to={'/f/'+this.props.subTitle+'/s/'+this.props.postData.id}>
                 <article className="postcard-container">
                     <div className="postcard-banner-container">
                         <div className="postcard-avatar">

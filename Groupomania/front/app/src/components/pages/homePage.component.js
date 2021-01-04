@@ -14,7 +14,7 @@ function HomePage() {
     useEffect(() => {
         let mounted = true;
         if (!user) {
-            getUserData(localStorage.getItem('user-id')).then(res => {//TODO: make fct for exact title
+            getUserData(localStorage.getItem('user-id')).then(res => {
                 if (mounted) {
                     setUser(res.userFound);
                 }

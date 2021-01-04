@@ -1,6 +1,6 @@
 import React from 'react';
 import "./_main-display.scss";
-import {getPostByParentId} from "../../services/post.service";
+import {getPostBySubId} from "../../services/post.service";
 import PostCard from "./PostCard.component";
 import {getUserSubscriptions, un_or_subscribe} from "../../services/user.service";
 
@@ -62,14 +62,14 @@ export default class MainDisplay extends React.Component {
     }
 
     loadPostListBySub(): void {
-        getPostByParentId(this.props.subData.id).then(res => {
+        getPostBySubId(this.props.subData.id).then(res => {
             this.setState({postList: res.postsFound});
         });
     }
 
     loadPostListByUser(): void {
         this.props.userData.subscriptionIds.map(subId => (
-            getPostByParentId(subId).then(res => {
+            getPostBySubId(subId).then(res => {
                 this.setState({postList: this.state.postList.concat(res.postsFound)});
             })
         ));
@@ -102,7 +102,7 @@ export default class MainDisplay extends React.Component {
                     <p>Nothing to show</p>
                 }
                 {this.state.postList.map( post => (
-                    <PostCard key={'post'+post.id} subTitle={this.props.subData? this.props.subData.title: null} postData={post}/>))
+                    <PostCard key={'post'+post.id} subTitle={post.subTitle? post.subTitle: null} postData={post}/>))
                 }
             </main>
         );
