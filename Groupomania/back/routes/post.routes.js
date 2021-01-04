@@ -16,6 +16,8 @@ router.post('/create', celebrate({
     })
 }), auth, postCtrl.create);
 
-router.get('/getposts/:parentId', postCtrl.getByParentId);
+router.get('/getpost/:postId', auth, postCtrl.getById);
+router.get('/getposts/:subId', auth, postCtrl.getByParentId);
+router.get('/getpostsbysub/:subId', auth, postCtrl.getBySubId);
 
 module.exports = router;
