@@ -61,9 +61,9 @@ router.put("/quitsub/:id", celebrate({
     })
 }), auth, userCtrl.quitSub);
 
-router.get('/:id', userCtrl.getUserById);
+router.get('/:id', auth, userCtrl.getUserById);
 
-router.get('/getsubscriptions/:id', userCtrl.getUserSubscriptions);
+router.get('/getsubscriptions/:id', auth, userCtrl.getUserSubscriptions);
 
 
 module.exports = router;
