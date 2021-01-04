@@ -18,6 +18,8 @@ function HomePage() {
                 if (mounted) {
                     setUser(res.userFound);
                 }
+            }).catch(error => {
+                history.push('/login');
             });
         }
         return () => mounted = false;
