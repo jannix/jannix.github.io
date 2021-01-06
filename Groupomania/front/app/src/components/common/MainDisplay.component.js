@@ -102,7 +102,7 @@ export default class MainDisplay extends React.Component {
                     <p>Nothing to show</p>
                 }
                 {this.state.postList.map( post => (
-                    <PostCard key={'post'+post.id} subTitle={post.subTitle? post.subTitle: null} postData={post}/>))
+                    <PostCard key={'post'+post.id} routerHistory={this.props.routerHistory} subTitle={post.subTitle? post.subTitle: null} postData={post}/>))
                 }
             </main>
         );

@@ -28,8 +28,7 @@ function SubPage(props) {
     return (
         <div className="sub-page-container">
             <Header routerHistory={history}/>
-            {sub && <MainDisplay subData={sub}/>}
-
+            {sub && <MainDisplay routerHistory={history} subData={sub}/>}
         </div>
     );
 }

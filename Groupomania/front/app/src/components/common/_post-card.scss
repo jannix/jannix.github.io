@@ -1,8 +1,5 @@
 @import "./../../sass/main";
 
-.router-link {
-  text-decoration: none;
-}
 .postcard-container {
   display: flex;
   flex-direction: column;
@@ -27,6 +24,11 @@
       color: $grey-text-colour;
       & h3 {
         margin: 2px;
+        &#sub-link {
+          &:hover {
+            text-decoration: underline;
+          }
+        }
       }
       & span {
         display: flex;
