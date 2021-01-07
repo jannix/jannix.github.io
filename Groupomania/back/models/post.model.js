@@ -27,6 +27,16 @@ module.exports = (sequelize, Sequelize) => {
             allowNull: false,
             defaultValue: 0,
         },
+        usersUpVote: {
+            type: Sequelize.ARRAY(Sequelize.INTEGER),
+            allowNull: false,
+            defaultValue: [],
+        },
+        usersDownVote: {
+            type: Sequelize.ARRAY(Sequelize.INTEGER),
+            allowNull: false,
+            defaultValue: [],
+        },
         isOC: {
             type: Sequelize.BOOLEAN,
             allowNull: false,

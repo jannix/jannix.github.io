@@ -39,6 +39,19 @@ exports.getByParentId = (req, res, next) => {
     }).catch(error => res.status(500).json({ error }));
 };
 
+exports.getCommentsByParentId = (req, res, next) => {
+    Post.findAll({
+        where: {parentId: req.params.parentId,
+        isOC: false},
+        raw: true
+    }).then( posts => {
+        if (!posts || posts.length === 0) {
+            return res.status(404).json({ error: 'Posts inexistant !' });
+        }
+        res.status(200).json({postsFound: posts});
+    }).catch(error => res.status(500).json({ error }));
+};
+
 exports.getBySubId = (req, res, next) => {
     let subTitle;
     Sub.findByPk(req.params.subId, {raw: true}).then( sub => {

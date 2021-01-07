@@ -205,8 +205,16 @@ exports.quitSub = (req, res) => {
 };
 
 //TODO: move in util functions
-function isMySelf(authToken, loginId) {
-    const decodedToken = jwt.verify(authToken, constants.AUTH_TOKEN);
+function isMySelf(authToken, loginId, res = null) {
+    let decodedToken;
+    try {
+        decodedToken = jwt.verify(authToken, constants.AUTH_TOKEN);
+    } catch (err) {
+        if (res) {
+            res.status(401).json({ err })
+        }
+        return false;
+    }
     const tokenId = decodedToken.loginId;
     return tokenId === loginId;
 }
@@ -217,7 +225,7 @@ exports.getUserById = (req, res, next) => {
             return res.status(401).json({ error: 'Utilisateur inexistant !' });
         }
         let dataToSend;
-        if (isMySelf(req.headers.authorization.split(' ')[1], user.login)) {
+        if (isMySelf(req.headers.authorization.split(' ')[1], user.login, res)) {
             Login.findByPk(user.login, {raw: true}).then((login) => {
                 dataToSend = {
                     email: login.email,
@@ -225,7 +233,7 @@ exports.getUserById = (req, res, next) => {
                 };
                 res.status(200).json({userFound: dataToSend});
             });
-        } else {
+        } else if (res.statusCode !== 401) {
             dataToSend = {
                 username: user.username,
                 firstName: user.firstName,
