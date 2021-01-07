@@ -23,7 +23,7 @@ function HomePage() {
             });
         }
         return () => mounted = false;
-    }, [user]);
+    }, [history, user]);
 
     return (
         <div className="home-page-container">

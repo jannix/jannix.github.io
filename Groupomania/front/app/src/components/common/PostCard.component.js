@@ -43,12 +43,12 @@ export default class PostCard extends React.Component {
                     <p>{this.props.postData.text}</p>
                 </div>
                 <div className="postcard-stats">
-                        <span>
-                            {this.props.postData.upvote - this.props.postData.downvote}
-                        </span>
                     <span>
-                            YY
-                        </span>
+                        {this.props.postData.upvote - this.props.postData.downvote}
+                    </span>
+                    <span>
+                        YY
+                    </span>
                 </div>
             </article>
         );

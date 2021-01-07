@@ -1,6 +1,6 @@
 import React from 'react';
 import "./_main-display.scss";
-import {getPostBySubId} from "../../services/post.service";
+import {getPostById} from "../../services/post.service";
 import PostCard from "./PostCard.component";
 import {getUserSubscriptions, un_or_subscribe} from "../../services/user.service";
 
@@ -62,14 +62,14 @@ export default class MainDisplay extends React.Component {
     }
 
     loadPostListBySub(): void {
-        getPostBySubId(this.props.subData.id).then(res => {
+        getPostById(this.props.subData.id, 'getpostsbysub/').then(res => {
             this.setState({postList: res.postsFound});
         });
     }
 
     loadPostListByUser(): void {
         this.props.userData.subscriptionIds.map(subId => (
-            getPostBySubId(subId).then(res => {
+            getPostById(subId, 'getpostsbysub/').then(res => {
                 this.setState({postList: this.state.postList.concat(res.postsFound)});
             })
         ));
