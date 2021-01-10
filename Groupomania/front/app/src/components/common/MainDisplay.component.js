@@ -64,6 +64,8 @@ export default class MainDisplay extends React.Component {
     loadPostListBySub(): void {
         getPostById(this.props.subData.id, 'getpostsbysub/').then(res => {
             this.setState({postList: res.postsFound});
+        }).catch(err => {
+            console.log('No post for this subID');
         });
     }
 
@@ -71,6 +73,8 @@ export default class MainDisplay extends React.Component {
         this.props.userData.subscriptionIds.map(subId => (
             getPostById(subId, 'getpostsbysub/').then(res => {
                 this.setState({postList: this.state.postList.concat(res.postsFound)});
+            }).catch(err => {
+                console.log('No post for this subID');
             })
         ));
     }
@@ -79,10 +83,14 @@ export default class MainDisplay extends React.Component {
         if (this.state.userJoined) {
             un_or_subscribe(localStorage.getItem('user-id'), this.props.subData.id, false).then(res => {
                 this.setState({userJoined: false});
+            }).catch(err => {
+                console.log(err);
             });
         } else {
             un_or_subscribe(localStorage.getItem('user-id'), this.props.subData.id, true).then(res => {
                 this.setState({userJoined: true});
+            }).catch(err => {
+                console.log(err);
             });
         }
     }

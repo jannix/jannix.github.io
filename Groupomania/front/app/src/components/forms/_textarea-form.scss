@@ -1,14 +1,15 @@
 @import "./../../sass/main";
 
-$ph-relative-top: -54px;
+$ph-relative-top: -84px;
 $ph-relative-left: 8px;
-$phhover-relative-trans-top: -10px;
-$phfocus-relative-trans-top: -15px;
+$phhover-relative-trans-top: 20px;
+$phfocus-relative-trans-top: 21px;
 $phfocus-relative-trans-left: -4px;
+$textarea-minheight: 30px;
 
 .input-container {
   padding-top: 13px;
-  height: 57px;
+  height: $textarea-minheight + 27px;
   min-width: 100%;
   & .wrong-input {
     border-bottom: solid $red-error 2px;
@@ -30,7 +31,7 @@ $phfocus-relative-trans-left: -4px;
     position: relative;
     z-index: 1;
     font-size: 16px;
-    min-height:30px;
+    min-height: $textarea-minheight;
     width: 100%;
     background: transparent;
     color: $primary-line-colour;
@@ -41,7 +42,7 @@ $phfocus-relative-trans-left: -4px;
       z-index: 0;
       margin: 0;
       position: relative;
-      top: $ph-relative-top;
+      top: $textarea-minheight + $ph-relative-top;
       left: $ph-relative-left;
       width: 100%;
       color: $primary-line-colour;

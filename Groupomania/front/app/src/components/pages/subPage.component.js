@@ -20,6 +20,8 @@ function SubPage(props) {
                 if (mounted) {
                     setSub(res.subsFound[0]);
                 }
+            }).catch(err => {
+                console.log('No Sub found?');
             });
         }
         return () => mounted = false;
