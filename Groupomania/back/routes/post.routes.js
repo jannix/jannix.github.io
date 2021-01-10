@@ -8,7 +8,7 @@ const postCtrl = require('../controllers/post.controller');
 
 router.post('/create', celebrate({
     [Segments.BODY]: Joi.object().keys({
-        title: Joi.string(),
+        title: Joi.string().allow(''),
         text: Joi.string(),
         ownerId: Joi.number().required(),
         parentId: Joi.number().required(),

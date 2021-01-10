@@ -14,7 +14,7 @@ exports.create = (req, res, next) => {
     };
     Post.create(post).then((post) => res.status(201).json({
         message: 'Post créé !',
-        subId: post.id,
+        postId: post.id,
     })).catch(error => res.status(400).json({ error }));
 };
 
@@ -57,7 +57,8 @@ exports.getBySubId = (req, res, next) => {
     Sub.findByPk(req.params.subId, {raw: true}).then( sub => {
         subTitle = sub.title;
         Post.findAll({
-            where: {parentId: req.params.subId},
+            where: {parentId: req.params.subId,
+            isOC: true},
             raw: true
         }).then( posts => {
             if (!posts || posts.length === 0) {
