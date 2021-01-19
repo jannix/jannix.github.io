@@ -16,16 +16,6 @@ module.exports = (sequelize, Sequelize) => {
             type: Sequelize.INTEGER,
             allowNull: false,
         },
-        upvote: {
-            type: Sequelize.INTEGER,
-            allowNull: false,
-            defaultValue: 0,
-        },
-        downvote: {
-            type: Sequelize.INTEGER,
-            allowNull: false,
-            defaultValue: 0,
-        },
         usersUpVote: {
             type: Sequelize.ARRAY(Sequelize.INTEGER),
             allowNull: false,

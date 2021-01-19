@@ -15,10 +15,12 @@ router.post('/create', celebrate({
         isOC: Joi.boolean().required(),
     })
 }), auth, postCtrl.create);
+router.post('/:id/like', auth, postCtrl.changeLikes);
 
 router.get('/getpost/:postId', auth, postCtrl.getById);
 router.get('/getposts/:parentId', auth, postCtrl.getByParentId);
 router.get('/getcomments/:parentId', auth, postCtrl.getCommentsByParentId);
 router.get('/getpostsbysub/:subId', auth, postCtrl.getBySubId);
+
 
 module.exports = router;

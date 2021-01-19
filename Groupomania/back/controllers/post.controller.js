@@ -2,6 +2,15 @@ const db = require('../models');
 const Post = db.posts;
 const Sub = db.subs;
 
+removeUserFromArray = (array, userId) => {
+    for (let i = 0; i < array.length; i++) {
+        if (array[i] == userId) {
+            array.splice(i, 1);
+            break;
+        }
+    }
+};
+
 exports.create = (req, res, next) => {
     const post = {
         title: req.body.title,
@@ -16,6 +25,39 @@ exports.create = (req, res, next) => {
         message: 'Post créé !',
         postId: post.id,
     })).catch(error => res.status(400).json({ error }));
+};
+
+exports.changeLikes = (req, res, next) => {
+    Post.findByPk(req.params.postId, {raw: true})
+        .then(post => {
+            if (req.body.like === 1) {
+                if (!post.usersUpVote.includes(req.body.userId)) {
+                    post.usersUpVote.push(req.body.userId);
+                }
+            } else if (req.body.like === -1) {
+                if (!post.usersDownVote.includes(req.body.userId)) {
+                    post.usersDownVote.push(req.body.userId);
+                }
+            } else if (req.body.like === 0) {
+                if (post.usersUpVote.includes(req.body.userId)) {
+                    removeUserFromArray(post.usersUpVote, req.body.userId);
+                }
+                if (post.usersDownVote.includes(req.body.userId)) {
+                    removeUserFromArray(post.usersDownVote, req.body.userId);
+                }
+            }
+            Post.update(post, { where: { id: req.params.postId } }).then(result => {
+                if (result[0] === 1) {
+                    res.status(200).json({
+                        message: 'Likes updated.',
+                        result: result
+                    })
+                } else {
+                    res.status(500).json({ error: "Error, post couldn't be updated. Post ID : " + req.params.postId });
+                }
+            }).catch(err => {res.status(500).send({message: err})});
+        })
+        .catch(error => res.status(500).json({ error }));
 };
 
 exports.getById = (req, res, next) => {
