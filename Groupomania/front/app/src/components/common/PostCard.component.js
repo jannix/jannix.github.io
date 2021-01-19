@@ -20,6 +20,8 @@ export default class PostCard extends React.Component {
     }
 
     goToArticle(event): void {
+        if (!this.props.routerHistory)
+            return;
         if (event.target.id === 'sub-link') {
             this.props.routerHistory.push('/f/'+this.props.subTitle);
         } else {
@@ -39,14 +41,16 @@ export default class PostCard extends React.Component {
                     </div>
                 </div>
                 <div className="postcard-content">
-                    <h2>{this.props.postData.title}</h2>
+                    {this.props.postData.title !== '' && <h2>{this.props.postData.title}</h2>}
                     <p>{this.props.postData.text}</p>
                 </div>
                 <div className="postcard-stats">
                     <span>
-                        {this.props.postData.upvote - this.props.postData.downvote}
+                        {this.props.postData.usersUpVote.length - this.props.postData.usersDownVote.length}
                     </span>
                     <span>
+                        {this.props.postData.ownerId === parseInt(localStorage.getItem('user-id')) &&
+                        <button>Changer</button>/*TODO: Change for icon btn*/}
                         YY
                     </span>
                 </div>

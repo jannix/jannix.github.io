@@ -3,4 +3,54 @@
 .post-page-container {
   background-color: $dark-bg;
   color: $primary-text-colour;
+  min-height: 100vh;
+
+  .postOC-container {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    margin: 8px 0 8px 0;
+    @include dark-panel-bordered;
+    border: 1px solid $primary-line-colour;
+    & .postOC-banner-container {
+      margin: 0;
+      padding-top: 10px;
+      display: flex;
+      justify-content: flex-start;
+      & .postOC-avatar {
+        padding-left: 15px;
+      }
+      & .postOC-meta-data {
+        padding-left: 5px;
+        color: $grey-text-colour;
+        & h3 {
+          margin: 2px;
+          &#sub-link {
+            &:hover {
+              text-decoration: underline;
+            }
+          }
+        }
+        & span {
+          display: flex;
+          margin: 2px;
+        }
+      }
+    }
+    & .postOC-content {
+      padding: 0 15px 0 15px;
+      & h2 {
+        margin: 0;
+      }
+      & p {
+        margin: 0;
+        padding: 4px 0 8px 0;
+      }
+    }
+    & .postOC-stats {
+      display: flex;
+      justify-content: space-between;
+      padding: 0 25px 10px 25px;
+    }
+  }
 }

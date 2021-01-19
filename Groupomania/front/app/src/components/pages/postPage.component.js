@@ -5,12 +5,15 @@ import Header from "../common/Header.component";
 import {getPostById} from "../../services/post.service";
 import {CSSTransition} from "react-transition-group";
 import CreateCommentPost from "../forms/CreateCommentPost.component";
+import {getUserData} from "../../services/user.service";
+import CommentSection from "../common/CommentSection.component";
 
 function PostPage(props) {
     let history = useHistory();
     const {state} = useLocation();
     const [post, setPost] = useState(state? state.post: null);
     const [comments, setComments] = useState(null);
+    const [authorName, setAuthorName] = useState('u/anonyme');
     let { postId } = useParams();
 
     const nodeRef = React.useRef(null);
@@ -22,6 +25,9 @@ function PostPage(props) {
             getPostById(postId).then(ret => {
                 if (mounted) {
                     setPost(ret.postFound);
+                    getUserData(ret.postFound.ownerId).then( res => {
+                        setAuthorName('u/'+(res.userFound.username !== ''? res.userFound.username: res.userFound.firstName + ' ' + res.userFound.lastName));
+                    });
                     getPostById(ret.postFound.id, 'getcomments/').then(posts => {
                         setComments(posts.postsFound);
                     }).catch(error => {
@@ -64,12 +70,11 @@ function PostPage(props) {
                     </div>
                 </CSSTransition>
                 <section className="postOC-container">
-                    <div className="postIC-banner-container">
+                    <div className="postOC-banner-container">
                         <div className="postOC-avatar">
                         </div>
                         <div className="postOC-meta-data">
-                            {post.subTitle && <h3 id="sub-link">f/{post.subTitle}</h3>}
-                            <span>{post.authorName}<div>.</div>14h</span>
+                            <span>{authorName}<div>.</div>14h</span>
                         </div>
                     </div>
                     <article className="postOC-content">
@@ -78,16 +83,18 @@ function PostPage(props) {
                     </article>
                     <div className="postOC-stats">
                         <span>
-                            {post.upvote - post.downvote}
+                            {post.usersUpVote.length - post.usersDownVote.length}
                         </span>
                         <span>
+                            {post.ownerId === parseInt(localStorage.getItem('user-id')) &&
+                            <button onClick={popAddComment}>Changer</button>/*TODO: Change for icon btn*/}
                             <button onClick={popAddComment}>Commenter</button>
                         </span>
                     </div>
                 </section>
                 <section className="comments-container">
-                    {comments && <div>Here is comments compp</div>}
-                    ANYWAYYYYYYYYYYYYY
+                    {comments && <CommentSection comments={comments}/>}
+                    {!comments && <span>Aucun commentaire</span>}
                 </section>
             </div>}
         </div>
