@@ -51,6 +51,24 @@
       display: flex;
       justify-content: space-between;
       padding: 0 25px 10px 25px;
+      .btn-vote-down {
+        transform: rotate(180deg);
+        -webkit-transform: rotate(180deg);
+      }
+      .btn-vote {
+        max-width: 25px;
+        max-height: 25px;
+        padding: 2px;
+        background: transparent;
+        &:hover > .overlay {
+          width:19px;
+          height:19px;
+          position:absolute;
+          background-color:#000;
+          opacity:0.2;
+          border-radius: 15px;
+        }
+      }
     }
   }
 }

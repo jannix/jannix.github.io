@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {useParams, useHistory, useLocation} from "react-router-dom";
 import './_post-page.scss';
 import Header from "../common/Header.component";
-import {getPostById} from "../../services/post.service";
+import {getPostById, updatePostLikes} from "../../services/post.service";
 import {CSSTransition} from "react-transition-group";
 import CreateCommentPost from "../forms/CreateCommentPost.component";
 import {getUserData} from "../../services/user.service";
@@ -14,6 +14,7 @@ function PostPage(props) {
     const [post, setPost] = useState(state? state.post: null);
     const [comments, setComments] = useState(null);
     const [authorName, setAuthorName] = useState('u/anonyme');
+    const [votes, setVotes] = useState(0);
     let { postId } = useParams();
 
     const nodeRef = React.useRef(null);
@@ -25,6 +26,7 @@ function PostPage(props) {
             getPostById(postId).then(ret => {
                 if (mounted) {
                     setPost(ret.postFound);
+                    setVotes(ret.postFound.usersUpVote.length - ret.postFound.usersDownVote.length);
                     getUserData(ret.postFound.ownerId).then( res => {
                         setAuthorName('u/'+(res.userFound.username !== ''? res.userFound.username: res.userFound.firstName + ' ' + res.userFound.lastName));
                     });
@@ -41,6 +43,13 @@ function PostPage(props) {
         return () => mounted = false;
     }, [history, post, postId]);
 
+    function sendVote(likeValue: number) {
+        updatePostLikes(post.id, likeValue).then(res => {
+            setVotes(parseInt(res.value));
+        }).catch(error => {
+            console.log(error);
+        });
+    }
 
     function popAddComment(event): void {
         setShowCreateCommentPost(true);
@@ -83,7 +92,15 @@ function PostPage(props) {
                     </article>
                     <div className="postOC-stats">
                         <span>
-                            {post.usersUpVote.length - post.usersDownVote.length}
+                            <button className={'btn-vote btn-vote-up'} onClick={() => sendVote(1)}>
+                                <div className="overlay"/>
+                                <img src={window.location.origin + '/images/iconarrow.png'} alt="Upvote" title="Upvote button"/>
+                            </button>
+                            {votes}
+                            <button className={'btn-vote btn-vote-down'} onClick={() => sendVote(-1)}>
+                                <div className="overlay"/>
+                                <img className={'down'} src={window.location.origin + '/images/iconarrow.png'} alt="Downvote" title="Downvote button"/>
+                            </button>
                         </span>
                         <span>
                             {post.ownerId === parseInt(localStorage.getItem('user-id')) &&
@@ -93,6 +110,7 @@ function PostPage(props) {
                     </div>
                 </section>
                 <section className="comments-container">
+                    <h3>Commentaires : </h3>
                     {comments && <CommentSection comments={comments}/>}
                     {!comments && <span>Aucun commentaire</span>}
                 </section>

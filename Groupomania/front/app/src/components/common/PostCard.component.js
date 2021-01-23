@@ -1,6 +1,7 @@
 import React from 'react';
 import "./_post-card.scss";
 import {getUserData} from "../../services/user.service";
+import {updatePostLikes} from "../../services/post.service";
 
 export default class PostCard extends React.Component {
     routerHistory: any;
@@ -9,14 +10,16 @@ export default class PostCard extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {authorName: 'u/anonyme'};
+        this.state = {authorName: 'u/anonyme', votes: 0};
         this.goToArticle = this.goToArticle.bind(this);
+        this.sendVote = this.sendVote.bind(this);
     }
 
     componentDidMount(): void {
         getUserData(this.props.postData.ownerId).then( res => {
             this.setState({authorName: 'u/'+(res.userFound.username !== ''? res.userFound.username: res.userFound.firstName + ' ' + res.userFound.lastName)});
         });
+        this.setState({votes: this.props.postData.usersUpVote.length - this.props.postData.usersDownVote.length});
     }
 
     goToArticle(event): void {
@@ -27,6 +30,14 @@ export default class PostCard extends React.Component {
         } else {
             this.props.routerHistory.push('/f/'+this.props.subTitle+'/s/'+this.props.postData.id);
         }
+    }
+
+    sendVote(likeValue: number): void {
+        updatePostLikes(this.props.postData.id, likeValue).then(res => {
+            this.setState({votes: parseInt(res.value)});
+        }).catch(error => {
+            console.log(error);
+        });
     }
 
     render() {
@@ -46,7 +57,15 @@ export default class PostCard extends React.Component {
                 </div>
                 <div className="postcard-stats">
                     <span>
-                        {this.props.postData.usersUpVote.length - this.props.postData.usersDownVote.length}
+                        <button className={'btn-vote btn-vote-up'} onClick={() => this.sendVote(1)}>
+                                <div className="overlay"/>
+                                <img src={window.location.origin + '/images/iconarrow.png'} alt="Upvote" title="Upvote button"/>
+                            </button>
+                        {this.state.votes}
+                        <button className={'btn-vote btn-vote-down'} onClick={() => this.sendVote(-1)}>
+                                <div className="overlay"/>
+                                <img className={'down'} src={window.location.origin + '/images/iconarrow.png'} alt="Downvote" title="Downvote button"/>
+                            </button>
                     </span>
                     <span>
                         {this.props.postData.ownerId === parseInt(localStorage.getItem('user-id')) &&
