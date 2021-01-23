@@ -31,18 +31,21 @@ exports.changeLikes = (req, res, next) => {
     Post.findByPk(req.params.postId, {raw: true})
         .then(post => {
             if (req.body.like === 1) {
-                if (!post.usersUpVote.includes(req.body.userId)) {
+                if (post.usersDownVote.includes(parseInt(req.body.userId))) {
+                    removeUserFromArray(post.usersDownVote, req.body.userId);
+                }
+                if (!post.usersUpVote.includes(parseInt(req.body.userId))) {
                     post.usersUpVote.push(req.body.userId);
-                }
-            } else if (req.body.like === -1) {
-                if (!post.usersDownVote.includes(req.body.userId)) {
-                    post.usersDownVote.push(req.body.userId);
-                }
-            } else if (req.body.like === 0) {
-                if (post.usersUpVote.includes(req.body.userId)) {
+                } else {
                     removeUserFromArray(post.usersUpVote, req.body.userId);
                 }
-                if (post.usersDownVote.includes(req.body.userId)) {
+            } else if (req.body.like === -1) {
+                if (post.usersUpVote.includes(parseInt(req.body.userId))) {
+                    removeUserFromArray(post.usersUpVote, req.body.userId);
+                }
+                if (!post.usersDownVote.includes(parseInt(req.body.userId))) {
+                    post.usersDownVote.push(req.body.userId);
+                } else {
                     removeUserFromArray(post.usersDownVote, req.body.userId);
                 }
             }
@@ -50,7 +53,7 @@ exports.changeLikes = (req, res, next) => {
                 if (result[0] === 1) {
                     res.status(200).json({
                         message: 'Likes updated.',
-                        result: result
+                        value: post.usersUpVote.length - post.usersDownVote.length,
                     })
                 } else {
                     res.status(500).json({ error: "Error, post couldn't be updated. Post ID : " + req.params.postId });

@@ -147,6 +147,7 @@ exports.updateUserInfo = (req, res) => {
 };
 
 exports.joinSub = (req, res) => {
+    console.log('join : ', req.body);
     User.findByPk(req.params.id, {raw: true}).then( user => {
         if (!user) {
             return res.status(401).json({ error: 'Utilisateur inexistant !' });
