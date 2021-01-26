@@ -17,14 +17,39 @@ exports.create = (req, res, next) => {
         text: req.body.text,
         ownerId: req.body.ownerId,
         parentId: req.body.parentId,
-        upvote: 0,
-        downvote: 0,
         isOC: req.body.isOC,
     };
     Post.create(post).then((post) => res.status(201).json({
         message: 'Post créé !',
         postId: post.id,
     })).catch(error => res.status(400).json({ error }));
+};
+
+exports.updatePost = (req, res) => {
+    Post.findByPk(req.params.id, {raw: true}).then( post => {
+        if (!post) {
+            return res.status(401).json({ error: 'Post inexistant !' });
+        }
+        if (req.body.editerid === post.ownerid/*TODO: check if admin*/) {
+            const updatedPost = {
+                title: req.body.title,
+                text: req.body.text,
+            };
+            Post.update(updatedPost, { where: { id: req.params.id } }).then(result => {
+                if (result[0] === 1) {
+                    res.status(200).json({
+                        message: 'Post update !',
+                        result: result
+                    })
+                } else {
+                    res.status(404).json({ error: "Error, post probably was not found. post ID : " + req.params.id });
+                }
+            }).catch(err => {res.status(500).send({message: err})});
+        } else {
+            res.status(403).json({ error: 'Forbidden: You do not have the right to update this post.' });
+        }
+    }).catch(error => res.status(500).json({ error }))
+
 };
 
 exports.changeLikes = (req, res, next) => {

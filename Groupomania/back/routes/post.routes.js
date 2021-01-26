@@ -15,6 +15,14 @@ router.post('/create', celebrate({
         isOC: Joi.boolean().required(),
     })
 }), auth, postCtrl.create);
+router.put("/postedit/:id", celebrate({
+    [Segments.BODY]: Joi.object().keys({
+        title: Joi.string().allow(''),
+        text: Joi.string(),
+        editerId: Joi.number().required(),
+    })
+}), auth, postCtrl.updatePost);
+
 router.put('/like/:postId', auth, postCtrl.changeLikes);
 
 router.get('/getpost/:postId', auth, postCtrl.getById);
