@@ -5,9 +5,6 @@ import PostCard from "./PostCard.component";
 export default class CommentSection extends React.Component {
 
     comments: [any];
-    constructor(props) {
-        super(props);
-    }
 
     render() {
         return (

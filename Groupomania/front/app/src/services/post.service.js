@@ -22,6 +22,27 @@ export function createPost(newPost: any): Promise<any>  {
     });
 }
 
+export function updatePost(updatedPost: any, postId: number): Promise<any>  {
+    return new Promise((resolve, reject) => {
+        fetch(Constants.API_POST+'postedit/'+ postId, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + localStorage.getItem('token'),
+                'userId': localStorage.getItem('user-id'),
+            },
+            body: JSON.stringify(updatedPost)})
+            .then(HandleError)
+            .then(data => {
+                resolve(data);
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+                reject(error);
+            });
+    });
+}
+
 export function updatePostLikes(postId: number, like: number): Promise<any>  {
     return new Promise((resolve, reject) => {
         fetch(Constants.API_POST+'like/'+postId, {

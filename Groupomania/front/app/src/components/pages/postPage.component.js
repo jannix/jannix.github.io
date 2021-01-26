@@ -7,6 +7,7 @@ import {CSSTransition} from "react-transition-group";
 import CreateCommentPost from "../forms/CreateCommentPost.component";
 import {getUserData} from "../../services/user.service";
 import CommentSection from "../common/CommentSection.component";
+import CreateOCPost from "../forms/CreateOCPost.component";
 
 function PostPage(props) {
     let history = useHistory();
@@ -19,6 +20,7 @@ function PostPage(props) {
 
     const nodeRef = React.useRef(null);
     const [showCreateCommentPost, setShowCreateCommentPost] = useState(false);
+    const [showEditPost, setShowEditPost] = useState(false);
 
     useEffect(() => {
         let mounted = true;
@@ -55,8 +57,13 @@ function PostPage(props) {
         setShowCreateCommentPost(true);
     }
 
+    function popEditPost(event): void {
+        setShowEditPost(true);
+    }
+
     function disappearCommentForm() :void {
         setShowCreateCommentPost(false);
+        setShowEditPost(false);
     }
 
     function reloadComments() :void {
@@ -78,6 +85,14 @@ function PostPage(props) {
                         <CreateCommentPost postId={post.id} closeBehavior={disappearCommentForm} postedBehavior={reloadComments}/>
                     </div>
                 </CSSTransition>
+                <CSSTransition in={showEditPost} timeout={600} classNames="from-bottom" unmountOnExit
+                               onEnter={() => setShowEditPost(true)}
+                               onExited={() => setShowEditPost(false)}
+                               nodeRef={nodeRef}>
+                    <div ref={nodeRef}>
+                        <CreateOCPost originalPost={post} closeBehavior={disappearCommentForm}/>
+                    </div>
+                </CSSTransition>
                 <section className="postOC-container">
                     <div className="postOC-banner-container">
                         <div className="postOC-avatar">
@@ -92,19 +107,19 @@ function PostPage(props) {
                     </article>
                     <div className="postOC-stats">
                         <span>
-                            <button className={'btn-vote btn-vote-up'} onClick={() => sendVote(1)}>
+                            <button className={'btn-vote'} onClick={() => sendVote(1)}>
                                 <div className="overlay"/>
-                                <img src={window.location.origin + '/images/iconarrow.png'} alt="Upvote" title="Upvote button"/>
+                                <img src={window.location.origin + '/images/iconarrowup.png'} alt="Upvote" title="Upvote button"/>
                             </button>
                             {votes}
-                            <button className={'btn-vote btn-vote-down'} onClick={() => sendVote(-1)}>
+                            <button className={'btn-vote'} onClick={() => sendVote(-1)}>
                                 <div className="overlay"/>
-                                <img className={'down'} src={window.location.origin + '/images/iconarrow.png'} alt="Downvote" title="Downvote button"/>
+                                <img src={window.location.origin + '/images/iconarrowdown.png'} alt="Downvote" title="Downvote button"/>
                             </button>
                         </span>
                         <span>
                             {post.ownerId === parseInt(localStorage.getItem('user-id')) &&
-                            <button onClick={popAddComment}>Changer</button>/*TODO: Change for icon btn*/}
+                            <button id={'edit-btn'} onClick={popEditPost}>Changer</button>/*TODO: Change for icon btn*/}
                             <button onClick={popAddComment}>Commenter</button>
                         </span>
                     </div>

@@ -51,10 +51,6 @@
       display: flex;
       justify-content: space-between;
       padding: 0 25px 10px 25px;
-      .btn-vote-down {
-        transform: rotate(180deg);
-        -webkit-transform: rotate(180deg);
-      }
       .btn-vote {
         max-width: 25px;
         max-height: 25px;
@@ -68,6 +64,15 @@
           opacity:0.2;
           border-radius: 15px;
         }
+      }
+      & button {
+        font-size: $s_btn-font-size - 4;
+        height: 25px;
+        max-width: 75px;
+      }
+      & #edit-btn {
+        margin-right: 7px;
+        max-width: 60px;
       }
     }
   }
