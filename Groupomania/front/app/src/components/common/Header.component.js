@@ -19,6 +19,7 @@ export default class Header extends React.Component {
         this.clickOnSub = this.clickOnSub.bind(this);
         this.clickOnNews = this.clickOnNews.bind(this);
         this.clickOnAvatar = this.clickOnAvatar.bind(this);
+        this.clickOnHome = this.clickOnHome.bind(this);
         this.clickOnCreate = this.clickOnCreate.bind(this);
         this.clickSearchCandidate = this.clickSearchCandidate.bind(this);
         this.appearCreateMenu = this.appearCreateMenu.bind(this);
@@ -98,6 +99,10 @@ export default class Header extends React.Component {
         console.log('clicl avatar');
     }
 
+    clickOnHome(event): void {
+        this.props.routerHistory.push('/');
+    }
+
     clickOnCreate(event): void {
         this.setState({showCreateMenu: !this.state.showCreateMenu});
     }
@@ -107,6 +112,9 @@ export default class Header extends React.Component {
             <div className="header-container">
                 <header>
                     <div className="upper-row">
+                        <div className="round-icon">
+                            <img onClick={this.clickOnHome} src={window.location.origin + '/images/iconalpha.png'} alt="user Avatar" title="User Profile"/>
+                        </div>
                         <div className="round-icon">
                             <img onClick={this.clickOnAvatar} src={window.location.origin + '/images/testiconavatar.png'} alt="user Avatar" title="User Profile"/>
                         </div>
