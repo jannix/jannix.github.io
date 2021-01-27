@@ -138,8 +138,8 @@ export default class Header extends React.Component {
                     <div className="tab-row">
                         <nav id="home-tab">
                             <ul>
-                                <li className={this.state.isSub? 'active': ''}><button id="tab-sub" onClick={this.clickOnSub}>Mes Fils</button></li>
-                                <li className={this.state.isSub? '': 'active'}><button id="tab-news" onClick={this.clickOnNews}>News</button></li>
+                                <li className={this.state.isSub? '': ''}><button id="tab-sub" onClick={this.clickOnSub}>Mes Fils</button></li>
+                                <li className={this.state.isSub? '': ''}><button id="tab-news" onClick={this.clickOnNews}>News</button></li>
                             </ul>
                         </nav>
                     </div>
