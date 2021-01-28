@@ -4,10 +4,23 @@
   background-color: $primary-bg-colour;
   display: flex;
   flex-direction: column;
-  max-height: 100%;
+  height: 100%;
   & > div {
     display:flex;
     justify-content:center;
+  }
+}
+
+@media only screen and (min-width: 790px) {
+  .login-page-container {
+    margin: auto;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    max-width: 750px;
+    & > div {
+      margin: 15px;
+    }
   }
 }
 
