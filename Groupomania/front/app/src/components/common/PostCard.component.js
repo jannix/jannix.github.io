@@ -57,12 +57,12 @@ export default class PostCard extends React.Component {
                 </div>
                 <div className="postcard-stats">
                     <span>
-                        <button className={'btn-vote'} onClick={() => this.sendVote(1)}>
+                        <button className={'btn-vote'} onClick={(event) => {this.sendVote(1);  event.stopPropagation();}}>
                             <div className="overlay"/>
                             <img src={window.location.origin + '/images/iconarrowup.png'} alt="Upvote" title="Upvote button"/>
                         </button>
                         {this.state.votes}
-                        <button className={'btn-vote'} onClick={() => this.sendVote(-1)}>
+                        <button className={'btn-vote'} onClick={(event) => {this.sendVote(-1);  event.stopPropagation();}}>
                             <div className="overlay"/>
                             <img src={window.location.origin + '/images/iconarrowdown.png'} alt="Downvote" title="Downvote button"/>
                         </button>
