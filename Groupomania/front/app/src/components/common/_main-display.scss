@@ -24,3 +24,11 @@
     }
   }
 }
+
+
+@media only screen and (min-width: 790px) {
+  .main-display-container {
+    max-width: 790px;
+    margin: auto;
+  }
+}

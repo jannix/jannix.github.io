@@ -77,3 +77,16 @@
     }
   }
 }
+
+@media only screen and (min-width: 790px) {
+  .post-page-container {
+    .postOC-container {
+      max-width: 790px;
+      margin: 8px auto 8px auto;
+    }
+    .comments-container {
+      max-width: 790px;
+      margin: auto;
+    }
+  }
+}
