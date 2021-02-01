@@ -4,19 +4,30 @@ import InputForm from "./InputForm.component";
 import {matchPattern, validatorMessages, validatorsRules} from "../../utils/validator";
 import {toast, ToastContainer} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
-import {createSub} from "../../services/sub.service";
+import {createSub, updateSub} from "../../services/sub.service";
 import TextAreaForm from "./TextAreaForm.component";
 import CloseBtn from "../common/CloseBtn.component";
-import {un_or_subscribe} from "../../services/user.service";
+import {canUserEdit, un_or_subscribe} from "../../services/user.service";
 
 export default class CreateSub extends React.Component {
 
+    originalSub: any;
     closeBehavior: () => void;
     constructor(props) {
         super(props);
         this.state = {title: '', description: '', subjectId: [-1]};
         this.handleChangeState = this.handleChangeState.bind(this);
+        this.createNewSub = this.createNewSub.bind(this);
+        this.editSub = this.editSub.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+    }
+
+    componentDidMount(): void {
+        if (this.props.originalSub) {
+            this.setState({title: this.props.originalSub.title});
+            this.setState({description: this.props.originalSub.description});
+            this.setState({subjectId: this.props.originalSub.subjectId});
+        }
     }
 
     handleChangeState(targetName: string, targetValue: string): void {
@@ -28,12 +39,7 @@ export default class CreateSub extends React.Component {
             (this.state.description !== '');
     }
 
-    handleSubmit(event): void {
-        if (!this.canSubmit()) {
-            return;
-        }
-        event.preventDefault();
-
+    createNewSub(): void {
         const newSub = {
             title: this.state.title,
             description: this.state.description,
@@ -43,7 +49,6 @@ export default class CreateSub extends React.Component {
         createSub(newSub).then((res) => {
             un_or_subscribe(newSub.ownerId, res.subId, true).then();
             this.props.closeBehavior();
-            console.log('/f/'+ newSub.title);
             this.props.routerHistory.push('/f/'+ newSub.title);
         }).catch( err => {
             toast.error('Le fil n\'a pas pu être créé...', {
@@ -56,6 +61,44 @@ export default class CreateSub extends React.Component {
                 progress: undefined,
             });
         });
+    }
+
+    editSub(): void {
+        if ( !canUserEdit(this.props.originalSub.ownerId)) {
+            return;
+        }
+        const editedSub = {
+            title: this.state.title,
+            description: this.state.description,
+            subjectIds: [-1],
+            editerId: localStorage.getItem('user-id'),
+        };
+        updateSub(editedSub, this.props.originalSub.id).then((res) => {
+            this.props.closeBehavior();
+            window.location.reload();
+        }).catch( err => {
+            toast.error('Le fil n\'a pas pu être édité...', {
+                position: "bottom-left",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
+        });
+    }
+
+    handleSubmit(event): void {
+        if (!this.canSubmit()) {
+            return;
+        }
+        event.preventDefault();
+        if (!this.props.originalSub) {
+            this.createNewSub();
+        } else {
+            this.editSub();
+        }
     }
 
     render() {

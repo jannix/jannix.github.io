@@ -1,6 +1,11 @@
 import * as Constants from "../constants/apiconst";
 import {HandleError} from "../utils/responseHandler";
 
+export function canUserEdit(ownerId: number): boolean {
+    //TODO: check if admin
+    return ownerId === parseInt(localStorage.getItem('user-id'));
+}
+
 export function getUserData(userId: number): Promise<any> {
     return new Promise((resolve, reject) => {
         fetch(Constants.API_USER+userId, {

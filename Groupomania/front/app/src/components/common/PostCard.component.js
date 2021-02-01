@@ -1,6 +1,6 @@
 import React from 'react';
 import "./_post-card.scss";
-import {getUserData} from "../../services/user.service";
+import {canUserEdit, getUserData} from "../../services/user.service";
 import {updatePostLikes} from "../../services/post.service";
 
 export default class PostCard extends React.Component {
@@ -13,6 +13,7 @@ export default class PostCard extends React.Component {
         this.state = {authorName: 'u/anonyme', votes: 0};
         this.goToArticle = this.goToArticle.bind(this);
         this.sendVote = this.sendVote.bind(this);
+        this.popEditPost = this.popEditPost.bind(this);
     }
 
     componentDidMount(): void {
@@ -38,6 +39,10 @@ export default class PostCard extends React.Component {
         }).catch(error => {
             console.log(error);
         });
+    }
+
+    popEditPost(): void {
+
     }
 
     render() {
@@ -68,8 +73,8 @@ export default class PostCard extends React.Component {
                         </button>
                     </span>
                     <span>
-                        {this.props.postData.ownerId === parseInt(localStorage.getItem('user-id')) &&
-                        <button>Changer</button>/*TODO: Change for icon btn*/}
+                        {canUserEdit(this.props.postData.ownerId) &&
+                        <button id={'edit-btn'} onClick={this.popEditPost}>Changer</button>/*TODO: Change for icon btn*/}
                     </span>
                 </div>
             </article>

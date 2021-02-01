@@ -2,7 +2,9 @@ import React from 'react';
 import "./_main-display.scss";
 import {getPostById} from "../../services/post.service";
 import PostCard from "./PostCard.component";
-import {getUserSubscriptions, un_or_subscribe} from "../../services/user.service";
+import {canUserEdit, getUserSubscriptions, un_or_subscribe} from "../../services/user.service";
+import CreateSub from "../forms/CreateSub.component";
+import {CSSTransition} from "react-transition-group";
 
 export default class MainDisplay extends React.Component {
     routerHistory: any;
@@ -12,10 +14,13 @@ export default class MainDisplay extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {postList: [], userJoined: false};
+        this.state = {postList: [], userJoined: false, showEditSub: false};
+        this.myRef = React.createRef();
         this.loadPostListBySub = this.loadPostListBySub.bind(this);
         this.loadPostListByUser = this.loadPostListByUser.bind(this);
         this.joinSub = this.joinSub.bind(this);
+        this.popEditSub = this.popEditSub.bind(this);
+        this.disappearEditMenu = this.disappearEditMenu.bind(this);
         this.init = this.init.bind(this);
     }
 
@@ -54,6 +59,9 @@ export default class MainDisplay extends React.Component {
                             this.setState({userJoined: true});
                         }
                     });
+                }).catch(err => {
+                }).catch(err => {
+                    this.props.routerHistory.push('/login');
                 });
             }
         } else if (this.props.userData) {
@@ -95,6 +103,14 @@ export default class MainDisplay extends React.Component {
         }
     }
 
+    popEditSub(event): void {
+        this.setState({showEditSub: true});
+    }
+
+    disappearEditMenu(): void {
+        this.setState({showEditSub: false});
+    }
+
     render() {
         return (
             <main className="main-display-container">
@@ -103,8 +119,12 @@ export default class MainDisplay extends React.Component {
                     <div>
                         <h1>f/{this.props.subData.title}</h1>
                         <button onClick={this.joinSub}>{this.state.userJoined? 'Quitter': 'Rejoindre'}</button>
+                        {canUserEdit(this.props.subData.ownerId) &&
+                        <button id={'edit-btn'} onClick={this.popEditSub}>Changer</button>/*TODO: Change for icon btn*/}
                     </div>
                     <p>{this.props.subData.description}</p>
+                    <div className={'edit-sub'}>
+                    </div>
                 </div>}
                 {this.state.postList.length === 0 &&
                     <p>Nothing to show</p>
@@ -112,6 +132,14 @@ export default class MainDisplay extends React.Component {
                 {this.state.postList.map( post => (
                     <PostCard key={'post'+post.id} routerHistory={this.props.routerHistory} subTitle={post.subTitle? post.subTitle: null} postData={post}/>))
                 }
+                <CSSTransition in={this.state.showEditSub} timeout={600} classNames="from-bottom" unmountOnExit
+                               onEnter={() => this.setState({showCreateSub: true})}
+                               onExited={() => this.setState({showCreateSub: false})}
+                               nodeRef={this.myRef}>
+                    <div ref={this.myRef}>
+                        <CreateSub closeBehavior={this.disappearEditMenu} originalSub={this.props.subData}/>
+                    </div>
+                </CSSTransition>
             </main>
         );
     }
