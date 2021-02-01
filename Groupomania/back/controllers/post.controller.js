@@ -49,7 +49,6 @@ exports.updatePost = (req, res) => {
             res.status(403).json({ error: 'Forbidden: You do not have the right to update this post.' });
         }
     }).catch(error => res.status(500).json({ error }))
-
 };
 
 exports.changeLikes = (req, res, next) => {

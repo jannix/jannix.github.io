@@ -14,6 +14,14 @@ router.post('/create', celebrate({
         subjectIds: Joi.array()/*.items(Joi.number)*/.required(),//TODO: fix validation array type
     })
 }), auth, subCtrl.create);
+router.put("/subedit/:id", celebrate({
+    [Segments.BODY]: Joi.object().keys({
+        title: Joi.string().allow(''),
+        description: Joi.string(),
+        subjectIds: Joi.array()/*.items(Joi.number)*/.required(),//TODO: fix validation array type
+        editerId: Joi.number().required(),
+    })
+}), auth, subCtrl.updateSub);
 
 router.get('/getbytitle/:title', subCtrl.getByTitle);
 
