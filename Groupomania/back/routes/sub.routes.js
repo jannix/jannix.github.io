@@ -22,6 +22,7 @@ router.put("/subedit/:id", celebrate({
         editerId: Joi.number().required(),
     })
 }), auth, subCtrl.updateSub);
+router.delete('/:id', auth, subCtrl.deleteSub);
 
 router.get('/getbytitle/:title', subCtrl.getByTitle);
 

@@ -33,14 +33,27 @@ exports.updateSub = (req, res) => {
                         result: result
                     })
                 } else {
-                    res.status(404).json({ error: "Error, post probably was not found. sub ID : " + req.params.id });
+                    res.status(404).json({ error: "Error, sub probably was not found. sub ID : " + req.params.id });
                 }
             }).catch(err => {res.status(500).send({message: err})});
         } else {
             res.status(403).json({ error: 'Forbidden: You do not have the right to update this sub.' });
         }
     }).catch(error => res.status(500).json({ error }))
+};
 
+exports.deleteSub = (req, res) => {
+    //TODO: check if able to destroy
+    Sub.destroy({where: {id: req.params.id}}).then(count => {
+        if (!count) {
+            return res.status(404).send({error: "Error, sub probably was not found. sub ID : " + req.params.id});
+        }
+        //TODO: delete all post where parentId=id and is OC
+        res.status(200).json({
+            message: 'Sub deleted !',
+            result: count
+        })
+    });
 };
 
 exports.getByTitle = (req, res, next) => {

@@ -51,6 +51,20 @@ exports.updatePost = (req, res) => {
     }).catch(error => res.status(500).json({ error }))
 };
 
+exports.deletePost = (req, res) => {
+    //TODO: check if able to destroy
+    Post.destroy({where: {id: req.params.id}}).then(count => {
+        if (!count) {
+            return res.status(404).send({error: "Error, post probably was not found. post ID : " + req.params.id});
+        }
+        Post.destroy({where: {parentId: req.params.id, isOC: false}}).then();
+        res.status(200).json({
+            message: 'Post deleted !',
+            result: count
+        })
+    });
+};
+
 exports.changeLikes = (req, res, next) => {
     Post.findByPk(req.params.postId, {raw: true})
         .then(post => {

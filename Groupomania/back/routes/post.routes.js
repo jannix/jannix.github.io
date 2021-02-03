@@ -22,6 +22,7 @@ router.put("/postedit/:id", celebrate({
         editerId: Joi.number().required(),
     })
 }), auth, postCtrl.updatePost);
+router.delete('/:id', auth, postCtrl.deletePost);
 
 router.put('/like/:postId', auth, postCtrl.changeLikes);
 
