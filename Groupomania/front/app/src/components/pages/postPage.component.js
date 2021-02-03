@@ -90,7 +90,7 @@ function PostPage(props) {
                                onExited={() => setShowEditPost(false)}
                                nodeRef={nodeRef}>
                     <div ref={nodeRef}>
-                        <CreateOCPost originalPost={post} closeBehavior={disappearCommentForm}/>
+                        <CreateOCPost originalPost={post} closeBehavior={disappearCommentForm} routerHistory={history}/>
                     </div>
                 </CSSTransition>
                 <section className="postOC-container">

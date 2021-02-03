@@ -17,6 +17,7 @@ function SubPage(props) {
         let mounted = true;
         if (!sub || sub.title !== subName) {
             getSubsByTitle(subName).then(res => {//TODO: make fct for exact title
+                console.log(res.subsFound);
                 if (mounted) {
                     setSub(res.subsFound[0]);
                 }

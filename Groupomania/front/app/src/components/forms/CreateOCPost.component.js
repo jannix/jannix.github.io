@@ -7,11 +7,12 @@ import 'react-toastify/dist/ReactToastify.css';
 import TextAreaForm from "./TextAreaForm.component";
 import CloseBtn from "../common/CloseBtn.component";
 import SelectForm from "./SelectForm.component";
-import {getUserSubscriptions} from "../../services/user.service";
-import {createPost, updatePost} from "../../services/post.service";
+import {canUserEdit, getUserSubscriptions} from "../../services/user.service";
+import {createPost, deletePost, updatePost} from "../../services/post.service";
 
 export default class CreateOCPost extends React.Component {
 
+    routerHistory: any;
     originalPost: any;
     closeBehavior: () => void;
     constructor(props) {
@@ -20,6 +21,8 @@ export default class CreateOCPost extends React.Component {
         this.handleChangeState = this.handleChangeState.bind(this);
         this.createNewOcPost = this.createNewOcPost.bind(this);
         this.editOCPost = this.editOCPost.bind(this);
+        this.delete = this.delete.bind(this);
+        this.canDelete = this.canDelete.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
@@ -41,6 +44,32 @@ export default class CreateOCPost extends React.Component {
         this.setState({[targetName]: targetValue});
     }
 
+    canDelete(): boolean {
+        return canUserEdit(this.props.originalPost.ownerId);
+    }
+
+    delete(): void {
+        if (this.canDelete()) {
+            //TODO: ask to confirm
+            deletePost(this.props.originalPost.id).then((res) => {
+                console.log('YOPOOOOOOOOOOOOOOO');
+                console.log(res);
+                this.props.routerHistory.push('/');
+            }).catch( err => {
+                console.log(err);
+                toast.error('Le sujet n\'a pas pu être supprimé...', {
+                    position: "bottom-left",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                });
+            });
+        }
+    }
+
     canSubmit(): boolean {
         return (this.state.subId !== -1) && matchPattern(this.state.title, validatorsRules.titlePattern);
     }
@@ -56,7 +85,7 @@ export default class CreateOCPost extends React.Component {
         createPost(newOCPost).then((res) => {
             console.log(res);
             this.props.closeBehavior();
-            this.props.routerHistory.push('/f/'+this.state.title+'/s/'+res.id);//TODO: go to post page
+            this.props.routerHistory.push('/f/'+this.state.title+'/s/'+res.postId);//TODO: go to post page
         }).catch( err => {
             toast.error('Le sujet n\'a pas pu être créé...', {
                 position: "bottom-left",
@@ -71,7 +100,7 @@ export default class CreateOCPost extends React.Component {
     }
 
     editOCPost(): void {
-        if (this.props.originalPost.ownerId !== parseInt(localStorage.getItem('user-id'))) {//TODO: check if admin
+        if (!canUserEdit(this.props.originalPost.ownerId)) {
             return;
         }
         const editingPost = {
@@ -130,10 +159,11 @@ export default class CreateOCPost extends React.Component {
                         {!this.props.originalPost && <SelectForm value={this.state.subId} inputName="subId" options={this.state.subOptions}
                                                                  inputLabel="Fil du Post"
                                                                  changeValue={this.handleChangeState}/>}
-
                         <button type="submit" disabled={!this.canSubmit()}>Poster</button>
                     </div>
                 </form>
+                {this.props.originalPost &&
+                <button disabled={!this.canDelete()} onClick={this.delete}>Supprimer</button>}
                 <ToastContainer />
             </div>
         );

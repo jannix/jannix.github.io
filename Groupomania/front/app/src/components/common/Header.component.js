@@ -158,7 +158,7 @@ export default class Header extends React.Component {
                                onExited={() => this.setState({showCreateSub: false})}
                                nodeRef={this.myRef2}>
                     <div ref={this.myRef2}>
-                        <CreateSub closeBehavior={this.disappearAllMenu}/>
+                        <CreateSub closeBehavior={this.disappearAllMenu} routerHistory={this.props.routerHistory}/>
                     </div>
                 </CSSTransition>
                 <CSSTransition in={this.state.showCreateOCPost} timeout={600} classNames="from-bottom" unmountOnExit
@@ -166,7 +166,7 @@ export default class Header extends React.Component {
                                onExited={() => this.setState({showCreateOCPost: false})}
                                nodeRef={this.myRef2}>
                     <div ref={this.myRef2}>
-                        <CreateOCPost closeBehavior={this.disappearAllMenu}/>
+                        <CreateOCPost closeBehavior={this.disappearAllMenu} routerHistory={this.props.routerHistory}/>
                     </div>
                 </CSSTransition>
             </div>
