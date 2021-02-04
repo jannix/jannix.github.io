@@ -4,13 +4,14 @@ import InputForm from "./InputForm.component";
 import {matchPattern, validatorMessages, validatorsRules} from "../../utils/validator";
 import {toast, ToastContainer} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
-import {createSub, updateSub} from "../../services/sub.service";
+import {createSub, deleteSub, updateSub} from "../../services/sub.service";
 import TextAreaForm from "./TextAreaForm.component";
 import CloseBtn from "../common/CloseBtn.component";
 import {canUserEdit, un_or_subscribe} from "../../services/user.service";
 
 export default class CreateSub extends React.Component {
 
+    routerHistory: any;
     originalSub: any;
     closeBehavior: () => void;
     constructor(props) {
@@ -19,6 +20,8 @@ export default class CreateSub extends React.Component {
         this.handleChangeState = this.handleChangeState.bind(this);
         this.createNewSub = this.createNewSub.bind(this);
         this.editSub = this.editSub.bind(this);
+        this.delete = this.delete.bind(this);
+        this.canDelete = this.canDelete.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
@@ -32,6 +35,30 @@ export default class CreateSub extends React.Component {
 
     handleChangeState(targetName: string, targetValue: string): void {
         this.setState({[targetName]: targetValue});
+    }
+
+    canDelete(): boolean {
+        return canUserEdit(this.props.originalSub.ownerId);
+    }
+
+    delete(): void {
+        if (this.canDelete()) {
+            //TODO: ask to confirm
+            deleteSub(this.props.originalSub.id).then((res) => {
+                this.props.routerHistory.push('/');
+            }).catch( err => {
+                console.log(err);
+                toast.error('Le fil n\'a pas pu être supprimé...', {
+                    position: "bottom-left",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                });
+            });
+        }
     }
 
     canSubmit(): boolean {
@@ -122,9 +149,11 @@ export default class CreateSub extends React.Component {
                         <InputForm value={this.state.subjectId} inputType="list" inputName="subject"
                                    inputLabel="Catégorie"
                                    changeValue={this.handleChangeState}/>
-                        <button type="submit" disabled={!this.canSubmit()}>Créer</button>
+                        <button type="submit" disabled={!this.canSubmit()}>Poster</button>
                     </div>
                 </form>
+                {this.props.originalSub &&
+                <button disabled={!this.canDelete()} onClick={this.delete}>Supprimer</button>}
                 <ToastContainer />
             </div>
         );

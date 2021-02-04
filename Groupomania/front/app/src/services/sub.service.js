@@ -45,6 +45,27 @@ export function updateSub(editedSub: any, subId: number): Promise<any>  {
     });
 }
 
+
+export function deleteSub(subId: number): Promise<any> {
+    return new Promise((resolve, reject) => {
+        fetch(Constants.API_SUB + subId, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + localStorage.getItem('token'),
+                'userId': localStorage.getItem('user-id'),
+            }})
+            .then(HandleError)
+            .then(data => {
+                resolve(data);
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+                reject(error);
+            });
+    });
+}
+
 export function getSubsByTitle(subName: string): Promise<any>  {
     return new Promise((resolve, reject) => {
         fetch(Constants.API_SUB+'getbytitle/'+subName, {

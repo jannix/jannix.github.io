@@ -137,7 +137,7 @@ export default class MainDisplay extends React.Component {
                                onExited={() => this.setState({showCreateSub: false})}
                                nodeRef={this.myRef}>
                     <div ref={this.myRef}>
-                        <CreateSub closeBehavior={this.disappearEditMenu} originalSub={this.props.subData}/>
+                        <CreateSub closeBehavior={this.disappearEditMenu} originalSub={this.props.subData} routerHistory={this.props.routerHistory}/>
                     </div>
                 </CSSTransition>
             </main>

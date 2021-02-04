@@ -52,8 +52,6 @@ export default class CreateOCPost extends React.Component {
         if (this.canDelete()) {
             //TODO: ask to confirm
             deletePost(this.props.originalPost.id).then((res) => {
-                console.log('YOPOOOOOOOOOOOOOOO');
-                console.log(res);
                 this.props.routerHistory.push('/');
             }).catch( err => {
                 console.log(err);
