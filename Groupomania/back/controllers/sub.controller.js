@@ -1,6 +1,8 @@
 const Sequelize = require("sequelize");
 const db = require('../models');
 const Sub = db.subs;
+const Post = db.posts;
+const User = db.users;
 
 exports.create = (req, res, next) => {
     const sub = {
@@ -48,7 +50,26 @@ exports.deleteSub = (req, res) => {
         if (!count) {
             return res.status(404).send({error: "Error, sub probably was not found. sub ID : " + req.params.id});
         }
-        //TODO: delete all post where parentId=id and is OC
+        User.findAll({where: {subscriptionIds: { [Sequelize.Op.contains]: [req.params.id] }}, raw: true}).then( users => {
+            if (users && users.length > 0) {
+                users.forEach(user => {
+                    const index = user.subscriptionIds.indexOf(parseInt(req.params.id));
+                    if (index !== -1) {
+                        user.subscriptionIds.splice(index, 1);
+                        User.update(user, { where: { id: user.id } }).then();
+                    }
+                });
+            }
+        });
+        Post.findAll({where: {parentId: req.params.id, isOC: true}, raw: true}).then( posts => {
+            if (posts && posts.length > 0) {
+                posts.forEach(post => {
+                    console.log(post.id);
+                    Post.destroy({where: {parentId: post.id, isOC: false}}).then();
+                });
+                Post.destroy({where: {parentId: req.params.id, isOC: true}}).then();
+            }
+        });
         res.status(200).json({
             message: 'Sub deleted !',
             result: count
