@@ -16,7 +16,7 @@ export default class CreateSub extends React.Component {
     closeBehavior: () => void;
     constructor(props) {
         super(props);
-        this.state = {title: '', description: '', subjectId: [-1]};
+        this.state = {title: '', description: '', subjectId: [-1], canEdit: false};
         this.handleChangeState = this.handleChangeState.bind(this);
         this.createNewSub = this.createNewSub.bind(this);
         this.editSub = this.editSub.bind(this);
@@ -30,6 +30,9 @@ export default class CreateSub extends React.Component {
             this.setState({title: this.props.originalSub.title});
             this.setState({description: this.props.originalSub.description});
             this.setState({subjectId: this.props.originalSub.subjectId});
+            canUserEdit(this.props.originalSub.ownerId).then(can => {
+                this.setState({canEdit: can});
+            });
         }
     }
 
@@ -38,7 +41,7 @@ export default class CreateSub extends React.Component {
     }
 
     canDelete(): boolean {
-        return canUserEdit(this.props.originalSub.ownerId);
+        return this.state.canEdit;
     }
 
     delete(): void {
@@ -91,7 +94,7 @@ export default class CreateSub extends React.Component {
     }
 
     editSub(): void {
-        if ( !canUserEdit(this.props.originalSub.ownerId)) {
+        if (!this.state.canEdit) {
             return;
         }
         const editedSub = {
@@ -146,13 +149,13 @@ export default class CreateSub extends React.Component {
                         <TextAreaForm value={this.state.description} inputType="text" inputName="description"
                                    inputLabel="Description"
                                    changeValue={this.handleChangeState}/>
-                        <InputForm value={this.state.subjectId} inputType="list" inputName="subject"
+                        {/*<InputForm value={this.state.subjectId} inputType="list" inputName="subject"
                                    inputLabel="Catégorie"
-                                   changeValue={this.handleChangeState}/>
+                                   changeValue={this.handleChangeState}/>*/}
                         <button type="submit" disabled={!this.canSubmit()}>Poster</button>
                     </div>
                 </form>
-                {this.props.originalSub &&
+                {this.state.canEdit &&
                 <button disabled={!this.canDelete()} onClick={this.delete}>Supprimer</button>}
                 <ToastContainer />
             </div>

@@ -16,6 +16,7 @@ function PostPage(props) {
     const [comments, setComments] = useState(null);
     const [authorName, setAuthorName] = useState('u/anonyme');
     const [votes, setVotes] = useState(0);
+    const [canEdit, setCanEdit] = useState(false);
     let { postId } = useParams();
 
     const nodeRef = React.useRef(null);
@@ -30,6 +31,11 @@ function PostPage(props) {
                     setPost(ret.postFound);
                     setVotes(ret.postFound.usersUpVote.length - ret.postFound.usersDownVote.length);
                     getUserData(ret.postFound.ownerId).then( res => {
+                        if (ret.postFound.ownerId === parseInt(localStorage.getItem('user-id'))) {
+                            setCanEdit(true);
+                        } else {
+                            setCanEdit(res.userFound.isAdmin);
+                        }
                         setAuthorName('u/'+(res.userFound.username !== ''? res.userFound.username: res.userFound.firstName + ' ' + res.userFound.lastName));
                     });
                     getPostById(ret.postFound.id, 'getcomments/').then(posts => {
@@ -118,7 +124,7 @@ function PostPage(props) {
                             </button>
                         </span>
                         <span>
-                            {post.ownerId === parseInt(localStorage.getItem('user-id')) &&
+                            {canEdit &&
                             <button id={'edit-btn'} onClick={popEditPost}>Changer</button>/*TODO: Change for icon btn*/}
                             <button onClick={popAddComment}>Commenter</button>
                         </span>

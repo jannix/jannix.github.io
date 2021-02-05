@@ -1,6 +1,6 @@
 import React from 'react';
 import "./_post-card.scss";
-import {canUserEdit, getUserData} from "../../services/user.service";
+import {getUserData} from "../../services/user.service";
 import {updatePostLikes} from "../../services/post.service";
 
 export default class PostCard extends React.Component {
@@ -10,7 +10,7 @@ export default class PostCard extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {authorName: 'u/anonyme', votes: 0};
+        this.state = {authorName: 'u/anonyme', votes: 0, canEdit: false};
         this.goToArticle = this.goToArticle.bind(this);
         this.sendVote = this.sendVote.bind(this);
         this.popEditPost = this.popEditPost.bind(this);
@@ -18,6 +18,11 @@ export default class PostCard extends React.Component {
 
     componentDidMount(): void {
         getUserData(this.props.postData.ownerId).then( res => {
+            if (this.props.postData.ownerId === parseInt(localStorage.getItem('user-id'))) {
+                this.setState({canEdit: true});
+            } else {
+                this.setState({canEdit: res.userFound.isAdmin});
+            }
             this.setState({authorName: 'u/'+(res.userFound.username !== ''? res.userFound.username: res.userFound.firstName + ' ' + res.userFound.lastName)});
         });
         this.setState({votes: this.props.postData.usersUpVote.length - this.props.postData.usersDownVote.length});
@@ -73,7 +78,7 @@ export default class PostCard extends React.Component {
                         </button>
                     </span>
                     <span>
-                        {canUserEdit(this.props.postData.ownerId) &&
+                        {this.state.canEdit &&
                         <button id={'edit-btn'} onClick={this.popEditPost}>Changer</button>/*TODO: Change for icon btn*/}
                     </span>
                 </div>

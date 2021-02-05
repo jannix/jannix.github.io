@@ -17,7 +17,7 @@ export default class CreateOCPost extends React.Component {
     closeBehavior: () => void;
     constructor(props) {
         super(props);
-        this.state = {title: '', text: '', subId: -1, subOptions: []};
+        this.state = {title: '', text: '', subId: -1, subOptions: [], canEdit: false};
         this.handleChangeState = this.handleChangeState.bind(this);
         this.createNewOcPost = this.createNewOcPost.bind(this);
         this.editOCPost = this.editOCPost.bind(this);
@@ -31,6 +31,9 @@ export default class CreateOCPost extends React.Component {
             this.setState({title: this.props.originalPost.title});
             this.setState({text: this.props.originalPost.text});
             this.setState({subId: this.props.originalPost.parentId});
+            canUserEdit(this.props.originalPost.ownerId).then(can => {
+                this.setState({canEdit: can});
+            });
         }
         else {
             getUserSubscriptions(localStorage.getItem('user-id')).then(res => {
@@ -45,7 +48,7 @@ export default class CreateOCPost extends React.Component {
     }
 
     canDelete(): boolean {
-        return canUserEdit(this.props.originalPost.ownerId);
+        return this.state.canEdit;
     }
 
     delete(): void {
@@ -98,7 +101,7 @@ export default class CreateOCPost extends React.Component {
     }
 
     editOCPost(): void {
-        if (!canUserEdit(this.props.originalPost.ownerId)) {
+        if (!this.state.canEdit) {
             return;
         }
         const editingPost = {
@@ -160,7 +163,7 @@ export default class CreateOCPost extends React.Component {
                         <button type="submit" disabled={!this.canSubmit()}>Poster</button>
                     </div>
                 </form>
-                {this.props.originalPost &&
+                {this.state.canEdit &&
                 <button disabled={!this.canDelete()} onClick={this.delete}>Supprimer</button>}
                 <ToastContainer />
             </div>

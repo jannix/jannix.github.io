@@ -2,7 +2,7 @@ import React from 'react';
 import "./_main-display.scss";
 import {getPostById} from "../../services/post.service";
 import PostCard from "./PostCard.component";
-import {canUserEdit, getUserSubscriptions, un_or_subscribe} from "../../services/user.service";
+import {getUserData, getUserSubscriptions, un_or_subscribe} from "../../services/user.service";
 import CreateSub from "../forms/CreateSub.component";
 import {CSSTransition} from "react-transition-group";
 
@@ -14,7 +14,7 @@ export default class MainDisplay extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {postList: [], userJoined: false, showEditSub: false};
+        this.state = {postList: [], userJoined: false, showEditSub: false, canEdit: false};
         this.myRef = React.createRef();
         this.loadPostListBySub = this.loadPostListBySub.bind(this);
         this.loadPostListByUser = this.loadPostListByUser.bind(this);
@@ -53,6 +53,13 @@ export default class MainDisplay extends React.Component {
         if (this.props.subData) {
             this.loadPostListBySub();
             if (!this.props.userData) {
+                if (this.props.subData.ownerId === parseInt(localStorage.getItem('user-id'))) {
+                    this.setState({canEdit: true});
+                } else {
+                    getUserData(localStorage.getItem('user-id')).then(result => {
+                        this.setState({canEdit: result.userFound.isAdmin});
+                    });
+                }
                 getUserSubscriptions(localStorage.getItem('user-id')).then( res => {
                     res.userSubscriptions.forEach( sub => {
                         if (sub.id === this.props.subData.id) {
@@ -60,9 +67,11 @@ export default class MainDisplay extends React.Component {
                         }
                     });
                 }).catch(err => {
-                }).catch(err => {
                     this.props.routerHistory.push('/login');
                 });
+            }
+            else {
+                console.log('TEHEREHEHE');
             }
         } else if (this.props.userData) {
             this.loadPostListByUser();
@@ -119,7 +128,7 @@ export default class MainDisplay extends React.Component {
                     <div>
                         <h1>f/{this.props.subData.title}</h1>
                         <button onClick={this.joinSub}>{this.state.userJoined? 'Quitter': 'Rejoindre'}</button>
-                        {canUserEdit(this.props.subData.ownerId) &&
+                        {this.state.canEdit &&
                         <button id={'edit-btn'} onClick={this.popEditSub}>Changer</button>/*TODO: Change for icon btn*/}
                     </div>
                     <p>{this.props.subData.description}</p>
