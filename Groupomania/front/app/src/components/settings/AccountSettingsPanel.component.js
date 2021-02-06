@@ -24,6 +24,7 @@ export default class AccountSettingsPanel extends React.Component {
         this.handleChangeState = this.handleChangeState.bind(this);
         this.displayChangeMail = this.displayChangeMail.bind(this);
         this.showChangePassword = this.showChangePassword.bind(this);
+        this.logout = this.logout.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
@@ -120,6 +121,11 @@ export default class AccountSettingsPanel extends React.Component {
         this.props.panelBehavior();
     }
 
+    logout(): void {
+        localStorage.removeItem('user-id');
+        this.props.routerHistory.push('/login');
+    }
+
     render() {
         return (
             <div className="account-settings-panel-container">
@@ -165,6 +171,7 @@ export default class AccountSettingsPanel extends React.Component {
                         </div>
                     </form>
                 </section>
+                <button onClick={this.logout}>Déconnexion</button>
                 <ToastContainer />
             </div>
         );
