@@ -5,7 +5,7 @@ import Header from "../common/Header.component";
 import {getPostById, updatePostLikes} from "../../services/post.service";
 import {CSSTransition} from "react-transition-group";
 import CreateCommentPost from "../forms/CreateCommentPost.component";
-import {getUserData} from "../../services/user.service";
+import {canUserEdit, getUserData} from "../../services/user.service";
 import CommentSection from "../common/CommentSection.component";
 import CreateOCPost from "../forms/CreateOCPost.component";
 
@@ -30,12 +30,10 @@ function PostPage(props) {
                 if (mounted) {
                     setPost(ret.postFound);
                     setVotes(ret.postFound.usersUpVote.length - ret.postFound.usersDownVote.length);
+                    canUserEdit(ret.postFound.ownerId).then(can => {
+                        setCanEdit(can);
+                    });
                     getUserData(ret.postFound.ownerId).then( res => {
-                        if (ret.postFound.ownerId === parseInt(localStorage.getItem('user-id'))) {
-                            setCanEdit(true);
-                        } else {
-                            setCanEdit(res.userFound.isAdmin);
-                        }
                         setAuthorName('u/'+(res.userFound.username !== ''? res.userFound.username: res.userFound.firstName + ' ' + res.userFound.lastName));
                     });
                     getPostById(ret.postFound.id, 'getcomments/').then(posts => {

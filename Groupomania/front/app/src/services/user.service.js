@@ -1,11 +1,11 @@
 import * as Constants from "../constants/apiconst";
 import {HandleError} from "../utils/responseHandler";
 
-export function canUserEdit(ownerId: number): Promise<boolean> {
+export async function canUserEdit(ownerId: number): Promise<boolean> {
     if (ownerId === parseInt(localStorage.getItem('user-id'))) {
         return Promise.resolve(true);
     } else {
-        getUserData(localStorage.getItem('user-id')).then(result => {
+        return await getUserData(localStorage.getItem('user-id')).then(result => {
             return Promise.resolve(result.userFound.isAdmin);
         });
     }

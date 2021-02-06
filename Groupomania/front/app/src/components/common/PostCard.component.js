@@ -1,6 +1,6 @@
 import React from 'react';
 import "./_post-card.scss";
-import {getUserData} from "../../services/user.service";
+import {canUserEdit, getUserData} from "../../services/user.service";
 import {updatePostLikes} from "../../services/post.service";
 
 export default class PostCard extends React.Component {
@@ -18,11 +18,9 @@ export default class PostCard extends React.Component {
 
     componentDidMount(): void {
         getUserData(this.props.postData.ownerId).then( res => {
-            if (this.props.postData.ownerId === parseInt(localStorage.getItem('user-id'))) {
-                this.setState({canEdit: true});
-            } else {
-                this.setState({canEdit: res.userFound.isAdmin});
-            }
+            canUserEdit(this.props.postData.ownerId).then(can => {
+                this.setState({canEdit: can});
+            });
             this.setState({authorName: 'u/'+(res.userFound.username !== ''? res.userFound.username: res.userFound.firstName + ' ' + res.userFound.lastName)});
         });
         this.setState({votes: this.props.postData.usersUpVote.length - this.props.postData.usersDownVote.length});
