@@ -66,8 +66,8 @@ export default class UpdatePasswordPanel extends React.Component {
         return (
             <div className={"change-password-panel"}>
                 <CloseBtn closeBehavior={this.props.closeBehavior}/>
-                <h1>Changer le mot de passe</h1>
                 <form onSubmit={this.handleSubmit}>
+                    <h1>Changer le mot de passe</h1>
                     <div className="settings-field-container">
                         <InputForm value={this.state.password} inputType="password" inputName="password"
                                    inputLabel="Mot de Passe actuel"
