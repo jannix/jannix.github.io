@@ -8,6 +8,7 @@ import {
 import { CSSTransition } from 'react-transition-group';
 import Header from "../common/Header.component";
 import UpdateMailPanel from "../forms/UpdateMailPanel.component";
+import UpdatePasswordPanel from "../forms/UpdatePasswordPanel.component";
 
 function UserAccount() {
 
@@ -29,6 +30,12 @@ function UserAccount() {
         setDisplayAccountSettings(!displayAccountSettings);
     };
 
+    function closeUpdaters(): void {
+        setDisplayChangeMail(false);
+        setDisplayChangePassword(false);
+        switchDisplayAccountSettings();
+    }
+
     return (
         <div className="user-account-container">
             <Header routerHistory={history}/>
@@ -38,6 +45,7 @@ function UserAccount() {
                            nodeRef={nodeRef}>
                 <div ref={nodeRef}>
                     <AccountSettingsPanel errorAuth={goToLogin} panelBehavior={switchDisplayAccountSettings} showChangeMail={setDisplayChangeMail}
+                                          showChangePassword={setDisplayChangePassword}
                                           routerHistory={history}/>
                 </div>
             </CSSTransition>
@@ -46,7 +54,7 @@ function UserAccount() {
                            onExited={() => setDisplayChangeMail(false)}
                            nodeRef={nodeRef2}>
                 <div ref={nodeRef2}>
-                    <UpdateMailPanel routerHistory={history}/>
+                    <UpdateMailPanel routerHistory={history} closeBehavior={closeUpdaters}/>
                 </div>
             </CSSTransition>
             <CSSTransition in={displayChangePassword} timeout={1000} appear={true} classNames="from-right" unmountOnExit
@@ -54,7 +62,7 @@ function UserAccount() {
                            onExited={() => setDisplayChangePassword(false)}
                            nodeRef={nodeRef3}>
                 <div ref={nodeRef3}>
-                    <div>CHANGE PASSWORD</div>
+                    <UpdatePasswordPanel routerHistory={history} closeBehavior={closeUpdaters}/>
                 </div>
             </CSSTransition>
         </div>

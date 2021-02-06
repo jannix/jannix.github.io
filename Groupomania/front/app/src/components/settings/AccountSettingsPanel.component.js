@@ -12,6 +12,7 @@ export default class AccountSettingsPanel extends React.Component {
     errorAuth: () => void;
     panelBehavior: () => void;
     showChangeMail: (boolean) => void;
+    showChangePassword: (boolean) => void;
 
     constructor(props) {
         super(props);
@@ -119,6 +120,7 @@ export default class AccountSettingsPanel extends React.Component {
 
     showChangePassword(): void {
         this.props.panelBehavior();
+        this.props.showChangePassword(true);
     }
 
     logout(): void {
