@@ -76,6 +76,27 @@ export function editUser(userId: number, editedUser: any): Promise<any>  {
     });
 }
 
+export function editMail(userId: number, logins: any): Promise<any>  {
+    return new Promise((resolve, reject) => {
+        fetch(Constants.API_USER+'/emailedit/'+userId, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + localStorage.getItem('token'),
+                'userId': localStorage.getItem('user-id'),
+            },
+            body: JSON.stringify(logins)})
+            .then(HandleError)
+            .then(data => {
+                resolve(data);
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+                reject(error);
+            });
+    });
+}
+
 export function logout() {
     localStorage.removeItem('token');
 }

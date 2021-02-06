@@ -1,0 +1,34 @@
+@import "./../../sass/main";
+
+.change-mail-panel {
+  margin: 20px 20px 20px 20px;
+  padding-bottom: 20px;
+  @include dark-panel-bordered;
+  font-family: $primary-text-font;
+  text-align: center;
+  flex-grow: 1;
+  & h1 {
+    font-size: $post-title-font-size;
+  }
+  & .settings-field-container {
+    border-bottom: solid 2px $light-grey;
+    border-top: solid 2px $light-grey;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    background-color: $dark-grey;
+    margin: auto auto 5px;
+  }
+  & form {
+    & button {
+      margin-left: auto;
+    }
+  }
+}
+
+@media only screen and (min-width: 790px) {
+  .change-mail-panel {
+    max-width: 790px;
+    margin: auto;
+  }
+}

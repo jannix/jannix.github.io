@@ -5,12 +5,13 @@ import {getUserData} from "../../services/user.service";
 import {matchPattern, validatorMessages, validatorsRules} from "../../utils/validator";
 import InputForm from "../forms/InputForm.component";
 import {editUser} from "../../services/auth.service";
-import {toast} from "react-toastify";
+import {toast, ToastContainer} from "react-toastify";
 
 export default class AccountSettingsPanel extends React.Component {
     routerHistory: any;
     errorAuth: () => void;
     panelBehavior: () => void;
+    showChangeMail: (boolean) => void;
 
     constructor(props) {
         super(props);
@@ -21,6 +22,8 @@ export default class AccountSettingsPanel extends React.Component {
         this.fillUserDatas = this.fillUserDatas.bind(this);
         this.callPanelBehavior = this.callPanelBehavior.bind(this);
         this.handleChangeState = this.handleChangeState.bind(this);
+        this.displayChangeMail = this.displayChangeMail.bind(this);
+        this.showChangePassword = this.showChangePassword.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
@@ -75,13 +78,13 @@ export default class AccountSettingsPanel extends React.Component {
             return;
         }
         event.preventDefault();
-        console.log(this.state.birthdate);
+
         const editedUser = {
             username: this.state.username,
             firstName: this.state.firstName,
             lastName: this.state.lastName,
             about: this.state.about,
-            birthdate: this.state.birthdate,
+            birthdate: this.state.birthdate === ''? null: this.state.birthdate,
             jobId: -1//TODO: change with correct jobId issued by inputlist
         };
         editUser(localStorage.getItem('user-id'), editedUser).then(() => {
@@ -108,6 +111,15 @@ export default class AccountSettingsPanel extends React.Component {
         });
     }
 
+    displayChangeMail(): void {
+        this.props.panelBehavior();
+        this.props.showChangeMail(true);
+    }
+
+    showChangePassword(): void {
+        this.props.panelBehavior();
+    }
+
     render() {
         return (
             <div className="account-settings-panel-container">
@@ -115,8 +127,8 @@ export default class AccountSettingsPanel extends React.Component {
                 <section>
                     <h2>Logins</h2>
                     <div className="settings-field-container">
-                        <SettingField settingTitle="Adresse Email" currentValue={this.state.email}/>
-                        <SettingField settingTitle="Changer le Mot de Passe" currentValue={this.state.password}/>
+                        <SettingField settingTitle="Adresse Email" currentValue={this.state.email} clickFunction={this.displayChangeMail}/>
+                        <SettingField settingTitle="Changer le Mot de Passe" currentValue={this.state.password} clickFunction={this.showChangePassword}/>
                     </div>
                 </section>
                 <section>
@@ -153,6 +165,7 @@ export default class AccountSettingsPanel extends React.Component {
                         </div>
                     </form>
                 </section>
+                <ToastContainer />
             </div>
         );
     }

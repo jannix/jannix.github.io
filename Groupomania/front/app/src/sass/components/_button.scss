@@ -18,6 +18,8 @@ button {
 button {
   &.arrow {
     border-radius: 1px;
+    height: 20px;
+    width: 10px;
     background: none;
     border: solid $grey-text-colour;
     border-width: 0 5px 5px 0;

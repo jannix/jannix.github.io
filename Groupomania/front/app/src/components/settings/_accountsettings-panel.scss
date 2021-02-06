@@ -34,3 +34,10 @@
     }
   }
 }
+
+@media only screen and (min-width: 790px) {
+  .account-settings-panel-container {
+    max-width: 790px;
+    margin: auto;
+  }
+}

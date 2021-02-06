@@ -96,7 +96,7 @@ export default class Header extends React.Component {
     }
 
     clickOnAvatar(event): void {
-        console.log('clicl avatar');
+        this.props.routerHistory.push('/settings/account');
     }
 
     clickOnHome(event): void {
