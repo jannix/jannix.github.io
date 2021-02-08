@@ -2,10 +2,9 @@
 
 .create-ocpost-container {
   @include dark-panel-bordered;
-  position: fixed;
-  bottom: 0;
-  right: 0;
-  left: 0;
+  position: absolute;
+  left:0;
+  right:0;
   padding: 20px;
   min-height: 80vh;
 }

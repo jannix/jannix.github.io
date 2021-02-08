@@ -2,27 +2,27 @@
 .from-left-appear {
   display: none;
   transform: translateX(-600px);
-}
-
-.from-left-appear-active {
-  transform: translateX(0px);
-  transition: transform 400ms ease-in-out;
+  opacity:0;
 }
 
 .from-left-enter {
   transform: translateX(-600px);
+  opacity:0;
 }
 
 .from-left-enter-active {
   transform: translateX(0px);
-  transition: transform 400ms ease-in-out;
+  transition: transform 400ms ease-in-out, opacity 700ms;
+  opacity:1;
 }
 .from-left-exit {
   transform: translateX(0px);
+  opacity:1;
 }
 .from-left-exit-active {
   transform: translateX(-600px);
-  transition: transform 600ms ease-in-out;
+  opacity:0;
+  transition: transform 600ms ease-in-out, opacity 700ms;
 }
 
 
@@ -42,13 +42,62 @@
 }
 
 .from-bottom-enter-active {
-  transform: translateY(564px);
+  transform: translateY(0);
   transition: transform 350ms ease-in-out;
 }
 .from-bottom-exit {
-  transform: translateY(572px);
+  transform: translateY(0);
 }
 .from-bottom-exit-active {
   transform: translateY(1700px);
   transition: transform 450ms ease-in-out;
+}
+
+
+.from-right-appear {
+  display: none;
+  transform: translateX(600px);
+  opacity:0;
+}
+
+.from-right-enter {
+  transform: translateX(600px);
+  opacity:0;
+}
+
+.from-right-enter-active {
+  transform: translateX(0px);
+  transition: transform 400ms ease-in-out, opacity 700ms;
+  opacity:1;
+}
+.from-right-exit {
+  transform: translateX(0px);
+  opacity:1;
+}
+.from-right-exit-active {
+  transform: translateX(600px);
+  opacity:0;
+  transition: transform 600ms ease-in-out, opacity 700ms;
+}
+
+
+.from-fade-appear {
+  display: none;
+  opacity:0;
+}
+
+.from-fade-enter {
+  opacity:0;
+}
+
+.from-fade-enter-done {
+  transition: opacity 500ms ease-in-out;
+  opacity:1;
+}
+.from-fade-exit {
+  opacity:1;
+}
+.from-fade-exit-done {
+  opacity:0;
+  transition: opacity 800ms ease-in-out;
 }

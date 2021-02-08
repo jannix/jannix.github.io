@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import './_user-account.scss';
 import AccountSettingsPanel from "../settings/AccountSettingsPanel.component";
 import {
@@ -15,13 +15,19 @@ function UserAccount() {
     const nodeRef = React.useRef(null);
     const nodeRef2 = React.useRef(null);
     const nodeRef3 = React.useRef(null);
-    const [displayAccountSettings, setDisplayAccountSettings] = useState(true);
+    const [displayAccountSettings, setDisplayAccountSettings] = useState(false);
     const [displayChangeMail, setDisplayChangeMail] = useState(false);
     const [displayChangePassword, setDisplayChangePassword] = useState(false);
     let history = useHistory();
     let location = useLocation();
 
     let { from } = location.state || { from: { pathname: "/" } };
+
+    useEffect(() => {
+        // Your code here
+        setDisplayAccountSettings(true);
+    }, []);
+
     let goToLogin = () => {
         history.replace(from);
     };
@@ -49,7 +55,7 @@ function UserAccount() {
                                           routerHistory={history}/>
                 </div>
             </CSSTransition>
-            <CSSTransition in={displayChangeMail} timeout={1000} appear={true} classNames="from-right" unmountOnExit
+            <CSSTransition in={displayChangeMail} timeout={800} appear={true} classNames="from-fade" unmountOnExit
                            onEnter={() => setDisplayChangeMail(true)}
                            onExited={() => setDisplayChangeMail(false)}
                            nodeRef={nodeRef2}>
@@ -57,7 +63,7 @@ function UserAccount() {
                     <UpdateMailPanel routerHistory={history} closeBehavior={closeUpdaters}/>
                 </div>
             </CSSTransition>
-            <CSSTransition in={displayChangePassword} timeout={1000} appear={true} classNames="from-right" unmountOnExit
+            <CSSTransition in={displayChangePassword} timeout={800} appear={true} classNames="from-fade" unmountOnExit
                            onEnter={() => setDisplayChangePassword(true)}
                            onExited={() => setDisplayChangePassword(false)}
                            nodeRef={nodeRef3}>
