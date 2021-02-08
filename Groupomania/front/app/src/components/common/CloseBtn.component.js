@@ -1,5 +1,5 @@
 import React from 'react';
-import "./_closebtn.scss";
+import "./_close-btn.scss";
 
 export default class CloseBtn extends React.Component {
 
@@ -7,10 +7,10 @@ export default class CloseBtn extends React.Component {
 
     render() {
         return (
-            <div className="closebtn-container" onClick={this.props.closeBehavior}>
-                <div id="closebtn">
-                    <div className="closebtnbar">
-                        <div className="closebtnbar2"/>
+            <div className="close-btn-container" onClick={this.props.closeBehavior}>
+                <div id="close-btn">
+                    <div className="close-btn-bar">
+                        <div className="close-btn-bar2"/>
                     </div>
                 </div>
             </div>

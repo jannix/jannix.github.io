@@ -134,7 +134,7 @@ export default class Header extends React.Component {
                             }
                         </div>
                     </div>
-                    {/*TODO: make tab row hide and show*/}
+                    {/*TODO: make tab row hide and show
                     <div className="tab-row">
                         <nav id="home-tab">
                             <ul>
@@ -142,7 +142,7 @@ export default class Header extends React.Component {
                                 <li className={this.state.isSub? '': ''}><button id="tab-news" onClick={this.clickOnNews}>News</button></li>
                             </ul>
                         </nav>
-                    </div>
+                    </div>*/}
                 </header>
                 <CSSTransition in={this.state.showCreateMenu} timeout={600} classNames="from-left" unmountOnExit
                                onEnter={() => this.setState({showCreateMenu: true})}

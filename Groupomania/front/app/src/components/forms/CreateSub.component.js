@@ -156,7 +156,7 @@ export default class CreateSub extends React.Component {
                     </div>
                 </form>
                 {this.state.canEdit &&
-                <button disabled={!this.canDelete()} onClick={this.delete}>Supprimer</button>}
+                <button id={"delete-btn"} disabled={!this.canDelete()} onClick={this.delete}>Supprimer</button>}
                 <ToastContainer />
             </div>
         );

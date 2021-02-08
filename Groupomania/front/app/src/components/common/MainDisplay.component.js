@@ -70,9 +70,6 @@ export default class MainDisplay extends React.Component {
                     this.props.routerHistory.push('/login');
                 });
             }
-            else {
-                console.log('TEHEREHEHE');
-            }
         } else if (this.props.userData) {
             this.loadPostListByUser();
         }
