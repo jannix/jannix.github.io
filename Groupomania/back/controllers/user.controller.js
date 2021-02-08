@@ -35,11 +35,8 @@ exports.signup = (req, res, next) => {
 
 exports.login = (req, res, next) => {
     Login.findAll({ where: { email: req.body.email } }).then( login => {
-        console.log('found the login');
             bcrypt.compare(req.body.password, login[0].dataValues.password).then(valid => {
-                    console.log("bcrypted !!!");
                     if (!valid) {
-                        console.log('not valid');
                         return res.status(401).json({ error: 'Mot de passe incorrect !' });
                     }
                     getUserByLoginId(login[0].dataValues.id)
@@ -73,7 +70,7 @@ exports.updateUserEmail = (req, res) => {
                     Login.update(newLoginEmail, { where: { id: login.id } }).then(result => {
                         if (result[0] === 1) {
                             res.status(200).json({
-                                message: 'Email update !' ,
+                                message: 'Email update !',
                                 result: result
                             })
                         } else {
@@ -143,11 +140,9 @@ exports.updateUserInfo = (req, res) => {
             res.status(403).json({ error: 'Forbidden: You do not have the right to update another user.' });
         }
     }).catch(error => res.status(500).json({ error }))
-
 };
 
 exports.joinSub = (req, res) => {
-    console.log('join : ', req.body);
     User.findByPk(req.params.id, {raw: true}).then( user => {
         if (!user) {
             return res.status(401).json({ error: 'Utilisateur inexistant !' });
