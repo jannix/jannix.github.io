@@ -7,20 +7,22 @@ export default class PostCard extends React.Component {
     routerHistory: any;
     subTitle: string;
     postData: any;
+    popEditPost: (postData: any) => void;
 
     constructor(props) {
         super(props);
         this.state = {authorName: 'u/anonyme', votes: 0, canEdit: false};
         this.goToArticle = this.goToArticle.bind(this);
         this.sendVote = this.sendVote.bind(this);
-        this.popEditPost = this.popEditPost.bind(this);
     }
 
     componentDidMount(): void {
         getUserData(this.props.postData.ownerId).then( res => {
-            canUserEdit(this.props.postData.ownerId).then(can => {
-                this.setState({canEdit: can});
-            });
+            if (!this.props.postData.isOC) {//TODO: make it happen also for OCPost
+                canUserEdit(this.props.postData.ownerId).then(can => {
+                    this.setState({canEdit: can});
+                });
+            }
             this.setState({authorName: 'u/'+(res.userFound.username !== ''? res.userFound.username: res.userFound.firstName + ' ' + res.userFound.lastName)});
         });
         this.setState({votes: this.props.postData.usersUpVote.length - this.props.postData.usersDownVote.length});
@@ -42,10 +44,6 @@ export default class PostCard extends React.Component {
         }).catch(error => {
             console.log(error);
         });
-    }
-
-    popEditPost(): void {
-
     }
 
     render() {
@@ -77,7 +75,7 @@ export default class PostCard extends React.Component {
                     </span>
                     <span>
                         {this.state.canEdit &&
-                        <button id={'edit-btn'} onClick={this.popEditPost}>Changer</button>/*TODO: Change for icon btn*/}
+                        <button id={'edit-btn'} onClick={() => {this.props.popEditPost(this.props.postData)}}>Changer</button>/*TODO: Change for icon btn*/}
                     </span>
                 </div>
             </article>

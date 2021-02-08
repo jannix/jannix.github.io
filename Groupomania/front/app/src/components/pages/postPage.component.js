@@ -14,6 +14,7 @@ function PostPage(props) {
     const {state} = useLocation();
     const [post, setPost] = useState(state? state.post: null);
     const [comments, setComments] = useState(null);
+    const [commentToEdit, setCommentToEdit] = useState(null);
     const [authorName, setAuthorName] = useState('u/anonyme');
     const [votes, setVotes] = useState(0);
     const [canEdit, setCanEdit] = useState(false);
@@ -61,6 +62,11 @@ function PostPage(props) {
         setShowCreateCommentPost(true);
     }
 
+    function popEditComment(commentData): void {
+        setCommentToEdit(commentData);
+        setShowCreateCommentPost(true);
+    }
+
     function popEditPost(event): void {
         setShowEditPost(true);
     }
@@ -86,7 +92,8 @@ function PostPage(props) {
                                onExited={() => setShowCreateCommentPost(false)}
                                nodeRef={nodeRef}>
                     <div ref={nodeRef}>
-                        <CreateCommentPost postId={post.id} closeBehavior={disappearCommentForm} postedBehavior={reloadComments}/>
+                        <CreateCommentPost postId={post.id} closeBehavior={disappearCommentForm} postedBehavior={reloadComments}
+                                           originalCom={commentToEdit}/>
                     </div>
                 </CSSTransition>
                 <CSSTransition in={showEditPost} timeout={600} classNames="from-bottom" unmountOnExit
@@ -130,7 +137,7 @@ function PostPage(props) {
                 </section>
                 <section className="comments-container">
                     <h3>Commentaires : </h3>
-                    {comments && <CommentSection comments={comments}/>}
+                    {comments && <CommentSection comments={comments} popEditComment={popEditComment}/>}
                     {!comments && <span>Aucun commentaire</span>}
                 </section>
             </div>}
