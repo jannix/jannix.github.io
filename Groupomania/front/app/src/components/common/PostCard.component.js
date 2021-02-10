@@ -17,13 +17,15 @@ export default class PostCard extends React.Component {
     }
 
     componentDidMount(): void {
+        if (!this.props.postData.isOC) {//TODO: make it happen also for OCPost
+            canUserEdit(this.props.postData.ownerId).then(can => {
+                this.setState({canEdit: can});
+            });
+        }
         getUserData(this.props.postData.ownerId).then( res => {
-            if (!this.props.postData.isOC) {//TODO: make it happen also for OCPost
-                canUserEdit(this.props.postData.ownerId).then(can => {
-                    this.setState({canEdit: can});
-                });
-            }
             this.setState({authorName: 'u/'+(res.userFound.username !== ''? res.userFound.username: res.userFound.firstName + ' ' + res.userFound.lastName)});
+        }).catch(err => {
+
         });
         this.setState({votes: this.props.postData.usersUpVote.length - this.props.postData.usersDownVote.length});
     }

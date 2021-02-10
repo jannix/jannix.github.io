@@ -38,6 +38,8 @@ function PostPage(props) {
                     });
                     getUserData(ret.postFound.ownerId).then( res => {
                         setAuthorName('u/'+(res.userFound.username !== ''? res.userFound.username: res.userFound.firstName + ' ' + res.userFound.lastName));
+                    }).catch(err => {
+
                     });
                     getSubById(ret.postFound.parentId).then(sub => {
                         setSubTitle(sub.subFound.title);
