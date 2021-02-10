@@ -161,10 +161,10 @@ export default class CreateOCPost extends React.Component {
                                                                  inputLabel="Fil du Post"
                                                                  changeValue={this.handleChangeState}/>}
                         <button type="submit" disabled={!this.canSubmit()}>Poster</button>
+                        {this.state.canEdit &&
+                        <button id={"delete-btn"} disabled={!this.canDelete()} onClick={this.delete}>Supprimer</button>}
                     </div>
                 </form>
-                {this.state.canEdit &&
-                <button disabled={!this.canDelete()} onClick={this.delete}>Supprimer</button>}
                 <ToastContainer />
             </div>
         );

@@ -86,3 +86,23 @@ export function getSubsByTitle(subName: string): Promise<any>  {
     });
 }
 
+export function getSubById(subId: number): Promise<any>  {
+    return new Promise((resolve, reject) => {
+        fetch(Constants.API_SUB+'getbyid/'+subId, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + localStorage.getItem('token'),
+                'userId': localStorage.getItem('user-id'),
+            }
+        })
+            .then(HandleError)
+            .then(data => {
+                resolve(data);
+            })
+            .catch((error) => {
+                reject(error);
+            });
+    });
+}
+

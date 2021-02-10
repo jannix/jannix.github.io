@@ -174,6 +174,7 @@ export default class AccountSettingsPanel extends React.Component {
                     </form>
                 </section>
                 <button onClick={this.logout}>Déconnexion</button>
+                {/*<button id={"delete-btn"} disabled={!this.canDelete()} onClick={this.delete}>Supprimer</button>*/}
                 <ToastContainer />
             </div>
         );

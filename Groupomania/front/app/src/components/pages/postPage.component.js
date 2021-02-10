@@ -8,6 +8,7 @@ import CreateCommentPost from "../forms/CreateCommentPost.component";
 import {canUserEdit, getUserData} from "../../services/user.service";
 import CommentSection from "../common/CommentSection.component";
 import CreateOCPost from "../forms/CreateOCPost.component";
+import {getSubById} from "../../services/sub.service";
 
 function PostPage(props) {
     let history = useHistory();
@@ -16,6 +17,7 @@ function PostPage(props) {
     const [comments, setComments] = useState(null);
     const [commentToEdit, setCommentToEdit] = useState(null);
     const [authorName, setAuthorName] = useState('u/anonyme');
+    const [subTitle, setSubTitle] = useState('f/anonyme');
     const [votes, setVotes] = useState(0);
     const [canEdit, setCanEdit] = useState(false);
     let { postId } = useParams();
@@ -36,6 +38,9 @@ function PostPage(props) {
                     });
                     getUserData(ret.postFound.ownerId).then( res => {
                         setAuthorName('u/'+(res.userFound.username !== ''? res.userFound.username: res.userFound.firstName + ' ' + res.userFound.lastName));
+                    });
+                    getSubById(ret.postFound.parentId).then(sub => {
+                        setSubTitle(sub.subFound.title);
                     });
                     getPostById(ret.postFound.id, 'getcomments/').then(posts => {
                         setComments(posts.postsFound);
@@ -83,6 +88,17 @@ function PostPage(props) {
             console.log(error);
         });
     }
+
+    function goToArticle(event): void {
+        if (!history)
+            return;
+        if (event.target.id === 'sub-link') {
+            history.push('/f/'+subTitle);
+        } else {
+            //history.push('/f/'+this.props.subTitle+'/s/'+this.props.postData.id);
+        }
+    }
+
     return (
         <div className="post-page-container">
             <Header routerHistory={history}/>
@@ -108,7 +124,8 @@ function PostPage(props) {
                     <div className="postOC-banner-container">
                         <div className="postOC-avatar">
                         </div>
-                        <div className="postOC-meta-data">
+                        <div className="postOC-meta-data" onClick={goToArticle}>
+                            <h3 id='sub-link'>f/{subTitle}</h3>
                             <span>{authorName}<div>.</div>14h</span>
                         </div>
                     </div>
