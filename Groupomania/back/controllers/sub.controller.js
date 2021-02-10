@@ -88,3 +88,12 @@ exports.getByTitle = (req, res, next) => {
         res.status(200).json({subsFound: subs});
     }).catch(error => res.status(500).json({ error }));
 };
+
+exports.getById = (req, res, next) => {
+    Sub.findByPk(req.params.id, {raw: true}).then( sub => {
+        if (!sub) {
+            return res.status(404).json({ error: 'Fil inexistant !' });
+        }
+        res.status(200).json({subFound: sub});
+    }).catch(error => res.status(500).json({ error }));
+};
