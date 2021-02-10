@@ -53,6 +53,38 @@ exports.login = (req, res, next) => {
     }).catch(error => res.status(500).json({ error }));
 };
 
+exports.deleteUser = (req, res) => {
+    //TODO: check if able to destroy
+    User.findByPk(req.params.id, {raw: true}).then( user => {
+        if (!user) {
+            return res.status(401).json({ error: 'Utilisateur inexistant !' });
+        }
+        if (isMySelf(req.headers.authorization.split(' ')[1], user.login) /*TODO: Or Admin*/) {
+            Login.destroy({where: {id: user.login}}).then( count => {
+                /*bcrypt.compare(req.body.password, login.password).then( valid => {
+                    if (!valid) {
+                        return res.status(401).json({ error: 'Mot de passe incorrect !' });
+                    }
+                });*/
+                if (!count) {
+                    return res.status(404).send({error: "Error, login probably was not found. login ID : " + user.login});
+                }
+                User.destroy({where: {id: req.params.id}}).then( usercount => {
+                    if (!usercount) {
+                        return res.status(404).send({error: "Error, user probably was not found. user ID : " + req.params.id});
+                    }
+                    res.status(200).json({
+                        message: 'User deleted !',
+                        result: count
+                    });
+                });
+            });
+        } else {
+            res.status(403).json({ error: 'Forbidden: You do not have the right to update another user.' });
+        }
+    }).catch(error => res.status(500).json({ error }));
+};
+
 exports.updateUserEmail = (req, res) => {
     User.findByPk(req.params.id, {raw: true}).then( user => {
         if (!user) {

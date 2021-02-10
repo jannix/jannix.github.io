@@ -23,6 +23,7 @@ router.post('/auth/login', celebrate({
         })
     }), rat.limiter, userCtrl.login);
 
+router.delete('/:id', auth, userCtrl.deleteUser);
 
 router.put("/useredit/:id", celebrate({
     [Segments.BODY]: Joi.object().keys({
