@@ -120,6 +120,14 @@ export default class MainDisplay extends React.Component {
     render() {
         return (
             <main className="main-display-container">
+                <CSSTransition in={this.state.showEditSub} timeout={600} classNames="from-bottom" unmountOnExit
+                               onEnter={() => this.setState({showCreateSub: true})}
+                               onExited={() => this.setState({showCreateSub: false})}
+                               nodeRef={this.myRef}>
+                    <div ref={this.myRef}>
+                        <CreateSub closeBehavior={this.disappearEditMenu} originalSub={this.props.subData} routerHistory={this.props.routerHistory}/>
+                    </div>
+                </CSSTransition>
                 {this.props.subData &&
                 <div className="sub-header">
                     <div>
@@ -138,14 +146,6 @@ export default class MainDisplay extends React.Component {
                 {this.state.postList.map( post => (
                     <PostCard key={'post'+post.id} routerHistory={this.props.routerHistory} subTitle={post.subTitle? post.subTitle: null} postData={post}/>))
                 }
-                <CSSTransition in={this.state.showEditSub} timeout={600} classNames="from-bottom" unmountOnExit
-                               onEnter={() => this.setState({showCreateSub: true})}
-                               onExited={() => this.setState({showCreateSub: false})}
-                               nodeRef={this.myRef}>
-                    <div ref={this.myRef}>
-                        <CreateSub closeBehavior={this.disappearEditMenu} originalSub={this.props.subData} routerHistory={this.props.routerHistory}/>
-                    </div>
-                </CSSTransition>
             </main>
         );
     }
