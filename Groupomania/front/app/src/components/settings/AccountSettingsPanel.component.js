@@ -4,7 +4,7 @@ import SettingField from "./SettingField.component";
 import {getUserData} from "../../services/user.service";
 import {matchPattern, validatorMessages, validatorsRules} from "../../utils/validator";
 import InputForm from "../forms/InputForm.component";
-import {editUser} from "../../services/auth.service";
+import {editUser, deleteUser} from "../../services/auth.service";
 import {toast, ToastContainer} from "react-toastify";
 
 export default class AccountSettingsPanel extends React.Component {
@@ -25,6 +25,8 @@ export default class AccountSettingsPanel extends React.Component {
         this.handleChangeState = this.handleChangeState.bind(this);
         this.displayChangeMail = this.displayChangeMail.bind(this);
         this.showChangePassword = this.showChangePassword.bind(this);
+        this.delete = this.delete.bind(this);
+        this.canDelete = this.canDelete.bind(this);
         this.logout = this.logout.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
@@ -35,10 +37,6 @@ export default class AccountSettingsPanel extends React.Component {
 
     componentDidMount(): void {
         this.fillUserDatas();
-    }
-
-    componentWillUnmount(): void {
-
     }
 
     fillUserDatas() {
@@ -67,13 +65,36 @@ export default class AccountSettingsPanel extends React.Component {
         }
     }
 
+    canDelete(): boolean {
+        return true;
+    }
+
+    delete(): void {
+        if (this.canDelete()) {
+            //TODO: ask to confirm
+            deleteUser(localStorage.getItem('user-id')).then((res) => {
+                this.props.routerHistory.push('/');
+            }).catch( err => {
+                console.log(err);
+                toast.error('L utilisateur n\'a pas pu être supprimé...', {
+                    position: "bottom-left",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                });
+            });
+        }
+    }
+
     canSubmit(): boolean {
         return (this.state.username === '' || matchPattern(this.state.username, validatorsRules.usernamePattern)) &&
             matchPattern(this.state.firstName, validatorsRules.firstnamePattern) &&
             matchPattern(this.state.lastName, validatorsRules.lastnamePattern);// &&
             //(this.state.jobId !== '');//TODO: other test for date and descriptions
     }
-
 
     handleSubmit(event): void {
         if (!this.canSubmit()) {
@@ -174,7 +195,7 @@ export default class AccountSettingsPanel extends React.Component {
                     </form>
                 </section>
                 <button onClick={this.logout}>Déconnexion</button>
-                {/*<button id={"delete-btn"} disabled={!this.canDelete()} onClick={this.delete}>Supprimer</button>*/}
+                <button id={"delete-btn"} disabled={!this.canDelete()} onClick={this.delete}>Supprimer</button>
                 <ToastContainer />
             </div>
         );
