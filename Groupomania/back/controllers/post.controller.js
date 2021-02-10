@@ -113,6 +113,7 @@ exports.getById = (req, res, next) => {
 exports.getByParentId = (req, res, next) => {
     Post.findAll({
         where: {parentId: req.params.parentId},
+        order: [['createdAt', 'DESC']],
         raw: true
     }).then( posts => {
         if (!posts || posts.length === 0) {
@@ -126,6 +127,7 @@ exports.getCommentsByParentId = (req, res, next) => {
     Post.findAll({
         where: {parentId: req.params.parentId,
         isOC: false},
+        order: [['createdAt', 'DESC']],
         raw: true
     }).then( posts => {
         if (!posts || posts.length === 0) {
@@ -142,6 +144,7 @@ exports.getBySubId = (req, res, next) => {
         Post.findAll({
             where: {parentId: req.params.subId,
             isOC: true},
+            order: [['createdAt', 'DESC']],
             raw: true
         }).then( posts => {
             if (!posts || posts.length === 0) {
