@@ -85,3 +85,17 @@ button {
   background-color: #e90022;
 }
 
+.delimiter-point {
+  content: '';
+  background: $grey-text-colour;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  position: relative;
+  top: 9px;
+  display: inline-block;
+  margin-left: 5px;
+  margin-right: 5px;
+  z-index: 1;
+}
+

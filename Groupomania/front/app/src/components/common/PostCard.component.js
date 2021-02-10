@@ -11,12 +11,37 @@ export default class PostCard extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {authorName: 'u/anonyme', votes: 0, canEdit: false};
+        this.state = {authorName: 'u/anonyme', votes: 0, canEdit: false, timeSinceCreated: '0s'};
         this.goToArticle = this.goToArticle.bind(this);
+        this.setDifferenceTime = this.setDifferenceTime.bind(this);
         this.sendVote = this.sendVote.bind(this);
     }
 
+    setDifferenceTime(createdDate: string): void {
+        let dateFirst = new Date(createdDate);
+        let current = new Date();
+
+        let timeDiff = Math.abs(current.getTime() - dateFirst.getTime()) / 1000;
+        const days = Math.floor(timeDiff / 86400);
+        timeDiff -= days * 86400;
+
+        const hours = Math.floor(timeDiff / 3600) % 24;
+        timeDiff -= hours * 3600;
+
+        const minutes = Math.floor(timeDiff / 60) % 60;
+        timeDiff -= minutes * 60;
+
+        if (days > 0) {
+            this.setState({timeSinceCreated: days + 'j'});
+        } else if (hours > 0) {
+            this.setState({timeSinceCreated: hours + 'h'});
+        } else {
+            this.setState({timeSinceCreated: minutes + 'm'});
+        }
+    }
+
     componentDidMount(): void {
+        this.setDifferenceTime(this.props.postData.createdAt);
         if (!this.props.postData.isOC) {//TODO: make it happen also for OCPost
             canUserEdit(this.props.postData.ownerId).then(can => {
                 this.setState({canEdit: can});
@@ -56,7 +81,7 @@ export default class PostCard extends React.Component {
                     </div>
                     <div className="postcard-meta-data">
                         {this.props.subTitle && <h3 id='sub-link'>f/{this.props.subTitle}</h3>}
-                        <span>{this.state.authorName}<div>.</div>14h</span>
+                        <span>{this.state.authorName}<div className={"delimiter-point"}/>{this.state.timeSinceCreated}</span>
                     </div>
                 </div>
                 <div className="postcard-content">

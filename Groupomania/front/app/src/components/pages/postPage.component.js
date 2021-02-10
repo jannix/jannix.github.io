@@ -18,6 +18,7 @@ function PostPage(props) {
     const [commentToEdit, setCommentToEdit] = useState(null);
     const [authorName, setAuthorName] = useState('u/anonyme');
     const [subTitle, setSubTitle] = useState('f/anonyme');
+    const [timeSinceCreated, setTimeSinceCreated] = useState('0s');
     const [votes, setVotes] = useState(0);
     const [canEdit, setCanEdit] = useState(false);
     let { postId } = useParams();
@@ -26,6 +27,29 @@ function PostPage(props) {
     const [showCreateCommentPost, setShowCreateCommentPost] = useState(false);
     const [showEditPost, setShowEditPost] = useState(false);
 
+    function setDifferenceTime(createdDate: string): void {
+        let dateFirst = new Date(createdDate);
+        let current = new Date();
+
+        let timeDiff = Math.abs(current.getTime() - dateFirst.getTime()) / 1000;
+        const days = Math.floor(timeDiff / 86400);
+        timeDiff -= days * 86400;
+
+        const hours = Math.floor(timeDiff / 3600) % 24;
+        timeDiff -= hours * 3600;
+
+        const minutes = Math.floor(timeDiff / 60) % 60;
+        timeDiff -= minutes * 60;
+
+        if (days > 0) {
+            setTimeSinceCreated(days + 'j');
+        } else if (hours > 0) {
+            setTimeSinceCreated(hours + 'h');
+        } else {
+            setTimeSinceCreated(minutes + 'm');
+        }
+    }
+
     useEffect(() => {
         let mounted = true;
         if (!post) {
@@ -33,6 +57,7 @@ function PostPage(props) {
                 if (mounted) {
                     setPost(ret.postFound);
                     setVotes(ret.postFound.usersUpVote.length - ret.postFound.usersDownVote.length);
+                    setDifferenceTime(ret.postFound.createdAt);
                     canUserEdit(ret.postFound.ownerId).then(can => {
                         setCanEdit(can);
                     });
@@ -128,7 +153,7 @@ function PostPage(props) {
                         </div>
                         <div className="postOC-meta-data" onClick={goToArticle}>
                             <h3 id='sub-link'>f/{subTitle}</h3>
-                            <span>{authorName}<div>.</div>14h</span>
+                            <span>{authorName}<div className={"delimiter-point"}/>{timeSinceCreated}</span>
                         </div>
                     </div>
                     <article className="postOC-content">
