@@ -25,7 +25,7 @@ export function getUserData(userId: number): Promise<any> {
                 resolve(data);
             })
             .catch((error) => {
-                console.error('Error:', error);
+                //console.error('Error:', error);
                 reject(error);
             });
     });
@@ -45,7 +45,7 @@ export function getUserSubscriptions(userId: number): Promise<any> {
                 resolve(data);
             })
             .catch((error) => {
-                console.error('Error:', error);
+                //console.error('Error:', error);
                 reject(error);
             });
     });
@@ -67,7 +67,7 @@ export function un_or_subscribe(userId: number, subId: number, join: boolean): P
                 resolve(data);
             })
             .catch((error) => {
-                console.error('Error:', error);
+                //console.error('Error:', error);
                 reject(error);
             });
     });

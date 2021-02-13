@@ -17,7 +17,7 @@ export function createSub(newSub: any): Promise<any>  {
                 resolve(data);
             })
             .catch((error) => {
-                console.error('Error:', error);
+                //console.error('Error:', error);
                 reject(error);
             });
     });
@@ -39,7 +39,7 @@ export function updateSub(editedSub: any, subId: number): Promise<any>  {
                 resolve(data);
             })
             .catch((error) => {
-                console.error('Error:', error);
+                //console.error('Error:', error);
                 reject(error);
             });
     });

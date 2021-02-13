@@ -25,7 +25,7 @@ export function createUser(newUser: any): Promise<any>  {
                 resolve(data);
             })
             .catch((error) => {
-                console.error('Error:', error);
+                //console.error('Error:', error);
                 reject(error);
             });
     });
@@ -49,7 +49,7 @@ export function loginUser(userLogins: any): Promise<any> {
                 resolve(data);
             })
             .catch((error) => {
-                console.error('Error:', error);
+                //console.error('Error:', error);
                 reject(error);
             });
     });
@@ -70,7 +70,7 @@ export function editUser(userId: number, editedUser: any): Promise<any>  {
                 resolve(data);
             })
             .catch((error) => {
-                console.error('Error:', error);
+                //console.error('Error:', error);
                 reject(error);
             });
     });
@@ -90,7 +90,7 @@ export function deleteUser(userId: number): Promise<any> {
                 resolve(data);
             })
             .catch((error) => {
-                console.error('Error:', error);
+                //console.error('Error:', error);
                 reject(error);
             });
     });
@@ -111,7 +111,7 @@ export function editMail(userId: number, logins: any): Promise<any>  {
                 resolve(data);
             })
             .catch((error) => {
-                console.error('Error:', error);
+                //console.error('Error:', error);
                 reject(error);
             });
     });
@@ -132,7 +132,7 @@ export function editPassword(userId: number, logins: any): Promise<any>  {
                 resolve(data);
             })
             .catch((error) => {
-                console.error('Error:', error);
+                //console.error('Error:', error);
                 reject(error);
             });
     });

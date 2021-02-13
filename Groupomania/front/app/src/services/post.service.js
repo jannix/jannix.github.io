@@ -16,7 +16,7 @@ export function createPost(newPost: any): Promise<any>  {
                 resolve(data);
             })
             .catch((error) => {
-                console.error('Error:', error);
+                //console.error('Error:', error);
                 reject(error);
             });
     });
@@ -37,7 +37,7 @@ export function updatePost(updatedPost: any, postId: number): Promise<any>  {
                 resolve(data);
             })
             .catch((error) => {
-                console.error('Error:', error);
+                //console.error('Error:', error);
                 reject(error);
             });
     });
@@ -57,7 +57,7 @@ export function deletePost(postId: number): Promise<any> {
                 resolve(data);
             })
             .catch((error) => {
-                console.error('Error:', error);
+                //console.error('Error:', error);
                 reject(error);
             });
     });
@@ -81,7 +81,7 @@ export function updatePostLikes(postId: number, like: number): Promise<any>  {
                 resolve(data);
             })
             .catch((error) => {
-                console.error('Error:', error);
+                //console.error('Error:', error);
                 reject(error);
             });
     });
@@ -101,7 +101,7 @@ export function getPostById(id: number, api_path: string = 'getpost/'): Promise<
                 resolve(data);
             })
             .catch((error) => {
-                console.error('Error:', error);
+                //console.error('Error:', error);
                 reject(error);
             });
     });

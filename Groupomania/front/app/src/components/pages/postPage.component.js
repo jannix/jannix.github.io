@@ -72,7 +72,7 @@ function PostPage(props) {
                     getPostById(ret.postFound.id, 'getcomments/').then(posts => {
                         setComments(posts.postsFound.sort((a, b) => a.createdAt < b.createdAt ? 1 : -1));
                     }).catch(error => {
-                        console.log(error);
+
                     });
                 }
             }).catch(error => {
@@ -112,7 +112,6 @@ function PostPage(props) {
         getPostById(post.id, 'getcomments/').then(posts => {
             setComments(posts.postsFound.sort((a, b) => a.createdAt < b.createdAt ? 1 : -1));
         }).catch(error => {
-            console.log(error);
         });
     }
 
