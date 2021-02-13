@@ -20,7 +20,17 @@ export default class SigninForm extends React.Component {
         this.handleChangeState = this.handleChangeState.bind(this);
         this.onClickNext = this.onClickNext.bind(this);
         this.onClickReturn = this.onClickReturn.bind(this);
+        this.checkConfirmPassword = this.checkConfirmPassword.bind(this);
+        this.checkConfirmEmail = this.checkConfirmEmail.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+    }
+
+    checkConfirmPassword(value: string): boolean {
+        return !matchPattern(value, validatorsRules.passwordPattern) && this.state.password !== this.state.passwordConfirm;
+    }
+
+    checkConfirmEmail(value: string): boolean {
+        return !matchPattern(value, validatorsRules.emailPattern) && this.state.email !== this.state.emailConfirm;
     }
 
     setShowStep1(val: boolean): void {
@@ -104,9 +114,7 @@ export default class SigninForm extends React.Component {
                                 <InputForm value={this.state.emailConfirm} inputType="email" inputName="emailConfirm"
                                            inputLabel="(confirmer email)"
                                            inputWrongBehavior={{wrongTxt: validatorMessages.email.pattern,
-                                               isWrong: function (value: string): boolean {
-                                                   return !matchPattern(value, validatorsRules.emailPattern);
-                                               }}}
+                                               isWrong: this.checkConfirmEmail}}
                                            changeValue={this.handleChangeState}/>
                                 <InputForm value={this.state.password} inputType="password" inputName="password"
                                            inputLabel="Mot de Passe"
@@ -118,9 +126,7 @@ export default class SigninForm extends React.Component {
                                 <InputForm value={this.state.passwordConfirm} inputType="password" inputName="passwordConfirm"
                                            inputLabel="(confirmer mot de passe)"
                                            inputWrongBehavior={{wrongTxt: validatorMessages.password.pattern,
-                                               isWrong: function (value: string): boolean {
-                                                   return !matchPattern(value, validatorsRules.passwordPattern);
-                                               }}}
+                                               isWrong: this.checkConfirmPassword}}
                                            changeValue={this.handleChangeState}/>
                             </div>
                         </CSSTransition>

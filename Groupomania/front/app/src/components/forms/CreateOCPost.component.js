@@ -38,7 +38,11 @@ export default class CreateOCPost extends React.Component {
         else {
             getUserSubscriptions(localStorage.getItem('user-id')).then(res => {
                 this.setState({subOptions: res.userSubscriptions});
-                this.setState({subId: res.userSubscriptions[0].id});
+                if (res.userSubscriptions > 0) {
+                    this.setState({subId: res.userSubscriptions[0].id});
+                } else {
+                    this.setState({subId: -1});
+                }
             })
         }
     }
