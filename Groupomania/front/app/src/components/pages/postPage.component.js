@@ -70,7 +70,7 @@ function PostPage(props) {
                         setSubTitle(sub.subFound.title);
                     });
                     getPostById(ret.postFound.id, 'getcomments/').then(posts => {
-                        setComments(posts.postsFound);
+                        setComments(posts.postsFound.sort((a, b) => a.createdAt < b.createdAt ? 1 : -1));
                     }).catch(error => {
                         console.log(error);
                     });
@@ -110,7 +110,7 @@ function PostPage(props) {
 
     function reloadComments() :void {
         getPostById(post.id, 'getcomments/').then(posts => {
-            setComments(posts.postsFound);
+            setComments(posts.postsFound.sort((a, b) => a.createdAt < b.createdAt ? 1 : -1));
         }).catch(error => {
             console.log(error);
         });

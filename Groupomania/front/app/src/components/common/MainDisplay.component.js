@@ -86,7 +86,7 @@ export default class MainDisplay extends React.Component {
     loadPostListByUser(): void {
         this.props.userData.subscriptionIds.map(subId => (
             getPostById(subId, 'getpostsbysub/').then(res => {
-                this.setState({postList: this.state.postList.concat(res.postsFound)});
+                this.setState({postList: this.state.postList.concat(res.postsFound).sort((a, b) => a.createdAt < b.createdAt ? 1 : -1)});
             }).catch(err => {
                 console.log('No post for this subID');
             })
