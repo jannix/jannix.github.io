@@ -113,16 +113,17 @@ export default class Header extends React.Component {
                 <header>
                     <div className="upper-row">
                         <div className="round-icon">
-                            <img onClick={this.clickOnHome} src={window.location.origin + '/images/iconalpha.png'} alt="user Avatar" title="User Profile"/>
+                            <img onClick={this.clickOnHome} src={window.location.origin + '/images/iconalpha.png'} alt="Home Icon" title="Groupomania Home"/>
                         </div>
                         <div className="round-icon">
-                            <img onClick={this.clickOnAvatar} src={window.location.origin + '/images/testiconavatar.png'} alt="user Avatar" title="User Profile"/>
+                            <img onClick={this.clickOnAvatar} src={window.location.origin + '/images/testiconavatar.png'} alt="User Icon" title="User Profile"/>
                         </div>
                         <div className="round-icon">
-                            <img onClick={this.clickOnCreate} src={window.location.origin + '/images/iconcreate.png'} alt="user Avatar" title="User Profile"/>
+                            <img onClick={this.clickOnCreate} src={window.location.origin + '/images/iconcreate.png'} alt="Create Icon" title="Create fil and post"/>
                         </div>
                         <div id="search">
-                            <input id='input-search' type="text" placeholder="Search..." onChange={this.handleSearchChangeValue}/>
+                            <label for="input-search">Rechercher</label>
+                            <input id='input-search' type="text" placeholder="Rechercher..." onChange={this.handleSearchChangeValue} title="Search input" />
                             {this.state.searchOption.length > 0 &&
                             <ul className="search-list-result">
                                 {this.state.searchOption.map( sub => (

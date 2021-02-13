@@ -5,6 +5,10 @@
   color: $primary-text-colour;
   min-height: 100vh;
 
+  & h1 {
+    color: $primary-text-colour;
+    text-align:center;
+  }
   .postOC-container {
     display: flex;
     flex-direction: column;
@@ -75,6 +79,10 @@
         max-width: 60px;
       }
     }
+  }
+  & .comments-container {
+    margin-right: 5px;
+    margin-left: 5px;
   }
 }
 

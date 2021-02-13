@@ -3,7 +3,7 @@ import {useParams, useHistory, useLocation} from "react-router-dom";
 import './_sub-page.scss';
 import Header from "../common/Header.component";
 import MainDisplay from "../common/MainDisplay.component";
-import {getSubsByTitle} from "../../services/sub.service";
+import {getSubsByExactTitle} from "../../services/sub.service";
 
 
 function SubPage(props) {
@@ -16,8 +16,7 @@ function SubPage(props) {
     useEffect(() => {
         let mounted = true;
         if (!sub || sub.title !== subName) {
-            getSubsByTitle(subName).then(res => {//TODO: make fct for exact title
-                console.log(res.subsFound);
+            getSubsByExactTitle(subName).then(res => {//TODO: make fct for exact title
                 if (mounted) {
                     setSub(res.subsFound[0]);
                 }

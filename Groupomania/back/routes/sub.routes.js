@@ -25,6 +25,7 @@ router.put("/subedit/:id", celebrate({
 router.delete('/:id', auth, subCtrl.deleteSub);
 
 router.get('/getbytitle/:title', subCtrl.getByTitle);
+router.get('/getbyexacttitle/:title', subCtrl.getByExactTitle);
 router.get('/getbyid/:id', subCtrl.getById);
 
 module.exports = router;

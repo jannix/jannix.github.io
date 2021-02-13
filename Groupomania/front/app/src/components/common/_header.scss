@@ -19,6 +19,9 @@
     }
     & #search {
       margin: 5px;
+      & label {
+        display: none;
+      }
       & input {
         color: $primary-text-colour;
         font-size: 16px;

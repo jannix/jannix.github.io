@@ -1,6 +1,10 @@
 @import "./../../sass/main";
 
 .home-page-container {
+  & h1 {
+    color: $primary-text-colour;
+    text-align:center;
+  }
 }
 
 

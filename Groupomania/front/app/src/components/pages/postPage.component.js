@@ -147,6 +147,7 @@ function PostPage(props) {
                         <CreateOCPost originalPost={post} closeBehavior={disappearCommentForm} routerHistory={history}/>
                     </div>
                 </CSSTransition>
+                <h1>Post</h1>
                 <section className="postOC-container">
                     <div className="postOC-banner-container">
                         <div className="postOC-avatar">

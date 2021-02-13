@@ -28,7 +28,7 @@ function HomePage() {
     return (
         <div className="home-page-container">
             <Header routerHistory={history}/>
-            {/*TODO: main display should be a view component*/}
+            <h1>Mes Discussions Groupomania</h1>
             {user && <MainDisplay routerHistory={history} userData={user}/>}
         </div>
     );

@@ -136,7 +136,8 @@ export default class CreateSub extends React.Component {
             <div className="create-sub-container">
                 <CloseBtn closeBehavior={this.props.closeBehavior}/>
                 <form onSubmit={this.handleSubmit}>
-                    <h2>Création du Fil</h2>
+                    {!this.props.originalSub && <h2>Création du Fil</h2>}
+                    {this.props.originalSub && <h2>Modifier le Fil</h2>}
                     <div className="settings-field-container">
                         <InputForm value={this.state.title} inputType="text" inputName="title"
                                    inputLabel="Nom du Fil"

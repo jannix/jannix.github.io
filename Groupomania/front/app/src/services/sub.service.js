@@ -75,7 +75,27 @@ export function getSubsByTitle(subName: string): Promise<any>  {
                 'Authorization': 'Bearer ' + localStorage.getItem('token'),
                 'userId': localStorage.getItem('user-id'),
             }
+        })
+            .then(HandleError)
+            .then(data => {
+                resolve(data);
             })
+            .catch((error) => {
+                reject(error);
+            });
+    });
+}
+
+export function getSubsByExactTitle(subName: string): Promise<any>  {
+    return new Promise((resolve, reject) => {
+        fetch(Constants.API_SUB+'getbyexacttitle/'+subName, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + localStorage.getItem('token'),
+                'userId': localStorage.getItem('user-id'),
+            }
+        })
             .then(HandleError)
             .then(data => {
                 resolve(data);

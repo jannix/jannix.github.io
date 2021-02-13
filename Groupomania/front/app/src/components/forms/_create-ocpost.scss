@@ -8,6 +8,9 @@
   padding: 20px;
   min-height: 80vh;
   z-index: 50;
+  & #delete-btn {
+    margin: 10px;
+  }
 }
 
 @media only screen and (min-width: 790px) {
