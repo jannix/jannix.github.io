@@ -122,7 +122,7 @@ export default class Header extends React.Component {
                             <img onClick={this.clickOnCreate} src={window.location.origin + '/images/iconcreate.png'} alt="Create Icon" title="Create fil and post"/>
                         </div>
                         <div id="search">
-                            <label for="input-search">Rechercher</label>
+                            <label htmlFor="input-search">Rechercher</label>
                             <input id='input-search' type="text" placeholder="Rechercher..." onChange={this.handleSearchChangeValue} title="Search input" />
                             {this.state.searchOption.length > 0 &&
                             <ul className="search-list-result">

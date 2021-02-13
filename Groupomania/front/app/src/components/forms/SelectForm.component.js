@@ -44,7 +44,7 @@ export default class SelectForm extends React.Component {
                         <option key={opt.id} value={opt.id}>{opt.title}</option>
                     ))}
                 </select>
-                <label for={"inputid-"+this.props.inputName} className="input-placeholder">{this.props.inputLabel}</label>
+                <label htmlFor={"inputid-"+this.props.inputName} className="input-placeholder">{this.props.inputLabel}</label>
                 {this.isWrong &&
                 <div className="wrong-input-txt">
                     <label className="wrong-input-txt__label">{this.props.inputWrongBehavior.wrongTxt}</label>
