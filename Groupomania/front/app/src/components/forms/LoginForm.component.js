@@ -55,7 +55,7 @@ export default class LoginForm extends React.Component {
         return (
             <div className="login-form-container">
                 <form onSubmit={this.handleSubmit}>
-                    <h2 id="login-form-title">Connexion</h2>
+                    <h1 id="login-form-title">Connexion</h1>
                     <div className="login-form-inputs-container">
                         <InputForm value={this.state.email} inputType="email" inputName="email" inputLabel="Email"
                                    inputWrongBehavior={{wrongTxt: validatorMessages.email.pattern,

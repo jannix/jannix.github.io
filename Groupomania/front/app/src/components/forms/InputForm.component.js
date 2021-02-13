@@ -43,7 +43,7 @@ export default class InputForm extends React.Component {
     render() {
         return (
             <div className="input-container">
-                <input id={"inputid-"+this.props.inputName} className={(this.props.value? "has-content":"") + ' ' + this.wrongInputCss} type={this.props.inputType} name={this.props.inputName}
+                <input id={"inputid-"+this.props.inputName} className={((this.props.value || this.props.inputType === "date")? "has-content":"") + ' ' + this.wrongInputCss} type={this.props.inputType} name={this.props.inputName}
                        autoComplete="off" value={this.props.value} onChange={this.handleChangeValue} onClick={this.handleClick}/>
                 <label for={"inputid-"+this.props.inputName} className="input-placeholder">{this.props.inputLabel}</label>
                 {this.isWrong &&

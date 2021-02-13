@@ -70,7 +70,7 @@ export default class UpdateMailPanel extends React.Component {
                 <h1>Changer le mail</h1>
                 <form onSubmit={this.handleSubmit}>
                     <div className="settings-field-container">
-                        <InputForm value={this.state.email} inputType="email" inputName="email" inputLabel="Email"
+                        <InputForm value={this.state.email} inputType="email" inputName="email" inputLabel="Nouvel Email"
                                    inputWrongBehavior={{wrongTxt: validatorMessages.email.pattern,
                                        isWrong: function (value: string): boolean {
                                            return !matchPattern(value, validatorsRules.emailPattern);
