@@ -38,13 +38,13 @@ export default class SelectForm extends React.Component {
     render() {
         return (
             <div className="select-container">
-                <select className={(this.props.value? "has-content":"") + ' ' + this.wrongInputCss} name={this.props.inputName}
+                <select id={"inputid-"+this.props.inputName} className={(this.props.value? "has-content":"") + ' ' + this.wrongInputCss} name={this.props.inputName}
                        autoComplete="off" value={this.props.value} onChange={this.handleChangeValue}>
                     {this.props.options.map( opt => (
                         <option key={opt.id} value={opt.id}>{opt.title}</option>
                     ))}
                 </select>
-                <label htmlFor={this.props.inputName} className="input-placeholder">{this.props.inputLabel}</label>
+                <label for={"inputid-"+this.props.inputName} className="input-placeholder">{this.props.inputLabel}</label>
                 {this.isWrong &&
                 <div className="wrong-input-txt">
                     <label className="wrong-input-txt__label">{this.props.inputWrongBehavior.wrongTxt}</label>

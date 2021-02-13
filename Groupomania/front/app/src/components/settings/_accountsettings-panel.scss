@@ -7,6 +7,9 @@
   font-family: $primary-text-font;
   text-align: center;
   flex-grow: 1;
+  & #delete-btn {
+    margin: 10px;
+  }
   & h1 {
     font-size: $post-title-font-size;
   }

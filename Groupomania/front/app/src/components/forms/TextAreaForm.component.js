@@ -38,9 +38,9 @@ export default class TextAreaForm extends React.Component {
     render() {
         return (
             <div className="input-textarea-container">
-                <textarea rows="5" className={(this.props.value? "has-content":"") + ' ' + this.wrongInputCss} type={this.props.inputType} name={this.props.inputName}
+                <textarea id={"inputid-"+this.props.inputName} rows="5" className={(this.props.value? "has-content":"") + ' ' + this.wrongInputCss} type={this.props.inputType} name={this.props.inputName}
                        autoComplete="false" value={this.props.value} onChange={this.handleChangeValue}/>
-                <label className="input-placeholder">{this.props.inputLabel}</label>
+                <label for={"inputid-"+this.props.inputName} className="input-placeholder">{this.props.inputLabel}</label>
                 {this.isWrong &&
                 <div className="wrong-input-txt">
                     <label className="wrong-input-txt__label">{this.props.inputWrongBehavior.wrongTxt}</label>
