@@ -36,7 +36,7 @@ export default class SelectForm extends React.Component {
     }
 
     render() {
-        if (this.props.options.lenght > 0) {
+        if (this.props.options.length > 0) {
             return (
                 <div className="select-container">
                     <select id={"inputid-"+this.props.inputName} className={(this.props.value? "has-content":"") + ' ' + this.wrongInputCss} name={this.props.inputName}
