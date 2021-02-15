@@ -116,7 +116,7 @@ export default class Header extends React.Component {
                             <img onClick={this.clickOnHome} src={window.location.origin + '/images/iconalpha.png'} alt="Home Icon" title="Groupomania Home"/>
                         </div>
                         <div className="round-icon">
-                            <img onClick={this.clickOnAvatar} src={window.location.origin + '/images/testiconavatar.png'} alt="User Icon" title="User Profile"/>
+                            <img onClick={this.clickOnAvatar} src={window.location.origin + '/images/iconavatar.png'} alt="User Icon" title="User Profile"/>
                         </div>
                         <div className="round-icon">
                             <img onClick={this.clickOnCreate} src={window.location.origin + '/images/iconcreate.png'} alt="Create Icon" title="Create fil and post"/>
